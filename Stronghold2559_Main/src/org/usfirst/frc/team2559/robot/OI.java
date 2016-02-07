@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2559.robot;
 
+import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.Turn;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -45,10 +47,10 @@ public class OI {
 	Joystick driverStick = new Joystick(0);
 	Joystick shooterStick = new Joystick(1);
 	
-	Button 	driverButton1 = new JoystickButton(driverStick, 1),
+	Button 	_180 = new JoystickButton(driverStick, 1),
 			_back = new JoystickButton(driverStick, 2),
 			_forw = new JoystickButton(driverStick, 3),
-			//_ledcheck = new JoystickButton(driverStick, 4),
+			_turn = new JoystickButton(driverStick, 4),
 			_fast = new JoystickButton(driverStick, 5),
 			driverButton6 = new JoystickButton(driverStick, 6),
 			driverButton7 = new JoystickButton(driverStick, 7),
@@ -88,7 +90,8 @@ public class OI {
 				end();
 			}
 		});
-		//_ledcheck.whenPressed(new SendLEDState());
+		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
+		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {
@@ -96,11 +99,11 @@ public class OI {
 	}
 
 	public double getLeftDrive() {
-		return _zeroDeadzone(-driverStick.getRawAxis(RobotMap.JOYSTICK_AXIS_DRIVE_LEFT), 0.15);
+		return _zeroDeadzone(-driverStick.getRawAxis(RobotMap.JOYSTICK_AXIS_DRIVE_LEFT), 0.1);
 	}
 
 	public double getRightDrive() {
-		return _zeroDeadzone(-driverStick.getRawAxis(RobotMap.JOYSTICK_AXIS_DRIVE_RIGHT), 0.15);
+		return _zeroDeadzone(-driverStick.getRawAxis(RobotMap.JOYSTICK_AXIS_DRIVE_RIGHT), 0.1);
 		}
 	
 	public double getSliderVal() {

@@ -24,6 +24,9 @@ public class RobotMap {
 							TELEOP_INVALID_ID = 5,
 							TELEOP_WHAT_ID = 6;
 	
+	public static final double TURNING_SPEED = 0.4;
+	public static final double TURNING_MIN = 0.4;
+	
 	public static final double SLOWDRIVE_CONSTANT = 0.75;
 	
 	public static final int JOYSTICK_AXIS_DRIVE_LEFT = 1,

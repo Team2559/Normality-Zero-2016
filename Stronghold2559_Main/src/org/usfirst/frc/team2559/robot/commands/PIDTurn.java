@@ -1,19 +1,20 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
+import org.usfirst.frc.team2559.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Turn extends Command {
+public class PIDTurn extends Command {
 
 	int _angle;
 	double _speed;
 	Long startTime;
 
-	public Turn(int angle, double speed) {
+	public PIDTurn(int angle, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot._driveTrain);
@@ -33,11 +34,19 @@ public class Turn extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (_angle > 0) {
-			Robot._driveTrain.tankDrive(_speed, -_speed);
+			System.out.println("-Angle: " + Robot._driveTrain.getGyroAngle());
+			System.out.println("-Theta over 90: " + (1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7);
+			if (((1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7) <= RobotMap.TURNING_MIN) {
+				Robot._driveTrain.tankDrive(RobotMap.TURNING_SPEED, -RobotMap.TURNING_SPEED);
+				System.out.println("Theta over angle is less than " + RobotMap.TURNING_MIN + ", sending " + RobotMap.TURNING_MIN + "!");
+			} else {
+				Robot._driveTrain.tankDrive((1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7, -((1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7));
+				System.out.println("Sending Voltage: " + (1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7);
+			}
 		} else {
-			Robot._driveTrain.tankDrive(-_speed, _speed);
 		}
-		System.out.println("Gyro Angle: " + Robot._driveTrain.getGyroAngle());	
+		System.out.println("Gyro Angle: " + Robot._driveTrain.getGyroAngle());
+		System.out.println("----------------------");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

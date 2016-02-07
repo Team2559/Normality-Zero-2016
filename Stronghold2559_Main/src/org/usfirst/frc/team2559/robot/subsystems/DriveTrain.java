@@ -76,8 +76,8 @@ public class DriveTrain extends Subsystem {
 	public void tankDrive(double left, double right) {
 		// double leftCalc = left * Math.pow(Math.abs(left), 0.3);
 		// double rightCalc = right * Math.pow(Math.abs(right), 0.3);
-		double leftCalc = (left * Math.pow(Math.abs(left), 0.3)) * RobotMap.SLOWDRIVE_CONSTANT;
-		double rightCalc = (right * Math.pow(Math.abs(right), 0.3)) * RobotMap.SLOWDRIVE_CONSTANT;
+		double leftCalc = (left * Math.pow(Math.abs(left), 0.6)) * RobotMap.SLOWDRIVE_CONSTANT;
+		double rightCalc = (right * Math.pow(Math.abs(right), 0.6)) * RobotMap.SLOWDRIVE_CONSTANT;
 		if (auton) {
 			_drive.tankDrive(left, right);
 		} else if (!reverseDrive && !fastDrive) {
