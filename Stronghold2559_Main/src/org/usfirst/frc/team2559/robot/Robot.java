@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
+import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
 import org.usfirst.frc.team2559.robot.subsystems.Recorder;
@@ -81,8 +82,8 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture("cam0");
 		
 		autonomiceNames = new String[] {
-				"Do Nothing" };
-		autonomice = new Command[] { new DoNothing() };
+				"Do Nothing", "Recorded Autonomous 1", "Recorded Autonomous 2" };
+		autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new PlayRecording("2") };
 
 		for (int i = 0; i < autonomice.length; i++) {
 			chooser.addObject(autonomiceNames[i], autonomice[i]);

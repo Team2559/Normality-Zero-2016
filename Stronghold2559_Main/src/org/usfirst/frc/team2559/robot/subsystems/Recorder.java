@@ -35,8 +35,8 @@ public class Recorder extends Subsystem {
     	setDefaultCommand(new DoNothing());
     }
     
-    public void initializeRecorder() throws IOException {
-    	writer = new FileWriter(RobotMap.AUTONOMOUS_FILE);
+    public void initializeRecorder(String id) throws IOException {
+    	writer = new FileWriter(RobotMap.AUTONOMOUS_FILE + id + ".csv");
     }
     
     public void recordInput(long startTime) throws IOException {
@@ -66,8 +66,8 @@ public class Recorder extends Subsystem {
     	}
     }
     
-    public void initializePlayer() throws FileNotFoundException {
-    	scanner = new Scanner(new File(RobotMap.AUTONOMOUS_FILE));
+    public void initializePlayer(String id) throws FileNotFoundException {
+    	scanner = new Scanner(new File(RobotMap.AUTONOMOUS_FILE + id + ".csv"));
     	
     	// lets the scanner know numbers are separated by a comma or a \n
     	scanner.useDelimiter(",|\\n");

@@ -6,6 +6,8 @@ import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.Turn;
+import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
+import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -61,12 +63,12 @@ public class OI {
 
 	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
 			shooterButton2 = new JoystickButton(shooterStick, 2),
-			shooterButton3 = new JoystickButton(shooterStick, 3),
-			shooterButton4 = new JoystickButton(shooterStick, 4),
+			_play1 = new JoystickButton(shooterStick, 3),
+			_play2 = new JoystickButton(shooterStick, 4),
 			shooterButton5 = new JoystickButton(shooterStick, 5),
 			shooterButton6 = new JoystickButton(shooterStick, 6),
-			shooterButton7 = new JoystickButton(shooterStick, 7),
-			shooterButton8 = new JoystickButton(shooterStick, 8),
+			_record1 = new JoystickButton(shooterStick, 7),
+			_record2 = new JoystickButton(shooterStick, 8),
 			shooterButton9 = new JoystickButton(shooterStick, 9),
 			shooterButton10 = new JoystickButton(shooterStick, 10),
 			shooterButton11 = new JoystickButton(shooterStick, 11),
@@ -94,6 +96,11 @@ public class OI {
 		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
 		_debug.whenPressed(new GyroDebug());
+		
+		_record1.whenPressed(new CreateRecording("1"));
+		_record2.whenPressed(new CreateRecording("2"));
+		_play1.whenPressed(new PlayRecording("1"));
+		_play2.whenPressed(new PlayRecording("2"));
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {
