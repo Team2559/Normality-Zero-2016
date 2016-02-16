@@ -13,6 +13,7 @@ import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
+import org.usfirst.frc.team2559.robot.subsystems.Recorder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain _driveTrain;
 	public static LEDStrip _ledStrip;
+	public static Recorder _recorder;
 	
 	Compressor compressor;	
 	Command autonomousCommand;
@@ -67,6 +69,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	_driveTrain = new DriveTrain();
     	_ledStrip = new LEDStrip();
+    	_recorder = new Recorder();
 		oi = new OI();
 		
 		compressor = new Compressor(RobotMap.PCM_NODEID_COMPRESSOR);

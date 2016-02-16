@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2559.robot;
 
+import org.usfirst.frc.team2559.robot.commands.GyroDebug;
 import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
@@ -52,13 +53,13 @@ public class OI {
 			_forw = new JoystickButton(driverStick, 3),
 			_turn = new JoystickButton(driverStick, 4),
 			_fast = new JoystickButton(driverStick, 5),
-			driverButton6 = new JoystickButton(driverStick, 6),
+			_debug = new JoystickButton(driverStick, 6),
 			driverButton7 = new JoystickButton(driverStick, 7),
 			driverButton8 = new JoystickButton(driverStick, 8),
 			driverButton9 = new JoystickButton(driverStick, 9),
 			driverButton10 = new JoystickButton(driverStick, 10);
 
-	Button 	shooterButton1 = new JoystickButton(shooterStick, 1),
+	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
 			shooterButton2 = new JoystickButton(shooterStick, 2),
 			shooterButton3 = new JoystickButton(shooterStick, 3),
 			shooterButton4 = new JoystickButton(shooterStick, 4),
@@ -92,6 +93,7 @@ public class OI {
 		});
 		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
+		_debug.whenPressed(new GyroDebug());
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {
@@ -116,5 +118,9 @@ public class OI {
 
 	public double getTrigger() {
 		return driverStick.getRawAxis(3);
+	}
+	
+	public boolean getRecorderStopButton() {
+		return _stopRecording.get();
 	}
 }
