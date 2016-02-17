@@ -1,10 +1,6 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,9 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SendLEDState extends Command {
 	
-	I2C Wire = new I2C(Port.kOnboard, 4);
-	byte[] toSend = new byte[1];
-	static int previous_state = 0, current_state = 0;
+	int current_state;
+	int counter = 0;
 
     public SendLEDState() {
         // Use requires() here to declare subsystem dependencies
@@ -28,12 +23,10 @@ public class SendLEDState extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	current_state = Robot._ledStrip.getMode();
-    	if(previous_state != current_state) {
-    		toSend[0] = (byte)current_state;
-        	Wire.transaction(toSend, 1, null, 0);
-        	System.out.println("Sent state of " + Robot._ledStrip.getMode());
-        	previous_state = current_state;
+    	if(counter++ > 5) {
+    		current_state = Robot._ledStrip.getMode();
+    		Robot._ledStrip.sendData(current_state);
+    		counter = 0;    		
     	}
     }
 

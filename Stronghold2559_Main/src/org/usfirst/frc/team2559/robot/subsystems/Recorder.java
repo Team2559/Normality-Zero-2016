@@ -32,7 +32,7 @@ public class Recorder extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DoNothing());
+    	//setDefaultCommand(new DoNothing());
     }
     
     public void initializeRecorder(String id) throws IOException {
