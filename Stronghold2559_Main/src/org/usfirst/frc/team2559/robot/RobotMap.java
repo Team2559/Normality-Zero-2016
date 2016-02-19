@@ -54,6 +54,11 @@ public class RobotMap {
 	
 	public static final String AUTONOMOUS_FILE = "/home/lvuser/recordedAuto";
 	
+	public static final int SMARTSHOOT_X_THRESHOLD = 20,
+							SMARTSHOOT_Y_THRESHOLD = 20;
+	
+	public static final double SMARTSHOOT_TURN_SPEED = 0.25;
+	
 	public static final boolean ANNOY_THE_FUCK_OUT_OF_THE_DRIVERS = true;
 	public static final boolean USE_TOO_MUCH_BANDWIDTH = false;
 }

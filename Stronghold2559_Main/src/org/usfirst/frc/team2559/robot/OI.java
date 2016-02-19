@@ -5,6 +5,7 @@ import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.Turn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -62,7 +63,7 @@ public class OI {
 			driverButton10 = new JoystickButton(driverStick, 10);
 
 	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
-			shooterButton2 = new JoystickButton(shooterStick, 2),
+			_smartShoot = new JoystickButton(shooterStick, 2),
 			_play1 = new JoystickButton(shooterStick, 3),
 			_play2 = new JoystickButton(shooterStick, 4),
 			shooterButton5 = new JoystickButton(shooterStick, 5),
@@ -96,6 +97,8 @@ public class OI {
 		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
 		_debug.whenPressed(new GyroDebug());
+		
+		_smartShoot.whenPressed(new SmartShoot());
 		
 		_record1.whenPressed(new CreateRecording("1"));
 		_record2.whenPressed(new CreateRecording("2"));
