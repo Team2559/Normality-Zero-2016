@@ -1,9 +1,12 @@
 package org.usfirst.frc.team2559.robot.subsystems;
 
+import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +18,9 @@ public class LEDStrip extends Subsystem {
     // here. Call these from Commands.
 	
 	private static int _curMode = 0;
+	I2C Wire = new I2C(Port.kOnboard, 4);
+	byte[] toSend = new byte[1];
+	static int previous_state = -1, current_state = 0;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -55,6 +61,11 @@ public class LEDStrip extends Subsystem {
     public int getMode() {
     	this.setMode();
     	return _curMode;
+    }
+    
+    public void sendData(int data) {
+    	toSend[0] = (byte)data;
+        Wire.transaction(toSend, 1, null, 0);
     }
     
 }

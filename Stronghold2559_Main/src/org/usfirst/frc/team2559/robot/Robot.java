@@ -11,11 +11,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
+import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
+import org.usfirst.frc.team2559.robot.subsystems.Recorder;
+import org.usfirst.frc.team2559.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +33,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain _driveTrain;
 	public static LEDStrip _ledStrip;
+	public static Recorder _recorder;
+	public static Shooter _shooter;
 	
 	Compressor compressor;	
 	Command autonomousCommand;
@@ -67,6 +73,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	_driveTrain = new DriveTrain();
     	_ledStrip = new LEDStrip();
+    	_recorder = new Recorder();
+    	_shooter = new Shooter();
 		oi = new OI();
 		
 		compressor = new Compressor(RobotMap.PCM_NODEID_COMPRESSOR);
@@ -75,11 +83,16 @@ public class Robot extends IterativeRobot {
 		
 		CameraServer server = CameraServer.getInstance();
 		server.setQuality(50);
-		server.startAutomaticCapture("cam0");
-		
+		USBCamera cam = new USBCamera("cam0");
+		cam.setSize(640, 360);
+		cam.setExposureManual(0);
+		cam.setBrightness(0);
+		cam.setWhiteBalanceManual(10000);
+		server.startAutomaticCapture(cam);
+
 		autonomiceNames = new String[] {
-				"Do Nothing" };
-		autonomice = new Command[] { new DoNothing() };
+				"Do Nothing", "Recorded Autonomous 1", "Recorded Autonomous 2" };
+		autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new PlayRecording("2") };
 
 		for (int i = 0; i < autonomice.length; i++) {
 			chooser.addObject(autonomiceNames[i], autonomice[i]);

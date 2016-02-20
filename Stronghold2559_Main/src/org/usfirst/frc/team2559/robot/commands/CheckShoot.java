@@ -1,38 +1,39 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
+import org.usfirst.frc.team2559.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SendLEDState extends Command {
-	
-	int current_state;
-	int counter = 0;
+public class CheckShoot extends Command {
 
-    public SendLEDState() {
+	boolean hasShot = false;
+	
+    public CheckShoot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._ledStrip);
+    	requires(Robot._shooter);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {    	
+    protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(counter++ > 5) {
-    		current_state = Robot._ledStrip.getMode();
-    		Robot._ledStrip.sendData(current_state);
-    		counter = 0;    		
+    	if ((Math.abs(Robot._shooter.getXOffset()) <= RobotMap.SMARTSHOOT_X_THRESHOLD) && 
+   			(Math.abs(Robot._shooter.getYOffset()) <= RobotMap.SMARTSHOOT_Y_THRESHOLD)) {
+    		// shoot
+    		hasShot = true;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return hasShot;
     }
 
     // Called once after isFinished returns true
@@ -41,6 +42,7 @@ public class SendLEDState extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {    	
+    protected void interrupted() {
+    	end();
     }
 }

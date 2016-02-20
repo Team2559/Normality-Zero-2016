@@ -72,6 +72,22 @@ public class DriveTrain extends Subsystem {
 	public void setFastDrive(boolean val) {
 		fastDrive = val;
 	}
+	
+	public void setFrontLeftMotor(double val) {
+		_leftfr.set(val);
+	}
+	
+	public void setFrontRightMotor(double val) {
+		_rightfr.set(val);
+	}
+
+	public void setBackLeftMotor(double val) {
+		_leftback.set(val);
+	}
+
+	public void setBackRightMotor(double val) {
+		_rightback.set(val);
+	}
 
 	public void tankDrive(double left, double right) {
 		// double leftCalc = left * Math.pow(Math.abs(left), 0.3);
@@ -91,6 +107,22 @@ public class DriveTrain extends Subsystem {
 		} else if (reverseDrive && !fastDrive) {
 			_drive.tankDrive(-leftCalc, -rightCalc);
 		}
+	}
+	
+	public double getFrontLeftMotor() {
+		return _leftfr.get();
+	}
+	
+	public double getFrontRightMotor() {
+		return _rightfr.get();
+	}
+
+	public double getBackLeftMotor() {
+		return _leftback.get();
+	}
+
+	public double getBackRightMotor() {
+		return _rightback.get();
 	}
 
 	public double getLeftDistance() {

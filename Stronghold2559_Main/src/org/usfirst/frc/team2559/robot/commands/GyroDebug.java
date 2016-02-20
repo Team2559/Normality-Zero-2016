@@ -8,18 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PIDTurn extends Command {
+public class GyroDebug extends Command {
 
-	int _angle;
-	double _speed;
-	Long startTime;
+	Long startTime, currentTime;
+	double gyroAngle, lastAngle;
+	int counterExecute = 0, counterChange = 0;
 
-	public PIDTurn(int angle, double speed) {
+	public GyroDebug() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot._driveTrain);
-		_speed = speed;
-		_angle = angle;
 	}
 
 	// Called just before this Command runs the first time
@@ -30,48 +28,35 @@ public class PIDTurn extends Command {
 		Robot._driveTrain.setSlowDrive(false);
 		Robot._driveTrain.clearGyro();
 		startTime = System.currentTimeMillis();
+		gyroAngle = Robot._driveTrain.getGyroAngle();
+		lastAngle = gyroAngle;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double 	gyroAngle = Robot._driveTrain.getGyroAngle(), 
-				calcAngle = (1 - (Robot._driveTrain.getGyroAngle() / _angle)) * 0.7;
-		
-		if (_angle > 0) {
-			System.out.println("-Angle: " + gyroAngle);
-			System.out.println("-Theta over 90: " + calcAngle);
-			if (calcAngle <= RobotMap.TURNING_MIN) {
-				Robot._driveTrain.tankDrive(RobotMap.TURNING_SPEED, -RobotMap.TURNING_SPEED);
-				System.out.println("Theta over angle is less than " + RobotMap.TURNING_MIN + ", sending " + RobotMap.TURNING_MIN + "!");
-			} else {
-				Robot._driveTrain.tankDrive(calcAngle, -calcAngle);
-				System.out.println("Sending Voltage: " + calcAngle);
-			}
-		} else {
+		gyroAngle = Robot._driveTrain.getGyroAngle();
+		currentTime = System.currentTimeMillis();
+		if(gyroAngle < lastAngle) {
+			counterChange++;
 		}
+		lastAngle = gyroAngle;
+		counterExecute++;
 		System.out.println("Gyro Angle: " + gyroAngle);
+		System.out.println("Time Elapsed (ms): " + (currentTime - startTime));
 		System.out.println("----------------------");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(_angle > 0) {
-			if(Robot._driveTrain.getGyroAngle() > _angle) {
-				return true;
-			}
-		} else {
-			if(Robot._driveTrain.getGyroAngle() < _angle) {
-				return true;
-			}
-		}
-		return false;
+		return currentTime >= (startTime + 30000);
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot._driveTrain.tankDrive(0, 0);
-		Robot._driveTrain.setAuton(false);
-		System.out.println("Finished. Gyro Angle: " + Robot._driveTrain.getGyroAngle());
+		System.out.println("Finished.\nAverage change in angle was " +  gyroAngle / ((currentTime - startTime)));
+		System.out.println("Gyro: " + gyroAngle + "\nTime: " + (currentTime - startTime));
+		System.out.println("Execute Counter: " + counterExecute);
+		System.out.println("Change Counter: " + counterChange);
 	}
 
 	// Called when another command which requires one or more of the same
