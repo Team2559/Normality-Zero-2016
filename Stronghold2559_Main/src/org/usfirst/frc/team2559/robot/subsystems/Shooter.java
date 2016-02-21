@@ -20,9 +20,14 @@ public class Shooter extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    public Shooter() {
+    	this.invertMotors();
+    }
+    
 	private final Talon 		_left = new Talon(RobotMap.PORT_SHOOTER_LEFT),
-								_right = new Talon(RobotMap.PORT_SHOOTER_RIGHT),
-								_adjuster = new Talon(RobotMap.PORT_SHOOTER_ADJUSTER);
+								_right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
+	
+	private final CANTalon _adjuster = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
     
     public double getXOffset() {
     	// i'm a one-liner god
@@ -38,8 +43,25 @@ public class Shooter extends Subsystem {
     	_right.set(right);
     }
     
+    public void invertMotors() {
+    	_left.setInverted(true);
+    	_right.setInverted(true);
+    }
+    
     public void setAdjusterSpeed(double speed) {
     	_adjuster.set(speed);
+    }
+    
+    public void intakeIn() {
+    	this.setSpinSpeed(RobotMap.SHOOTER_INTAKE_SPEED, RobotMap.SHOOTER_INTAKE_SPEED);
+    }
+    
+    public void intakeOut() {
+    	this.setSpinSpeed(-RobotMap.SHOOTER_INTAKE_SPEED, -RobotMap.SHOOTER_INTAKE_SPEED);
+    }
+    
+    public void intakeStop() {
+    	this.setSpinSpeed(0, 0);
     }
 }
 

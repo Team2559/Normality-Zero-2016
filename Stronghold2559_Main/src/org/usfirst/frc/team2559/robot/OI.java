@@ -10,6 +10,7 @@ import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
+import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -66,7 +67,7 @@ public class OI {
 	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
 			_smartShoot = new JoystickButton(shooterStick, 2),
 			_adjustShooter = new JoystickButton(shooterStick, 3),
-			shooterButton4 = new JoystickButton(shooterStick, 4),
+			_spinup = new JoystickButton(shooterStick, 4),
 			_play1 = new JoystickButton(shooterStick, 5),
 			_play2 = new JoystickButton(shooterStick, 6),
 			_record1 = new JoystickButton(shooterStick, 7),
@@ -106,6 +107,7 @@ public class OI {
 		_play1.whenPressed(new PlayRecording("1"));
 		_play2.whenPressed(new PlayRecording("2"));
 		_adjustShooter.whileHeld(new AdjustShooter());
+		_spinup.whenPressed(new SpinForSeconds(3));
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {
