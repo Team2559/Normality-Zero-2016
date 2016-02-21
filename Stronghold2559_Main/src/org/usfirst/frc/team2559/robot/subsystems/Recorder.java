@@ -43,15 +43,20 @@ public class Recorder extends Subsystem {
     	if(writer != null) {
     		writer.append("" + (System.currentTimeMillis() - startTime));
     		
-    		writer.append("," + Robot._driveTrain.getFrontLeftMotor());
-    		writer.append("," + Robot._driveTrain.getFrontRightMotor());
-    		writer.append("," + Robot._driveTrain.getBackLeftMotor());
+//    		writer.append("," + Robot._driveTrain.getFrontLeftMotor());
+//    		writer.append("," + Robot._driveTrain.getFrontRightMotor());
+//    		writer.append("," + Robot._driveTrain.getBackLeftMotor());
+    		
+    		writer.append("," + ((Robot._driveTrain.getFrontLeftMotor() + Robot._driveTrain.getFrontRightMotor()) / 2));    		
+    		
     		
     		/*
     		 * THE LAST THING YOU APPEND MUST HAVE \N
     		 */
+    		 		
+//    		writer.append("," + Robot._driveTrain.getBackRightMotor() + "\n");
     		
-    		writer.append("," + Robot._driveTrain.getBackRightMotor() + "\n");
+    		writer.append("," + ((Robot._driveTrain.getBackLeftMotor() + Robot._driveTrain.getBackRightMotor()) / 2) + "\n");    		
     		
     		/*
     		 * KEEP THE LAST THING BETWEEN THESE CODEBLOCKS TO REMEMBER
@@ -73,6 +78,7 @@ public class Recorder extends Subsystem {
     	scanner.useDelimiter(",|\\n");
     	
     	playerStartTime = System.currentTimeMillis();
+    	Robot._driveTrain.setAuton(true);
     }
     
     public void playRecording() {
@@ -86,10 +92,11 @@ public class Recorder extends Subsystem {
     		t_delta = nextDouble - (System.currentTimeMillis() - playerStartTime);
     		
     		if(t_delta <= 0) {
-        		Robot._driveTrain.setFrontLeftMotor(scanner.nextDouble());
-        		Robot._driveTrain.setFrontRightMotor(scanner.nextDouble());
-        		Robot._driveTrain.setBackLeftMotor(scanner.nextDouble());
-        		Robot._driveTrain.setBackRightMotor(scanner.nextDouble());
+//        		Robot._driveTrain.setFrontLeftMotor(scanner.nextDouble());
+//        		Robot._driveTrain.setFrontRightMotor(scanner.nextDouble());
+//        		Robot._driveTrain.setBackLeftMotor(scanner.nextDouble());
+//        		Robot._driveTrain.setBackRightMotor(scanner.nextDouble());
+        		Robot._driveTrain.tankDrive(scanner.nextDouble(), scanner.nextDouble());
         		
         		onTime = true;
     		} else {
@@ -106,10 +113,8 @@ public class Recorder extends Subsystem {
     }
     
     public void stopPlayback() {
-    	Robot._driveTrain.setFrontLeftMotor(0);
-		Robot._driveTrain.setFrontRightMotor(0);
-		Robot._driveTrain.setBackLeftMotor(0);
-		Robot._driveTrain.setBackRightMotor(0);
+    	Robot._driveTrain.tankDrive(0, 0);
+    	Robot._driveTrain.setAuton(false);
     }
     
 }
