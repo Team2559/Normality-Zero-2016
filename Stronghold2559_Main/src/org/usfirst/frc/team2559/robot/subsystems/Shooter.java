@@ -63,5 +63,13 @@ public class Shooter extends Subsystem {
     public void intakeStop() {
     	this.setSpinSpeed(0, 0);
     }
+    
+    public double getLeftShooterMotor() {
+    	return _left.get();
+    }
+    
+    public double getRightShooterMotor() {
+    	return _right.get();
+    }
 }
 
