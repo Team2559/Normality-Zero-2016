@@ -5,10 +5,11 @@ import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
-import org.usfirst.frc.team2559.robot.commands.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.Turn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
+import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
+import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -64,10 +65,10 @@ public class OI {
 
 	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
 			_smartShoot = new JoystickButton(shooterStick, 2),
-			_play1 = new JoystickButton(shooterStick, 3),
-			_play2 = new JoystickButton(shooterStick, 4),
-			shooterButton5 = new JoystickButton(shooterStick, 5),
-			shooterButton6 = new JoystickButton(shooterStick, 6),
+			_adjustShooter = new JoystickButton(shooterStick, 3),
+			shooterButton4 = new JoystickButton(shooterStick, 4),
+			_play1 = new JoystickButton(shooterStick, 5),
+			_play2 = new JoystickButton(shooterStick, 6),
 			_record1 = new JoystickButton(shooterStick, 7),
 			_record2 = new JoystickButton(shooterStick, 8),
 			shooterButton9 = new JoystickButton(shooterStick, 9),
@@ -104,6 +105,7 @@ public class OI {
 		_record2.whenPressed(new CreateRecording("2"));
 		_play1.whenPressed(new PlayRecording("1"));
 		_play2.whenPressed(new PlayRecording("2"));
+		_adjustShooter.whileHeld(new AdjustShooter());
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {

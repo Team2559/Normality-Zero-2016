@@ -37,6 +37,10 @@ public class RobotMap {
 							PORT_DRIVETRAIN_RIGHT_FR = 3,
 							PORT_DRIVETRAIN_RIGHT_BACK = 4;
 	
+	public static final int PORT_SHOOTER_LEFT = 0,
+							PORT_SHOOTER_RIGHT = 1,
+							PORT_SHOOTER_ADJUSTER = 2;
+	
 	public static final int PCM_NODEID = 0,
 							PDP_NODEID = 1,
 							PCM_NODEID_COMPRESSOR = 0;
@@ -47,10 +51,10 @@ public class RobotMap {
 	public static final int PORT_RELAY_LEFT = 1,
 							PORT_RELAY_RIGHT = 2;
 	
-	public static final int PORT_ENCODER_LEFT_1 = 6,
-							PORT_ENCODER_LEFT_2 = 7,
-							PORT_ENCODER_RIGHT_1 = 8,
-							PORT_ENCODER_RIGHT_2 = 9;
+	public static final int PORT_ENCODER_LEFT_1 = 0,
+							PORT_ENCODER_LEFT_2 = 1,
+							PORT_ENCODER_RIGHT_1 = 2,
+							PORT_ENCODER_RIGHT_2 = 3;
 	
 	public static final String AUTONOMOUS_FILE = "/home/lvuser/recordedAuto";
 	

@@ -19,6 +19,7 @@ public class PlayRecording extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot._recorder);
+    	requires(Robot._driveTrain);
     	this.id = id;
     }
 
@@ -42,7 +43,7 @@ public class PlayRecording extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.getRecorderStopButton();
+        return Robot.oi.getRecorderStopButton() || Robot._recorder.hasFinishedPlayback();
     }
 
     // Called once after isFinished returns true

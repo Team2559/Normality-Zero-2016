@@ -25,7 +25,7 @@ public class Recorder extends Subsystem {
 	
 	// player stuff
 	Scanner scanner;
-	boolean onTime = true;
+	boolean onTime = true, shouldStop = false;
 	double nextDouble;
 	long playerStartTime;
 
@@ -47,16 +47,15 @@ public class Recorder extends Subsystem {
 //    		writer.append("," + Robot._driveTrain.getFrontRightMotor());
 //    		writer.append("," + Robot._driveTrain.getBackLeftMotor());
     		
-    		writer.append("," + ((Robot._driveTrain.getFrontLeftMotor() + Robot._driveTrain.getFrontRightMotor()) / 2));    		
-    		
+    		writer.append("," + Robot._driveTrain.getLastLeftDrive());    		   		
     		
     		/*
     		 * THE LAST THING YOU APPEND MUST HAVE \N
     		 */
     		 		
 //    		writer.append("," + Robot._driveTrain.getBackRightMotor() + "\n");
-    		
-    		writer.append("," + ((Robot._driveTrain.getBackLeftMotor() + Robot._driveTrain.getBackRightMotor()) / 2) + "\n");    		
+    		    		
+    		writer.append("," + Robot._driveTrain.getLastRightDrive() + "\n");
     		
     		/*
     		 * KEEP THE LAST THING BETWEEN THESE CODEBLOCKS TO REMEMBER
@@ -79,6 +78,7 @@ public class Recorder extends Subsystem {
     	
     	playerStartTime = System.currentTimeMillis();
     	Robot._driveTrain.setAuton(true);
+    	shouldStop = false;
     }
     
     public void playRecording() {
@@ -96,6 +96,7 @@ public class Recorder extends Subsystem {
 //        		Robot._driveTrain.setFrontRightMotor(scanner.nextDouble());
 //        		Robot._driveTrain.setBackLeftMotor(scanner.nextDouble());
 //        		Robot._driveTrain.setBackRightMotor(scanner.nextDouble());
+    			
         		Robot._driveTrain.tankDrive(scanner.nextDouble(), scanner.nextDouble());
         		
         		onTime = true;
@@ -115,6 +116,11 @@ public class Recorder extends Subsystem {
     public void stopPlayback() {
     	Robot._driveTrain.tankDrive(0, 0);
     	Robot._driveTrain.setAuton(false);
+    	shouldStop = true;
+    }
+    
+    public boolean hasFinishedPlayback() {
+    	return shouldStop;
     }
     
 }

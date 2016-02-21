@@ -46,6 +46,8 @@ public class DriveTrain extends Subsystem {
 			slowDrive = false, 
 			fastDrive = false,
 			auton = false;
+	
+	double lastLeft = 0, lastRight = 0;
 
 	public DriveTrain() {
 		_leftEncoder.setDistancePerPulse((Math.PI * 8) / 250);
@@ -96,17 +98,36 @@ public class DriveTrain extends Subsystem {
 		double rightCalc = (right * Math.pow(Math.abs(right), 0.6)) * RobotMap.SLOWDRIVE_CONSTANT;
 		if (auton) {
 			_drive.tankDrive(left, right);
+			System.out.println("Left: " + left + "\nRight: " + right);
+			lastLeft = left;
+			lastRight = right;
 		} else if (!reverseDrive && !fastDrive) {
 			_drive.tankDrive(leftCalc, rightCalc);
+			lastLeft = leftCalc;
+			lastRight = rightCalc;
 		} else if (reverseDrive && fastDrive) {
 			_drive.tankDrive(-leftCalc * RobotMap.SLOWDRIVE_CONSTANT,
 					-rightCalc * RobotMap.SLOWDRIVE_CONSTANT);
+			lastLeft = -leftCalc * RobotMap.SLOWDRIVE_CONSTANT;
+			lastRight = -rightCalc * RobotMap.SLOWDRIVE_CONSTANT;
 		} else if (!reverseDrive && fastDrive) {
 			_drive.tankDrive(leftCalc * (1 / RobotMap.SLOWDRIVE_CONSTANT),
 					rightCalc * (1 / RobotMap.SLOWDRIVE_CONSTANT));
+			lastLeft = leftCalc * (1 / RobotMap.SLOWDRIVE_CONSTANT);
+			lastRight = rightCalc * (1 / RobotMap.SLOWDRIVE_CONSTANT);
 		} else if (reverseDrive && !fastDrive) {
 			_drive.tankDrive(-leftCalc, -rightCalc);
+			lastLeft = -leftCalc;
+			lastRight = -rightCalc;
 		}
+	}
+	
+	public double getLastLeftDrive() {
+		return lastLeft;
+	}
+	
+	public double getLastRightDrive() {
+		return lastRight;
 	}
 	
 	public double getFrontLeftMotor() {
