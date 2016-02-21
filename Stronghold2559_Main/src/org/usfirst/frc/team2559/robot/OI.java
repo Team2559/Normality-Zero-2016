@@ -5,6 +5,7 @@ import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.Turn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -58,7 +59,7 @@ public class OI {
 			_forw = new JoystickButton(driverStick, 3),
 			_turn = new JoystickButton(driverStick, 4),
 			_fast = new JoystickButton(driverStick, 5),
-			_debug = new JoystickButton(driverStick, 6),
+			_intakeOn = new JoystickButton(driverStick, 6),
 			driverButton7 = new JoystickButton(driverStick, 7),
 			driverButton8 = new JoystickButton(driverStick, 8),
 			driverButton9 = new JoystickButton(driverStick, 9),
@@ -69,9 +70,9 @@ public class OI {
 			_adjustShooter = new JoystickButton(shooterStick, 3),
 			_spinup = new JoystickButton(shooterStick, 4),
 			_play1 = new JoystickButton(shooterStick, 5),
-			_play2 = new JoystickButton(shooterStick, 6),
+			shooterButton6 = new JoystickButton(shooterStick, 6),
 			_record1 = new JoystickButton(shooterStick, 7),
-			_record2 = new JoystickButton(shooterStick, 8),
+			shooterButton8 = new JoystickButton(shooterStick, 8),
 			shooterButton9 = new JoystickButton(shooterStick, 9),
 			shooterButton10 = new JoystickButton(shooterStick, 10),
 			shooterButton11 = new JoystickButton(shooterStick, 11),
@@ -98,16 +99,16 @@ public class OI {
 		});
 		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
-		_debug.whenPressed(new GyroDebug());
 		
 		_smartShoot.whenPressed(new SmartShoot());
 		
 		_record1.whenPressed(new CreateRecording("1"));
-		_record2.whenPressed(new CreateRecording("2"));
 		_play1.whenPressed(new PlayRecording("1"));
-		_play2.whenPressed(new PlayRecording("2"));
+		
 		_adjustShooter.whileHeld(new AdjustShooter());
 		_spinup.whenPressed(new SpinForSeconds(3));
+		_intakeOn.whenPressed(new SetIntake("in"));
+		_intakeOn.whenReleased(new SetIntake("off"));
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {

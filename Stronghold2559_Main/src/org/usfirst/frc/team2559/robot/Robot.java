@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
+import org.usfirst.frc.team2559.robot.subsystems.Arm;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
 import org.usfirst.frc.team2559.robot.subsystems.Recorder;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static LEDStrip _ledStrip;
 	public static Recorder _recorder;
 	public static Shooter _shooter;
+	public static Arm _arm;
 	
 	Compressor compressor;	
 	Command autonomousCommand;
@@ -75,6 +77,7 @@ public class Robot extends IterativeRobot {
     	_ledStrip = new LEDStrip();
     	_recorder = new Recorder();
     	_shooter = new Shooter();
+    	_arm = new Arm();
 		oi = new OI();
 		
 		compressor = new Compressor(RobotMap.PCM_NODEID_COMPRESSOR);

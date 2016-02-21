@@ -29,7 +29,8 @@ public class RobotMap {
 	
 	public static final double SLOWDRIVE_CONSTANT = 0.75;
 	
-	public static final double SHOOTER_INTAKE_SPEED = 0.5;
+	public static final double 	SHOOTER_INTAKE_SPEED = 0.5,
+								ARM_INTAKE_SPEED = 1;
 	
 	public static final int JOYSTICK_AXIS_DRIVE_LEFT = 1,
 							JOYSTICK_AXIS_DRIVE_RIGHT = 5;
@@ -42,6 +43,9 @@ public class RobotMap {
 	public static final int PORT_SHOOTER_LEFT = 2,
 							PORT_SHOOTER_RIGHT = 1,
 							PORT_SHOOTER_ADJUSTER = 5;
+	
+	public static final int PORT_ARM_ADJUSTER = 3,
+							PORT_ARM_INTAKE = 4;
 	
 	public static final int PCM_NODEID = 0,
 							PDP_NODEID = 1,

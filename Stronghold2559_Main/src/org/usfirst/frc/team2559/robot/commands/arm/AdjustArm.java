@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2559.robot.commands;
+package org.usfirst.frc.team2559.robot.commands.arm;
 
 import org.usfirst.frc.team2559.robot.Robot;
 
@@ -7,16 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetIntake extends Command {
-	
-	String forward;
+public class AdjustArm extends Command {
 
-    public SetIntake(String forward) {
+    public AdjustArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._shooter);
     	requires(Robot._arm);
-    	this.forward = forward;
     }
 
     // Called just before this Command runs the first time
@@ -25,25 +21,17 @@ public class SetIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (forward.equals("in")) {
-    		Robot._shooter.intakeIn();
-    		Robot._arm.intakeIn();
-    	} else if(forward.equals("out")){
-    		Robot._shooter.intakeOut();
-    		Robot._arm.intakeOut();
-    	} else {
-    		Robot._shooter.intakeStop();
-    		Robot._arm.intakeStop();
-    	}
+    	Robot._arm.setArmSpeed(-Robot.oi.getSliderVal());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot._arm.setArmSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
