@@ -26,7 +26,7 @@ public class SmartShoot extends CommandGroup {
         // arm.
     	
     	addSequential(new AlignWithTarget());
-    	addSequential(new CheckShoot());
+    	addSequential(new SpinForSeconds(3));
     	
     }
 }

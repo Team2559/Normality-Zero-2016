@@ -10,6 +10,7 @@ import org.usfirst.frc.team2559.robot.commands.Turn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
+import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 
@@ -54,7 +55,7 @@ public class OI {
 	Joystick driverStick = new Joystick(0);
 	Joystick shooterStick = new Joystick(1);
 	
-	Button 	_180 = new JoystickButton(driverStick, 1),
+	Button 	_align = new JoystickButton(driverStick, 1),
 			_back = new JoystickButton(driverStick, 2),
 			_forw = new JoystickButton(driverStick, 3),
 			_turn = new JoystickButton(driverStick, 4),
@@ -98,7 +99,8 @@ public class OI {
 			}
 		});
 		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
-		_180.whenPressed(new PIDTurn(180, RobotMap.TURNING_SPEED));
+
+		_align.whenPressed(new AlignWithTarget());
 		
 		_smartShoot.whenPressed(new SmartShoot());
 		

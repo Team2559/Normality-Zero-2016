@@ -15,8 +15,8 @@ public class SetShooter extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot._shooter);
-    	_left = left;
-    	_right = right;
+    	_left = -left;
+    	_right = -right;
     }
 
     // Called just before this Command runs the first time

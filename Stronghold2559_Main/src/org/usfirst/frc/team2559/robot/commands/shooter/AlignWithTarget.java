@@ -16,6 +16,7 @@ public class AlignWithTarget extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot._shooter);
+    	requires(Robot._driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -28,9 +29,9 @@ public class AlignWithTarget extends Command {
     protected void execute() {
     	distanceToCenter = Robot._shooter.getXOffset();
 		if (distanceToCenter < -RobotMap.SMARTSHOOT_X_THRESHOLD) {
-			Robot._driveTrain.tankDrive(-RobotMap.SMARTSHOOT_TURN_SPEED, RobotMap.SMARTSHOOT_TURN_SPEED);
-		} else if (distanceToCenter > RobotMap.SMARTSHOOT_X_THRESHOLD) {
 			Robot._driveTrain.tankDrive(RobotMap.SMARTSHOOT_TURN_SPEED, -RobotMap.SMARTSHOOT_TURN_SPEED);
+		} else if (distanceToCenter > RobotMap.SMARTSHOOT_X_THRESHOLD) {
+			Robot._driveTrain.tankDrive(-RobotMap.SMARTSHOOT_TURN_SPEED, RobotMap.SMARTSHOOT_TURN_SPEED);
 		}
     }
 

@@ -44,7 +44,7 @@ public class Shooter extends Subsystem {
     }
     
     public void invertMotors() {
-    	_left.setInverted(true);
+    	//_left.setInverted(true);
     	_right.setInverted(true);
     }
     
