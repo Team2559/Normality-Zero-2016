@@ -16,6 +16,8 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	
+	public static boolean XBOX_SCHEMA = false;
+	
 	public static final int DISABLED_ID = 0,
 							AUTONOMOUS_ID = 1,
 							TELEOP_ID = 2,

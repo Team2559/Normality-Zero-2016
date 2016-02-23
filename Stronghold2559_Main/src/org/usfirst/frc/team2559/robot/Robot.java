@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team2559.robot.commands.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -94,8 +95,8 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture(cam);
 
 		autonomiceNames = new String[] {
-				"Do Nothing", "Recorded Autonomous 1", "Recorded Autonomous 2" };
-		autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new PlayRecording("2") };
+				"Do Nothing", "Recorded Autonomous 1", "Recorded Autonomous 2", "Drive For Distance (24)" };
+		autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new PlayRecording("2"), new DriveForDistance(0.4, 24, true) };
 
 		for (int i = 0; i < autonomice.length; i++) {
 			chooser.addObject(autonomiceNames[i], autonomice[i]);

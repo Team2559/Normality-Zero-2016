@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
     	_intake.set(speed);
     }
     
-    public void setArmSpeed(double speed) {
+    public void setAdjusterSpeed(double speed) {
     	_adjuster.set(speed);
     }
     
@@ -39,6 +39,14 @@ public class Arm extends Subsystem {
     
     public void intakeStop() {
     	this.setIntakeSpeed(0);
+    }
+    
+    public double getIntakeSpeed() {
+    	return _intake.get();
+    }
+    
+    public double getAdjusterSpeed() {
+    	return _adjuster.get();
     }
     
 }

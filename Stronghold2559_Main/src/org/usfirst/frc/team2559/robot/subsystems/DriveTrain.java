@@ -151,7 +151,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getRightDistance() {
-		return _rightEncoder.getDistance();
+		return -_rightEncoder.getDistance();
 	}
 
 	public double getLeftSpeedEnc() {
@@ -159,7 +159,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getRightSpeedEnc() {
-		return _rightEncoder.getRate();
+		return -_rightEncoder.getRate();
 	}
 
 	public void clearEncoder() {

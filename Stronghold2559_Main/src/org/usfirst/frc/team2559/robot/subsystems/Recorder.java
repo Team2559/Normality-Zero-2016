@@ -50,6 +50,8 @@ public class Recorder extends Subsystem {
     		writer.append("," + Robot._driveTrain.getLastLeftDrive());
     		writer.append("," + Robot._driveTrain.getLastRightDrive());
     		writer.append("," + Robot._shooter.getLeftShooterMotor());
+    		writer.append("," + Robot._shooter.getRightShooterMotor());
+    		writer.append("," + Robot._arm.getAdjusterSpeed());
     		
     		/*
     		 * THE LAST THING YOU APPEND MUST HAVE \N
@@ -57,7 +59,7 @@ public class Recorder extends Subsystem {
     		 		
 //    		writer.append("," + Robot._driveTrain.getBackRightMotor() + "\n");
     		    		
-    		writer.append("," + Robot._shooter.getRightShooterMotor() + "\n");
+    		writer.append("," + Robot._arm.getIntakeSpeed() + "\n");
     		
     		/*
     		 * KEEP THE LAST THING BETWEEN THESE CODEBLOCKS TO REMEMBER
@@ -101,6 +103,8 @@ public class Recorder extends Subsystem {
     			
         		Robot._driveTrain.tankDrive(scanner.nextDouble(), scanner.nextDouble());        		
         		Robot._shooter.setSpinSpeed(scanner.nextDouble(), scanner.nextDouble());
+        		Robot._arm.setAdjusterSpeed(scanner.nextDouble());
+        		Robot._arm.setIntakeSpeed(scanner.nextDouble());
         		
         		onTime = true;
     		} else {
