@@ -1,22 +1,17 @@
 package org.usfirst.frc.team2559.robot;
 
-import org.usfirst.frc.team2559.robot.commands.GyroDebug;
 import org.usfirst.frc.team2559.robot.commands.PIDTurn;
-import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
-import org.usfirst.frc.team2559.robot.commands.Turn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
-import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -132,22 +127,44 @@ public class OIJoysticks {
 		_dumbShoot.whenPressed(new DumbShoot());
 	}
 	
+	/**
+	 * Allows accounting for the deadzone that exists in joysticks.
+	 * @param joyValue the value of the joystick
+	 * @param dead the minimum joystick value to discard input under
+	 * @return 0 if less than dead
+	 */
 	public double _zeroDeadzone(double joyValue, double dead) {
 		return Math.abs(joyValue) > dead ? joyValue : 0;
 	}
 
+	/**
+	 * Returns the left joystick drive value.
+	 * @return left joystick value
+	 */
 	public double getLeftDrive() {
 		return _zeroDeadzone(-driverStick1.getRawAxis(1), 0.1);
 	}
-
+	
+	/**
+	 * Returns the right joystick drive value.
+	 * @return right joystick value
+	 */
 	public double getRightDrive() {
 		return _zeroDeadzone(-driverStick2.getRawAxis(1), 0.1);
 		}
 	
+	/**
+	 * Returns the slider value of the joystick.
+	 * @return slider value of a Logitech joystick
+	 */
 	public double getSliderVal() {
 		return shooterStick.getRawAxis(3);
 	}
 	
+	/**
+	 * This is meant to be used in tandem with the recorder subsystem.
+	 * @return value of recorder button
+	 */
 	public boolean getRecorderStopButton() {
 		return _stopRecording.get();
 	}

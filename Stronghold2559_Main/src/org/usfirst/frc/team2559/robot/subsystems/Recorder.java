@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
-import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
