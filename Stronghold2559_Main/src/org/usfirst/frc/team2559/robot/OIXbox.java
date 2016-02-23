@@ -11,6 +11,7 @@ import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
+import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 
@@ -67,10 +68,10 @@ public class OIXbox {
 			driverButton9 = new JoystickButton(driverStick, 9),
 			driverButton10 = new JoystickButton(driverStick, 10);
 
-	Button 	_stopRecording = new JoystickButton(shooterStick, 1),
-			_smartShoot = new JoystickButton(shooterStick, 2),
-			_adjustShooter = new JoystickButton(shooterStick, 3),
-			_spinup = new JoystickButton(shooterStick, 4),
+	Button 	_smartShoot = new JoystickButton(shooterStick, 1),
+			_stopRecording = new JoystickButton(shooterStick, 2),
+			_dumbShoot = new JoystickButton(shooterStick, 3),
+			shooterButton4 = new JoystickButton(shooterStick, 4),
 			_play1 = new JoystickButton(shooterStick, 5),
 			shooterButton6 = new JoystickButton(shooterStick, 6),
 			_record1 = new JoystickButton(shooterStick, 7),
@@ -108,8 +109,7 @@ public class OIXbox {
 		_record1.whenPressed(new CreateRecording("1"));
 		_play1.whenPressed(new PlayRecording("1"));
 		
-		_adjustShooter.whileHeld(new AdjustShooter());
-		_spinup.whenPressed(new SpinForSeconds(3));
+		_dumbShoot.whenPressed(new DumbShoot());
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
 	}

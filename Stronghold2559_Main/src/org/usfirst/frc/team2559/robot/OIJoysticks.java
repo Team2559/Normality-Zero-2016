@@ -11,6 +11,7 @@ import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
+import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 
@@ -128,6 +129,7 @@ public class OIJoysticks {
 		_spinup.whenPressed(new SpinForSeconds(3));
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
+		_dumbShoot.whenPressed(new DumbShoot());
 	}
 	
 	public double _zeroDeadzone(double joyValue, double dead) {
