@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OIXbox {
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -51,6 +51,7 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
 	
 	Joystick driverStick = new Joystick(0);
 	Joystick shooterStick = new Joystick(1);
@@ -79,7 +80,7 @@ public class OI {
 			shooterButton11 = new JoystickButton(shooterStick, 11),
 			shooterButton12 = new JoystickButton(shooterStick, 12);
 	
-	public OI() {
+	public OIXbox() {
 		_forw.whileHeld(new DobbyForward());
 		_back.whileHeld(new DobbyBackward());
 		_fast.whileHeld(new Command() {

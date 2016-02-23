@@ -3,6 +3,7 @@ package org.usfirst.frc.team2559.robot.subsystems;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,6 +27,8 @@ public class Shooter extends Subsystem {
     
 	private final Talon 		_left = new Talon(RobotMap.PORT_SHOOTER_LEFT),
 								_right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
+	
+	private final Servo			_pusher = new Servo(0);
 	
 	private final CANTalon _adjuster = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
     
@@ -71,5 +74,13 @@ public class Shooter extends Subsystem {
     public double getRightShooterMotor() {
     	return _right.get();
     }
+    
+    public void setFiringServo(double val) {
+    	_pusher.set(1);
+    }
+
+	public double getFiringServo() {
+		return _pusher.get();
+	}
 }
 

@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class SmartShoot extends CommandGroup {
+public class DumbShoot extends CommandGroup {
     
-    public  SmartShoot() {
+    public  DumbShoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -27,12 +27,9 @@ public class SmartShoot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
-    	addSequential(new AlignWithTarget());
     	addSequential(new SetShooter(1, 1));
     	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
     	addSequential(new FireServo());
     	addSequential(new SetShooter(0, 0));
-    	
     }
 }

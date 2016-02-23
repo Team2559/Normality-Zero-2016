@@ -32,7 +32,8 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
+	public static OIXbox oi;
+	//public static OIJoysticks oi;
 	public static DriveTrain _driveTrain;
 	public static LEDStrip _ledStrip;
 	public static Recorder _recorder;
@@ -79,7 +80,8 @@ public class Robot extends IterativeRobot {
     	_recorder = new Recorder();
     	_shooter = new Shooter();
     	_arm = new Arm();
-		oi = new OI();
+		oi = new OIXbox();
+		//oi = new OIJoysticks();
 		
 		compressor = new Compressor(RobotMap.PCM_NODEID_COMPRESSOR);
 		compressor.setClosedLoopControl(true);

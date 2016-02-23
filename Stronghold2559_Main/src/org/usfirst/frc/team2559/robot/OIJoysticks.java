@@ -1,0 +1,152 @@
+package org.usfirst.frc.team2559.robot;
+
+import org.usfirst.frc.team2559.robot.commands.GyroDebug;
+import org.usfirst.frc.team2559.robot.commands.PIDTurn;
+import org.usfirst.frc.team2559.robot.commands.SendLEDState;
+import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
+import org.usfirst.frc.team2559.robot.commands.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.SetIntake;
+import org.usfirst.frc.team2559.robot.commands.Turn;
+import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
+import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
+import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
+import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
+import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
+import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.RumbleType;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
+ */
+public class OIJoysticks {
+    //// CREATING BUTTONS
+    // One type of button is a joystick button which is any button on a joystick.
+    // You create one by telling it which joystick it's on and which button
+    // number it is.
+    // Joystick stick = new Joystick(port);
+    // Button button = new JoystickButton(stick, buttonNumber);
+    
+    // There are a few additional built in buttons you can use. Additionally,
+    // by subclassing Button you can create custom triggers and bind those to
+    // commands the same as any other Button.
+    
+    //// TRIGGERING COMMANDS WITH BUTTONS
+    // Once you have a button, it's trivial to bind it to a button in one of
+    // three ways:
+    
+    // Start the command when the button is pressed and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenPressed(new ExampleCommand());
+    
+    // Run the command while the button is being held down and interrupt it once
+    // the button is released.
+    // button.whileHeld(new ExampleCommand());
+    
+    // Start the command when the button is released  and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
+	
+	
+	Joystick driverStick1 = new Joystick(0);
+	Joystick driverStick2 = new Joystick(1);
+	Joystick shooterStick = new Joystick(2);
+	
+	Button 	_fast = new JoystickButton(driverStick1, 1),
+			driverStick1Button2 = new JoystickButton(driverStick1, 2),
+			_forw = new JoystickButton(driverStick1, 3),
+			_back = new JoystickButton(driverStick1, 4),
+			_turnLeft = new JoystickButton(driverStick1, 5),
+			_turnRight = new JoystickButton(driverStick1, 6),
+			_record1 = new JoystickButton(driverStick1, 7),
+			_play1 = new JoystickButton(driverStick1, 8),
+			driverStick1Button9 = new JoystickButton(driverStick1, 9),
+			driverStick1Button10 = new JoystickButton(driverStick1, 10),
+			_stopRecording = new JoystickButton(driverStick1, 11),
+			driverStick1Button12 = new JoystickButton(driverStick1, 12);
+	
+	Button 	_smartShoot = new JoystickButton(driverStick2, 1),
+			_align = new JoystickButton(driverStick2, 2),
+			_intakeOn = new JoystickButton(driverStick2, 3),
+			_spinup = new JoystickButton(driverStick2, 4),
+			driverStick2Button5 = new JoystickButton(driverStick2, 5),
+			_dumbShoot = new JoystickButton(driverStick2, 6),
+			driverStick2Button7 = new JoystickButton(driverStick2, 7),
+			driverStick2Button8 = new JoystickButton(driverStick2, 8),
+			driverStick2Button9 = new JoystickButton(driverStick2, 9),
+			driverStick2Button10 = new JoystickButton(driverStick2, 10),
+			driverStick2Button11 = new JoystickButton(driverStick2, 11),
+			driverStick2Button12 = new JoystickButton(driverStick2, 12);
+
+	Button 	shooterButton1 = new JoystickButton(shooterStick, 1),
+			shooterButton2 = new JoystickButton(shooterStick, 2),
+			shooterButton3 = new JoystickButton(shooterStick, 3),
+			shooterButton4 = new JoystickButton(shooterStick, 4),
+			shooterButton5 = new JoystickButton(shooterStick, 5),
+			shooterButton6 = new JoystickButton(shooterStick, 6),
+			shooterButton7= new JoystickButton(shooterStick, 7),
+			shooterButton8 = new JoystickButton(shooterStick, 8),
+			shooterButton9 = new JoystickButton(shooterStick, 9),
+			shooterButton10 = new JoystickButton(shooterStick, 10),
+			shooterButton11 = new JoystickButton(shooterStick, 11),
+			shooterButton12 = new JoystickButton(shooterStick, 12);
+	
+	public OIJoysticks() {
+		_forw.whileHeld(new DobbyForward());
+		_back.whileHeld(new DobbyBackward());
+		_fast.whileHeld(new Command() {
+			protected void initialize() {
+				Robot._driveTrain.setFastDrive(true);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return false;
+			}
+			protected void end() {
+				Robot._driveTrain.setFastDrive(false);
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		_turnLeft.whenPressed(new PIDTurn(-90, RobotMap.TURNING_SPEED));
+		_turnRight.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
+
+		_align.whenPressed(new AlignWithTarget());
+		
+		_smartShoot.whenPressed(new SmartShoot());
+		
+		_record1.whenPressed(new CreateRecording("1"));
+		_play1.whenPressed(new PlayRecording("1"));
+		
+		_spinup.whenPressed(new SpinForSeconds(3));
+		_intakeOn.whenPressed(new SetIntake("in"));
+		_intakeOn.whenReleased(new SetIntake("off"));
+	}
+	
+	public double _zeroDeadzone(double joyValue, double dead) {
+		return Math.abs(joyValue) > dead ? joyValue : 0;
+	}
+
+	public double getLeftDrive() {
+		return _zeroDeadzone(-driverStick1.getRawAxis(1), 0.1);
+	}
+
+	public double getRightDrive() {
+		return _zeroDeadzone(-driverStick2.getRawAxis(1), 0.1);
+		}
+	
+	public double getSliderVal() {
+		return shooterStick.getRawAxis(3);
+	}
+	
+	public boolean getRecorderStopButton() {
+		return _stopRecording.get();
+	}
+}

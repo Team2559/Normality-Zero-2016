@@ -34,6 +34,8 @@ public class RobotMap {
 	public static final double 	SHOOTER_INTAKE_SPEED = 0.25,
 								ARM_INTAKE_SPEED = 1;
 	
+	public static final double 	SERVO_DELAY = 0.3;
+	
 	public static final int JOYSTICK_AXIS_DRIVE_LEFT = 1,
 							JOYSTICK_AXIS_DRIVE_RIGHT = 5;
 	
@@ -70,6 +72,8 @@ public class RobotMap {
 							SMARTSHOOT_Y_THRESHOLD = 20;
 	
 	public static final double SMARTSHOOT_TURN_SPEED = 0.41;
+	
+	public static final double SMARTSHOOT_SPINUP_DELAY = 1;
 	
 	public static final boolean ANNOY_THE_FUCK_OUT_OF_THE_DRIVERS = true;
 	public static final boolean USE_TOO_MUCH_BANDWIDTH = false;
