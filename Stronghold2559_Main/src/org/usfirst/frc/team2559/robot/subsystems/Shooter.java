@@ -28,7 +28,8 @@ public class Shooter extends Subsystem {
 	private final Talon 		_left = new Talon(RobotMap.PORT_SHOOTER_LEFT),
 								_right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
 	
-	private final Servo			_pusher = new Servo(0);
+	private final Servo			_pusher = new Servo(0),
+								_engageLatch = new Servo(1);
 	
 	private final CANTalon _adjuster = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
     
@@ -76,7 +77,11 @@ public class Shooter extends Subsystem {
     }
     
     public void setFiringServo(double val) {
-    	_pusher.set(1);
+    	_pusher.set(val);
+    }
+    
+    public void setClutchServo(double val) {
+    	_engageLatch.set(val);
     }
 
 	public double getFiringServo() {

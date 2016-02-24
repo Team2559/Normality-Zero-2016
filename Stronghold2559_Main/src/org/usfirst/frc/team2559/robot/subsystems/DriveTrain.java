@@ -44,6 +44,8 @@ public class DriveTrain extends Subsystem {
 			slowDrive = false, 
 			fastDrive = false,
 			auton = false;
+
+	private boolean cameraSettingsOne = true;
 	
 	double lastLeft = 0, lastRight = 0;
 
@@ -196,5 +198,13 @@ public class DriveTrain extends Subsystem {
 
 	public double getYAccel() {
 		return _accel.getY();
+	}
+
+	public boolean getCameraSettings() {
+		return cameraSettingsOne;
+	}
+
+	public void setCameraSettings(boolean cameraSettingsOne) {
+		this.cameraSettingsOne = cameraSettingsOne;
 	}
 }

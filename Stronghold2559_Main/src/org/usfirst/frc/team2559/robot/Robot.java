@@ -39,6 +39,9 @@ public class Robot extends IterativeRobot {
 	public static Shooter _shooter;
 	public static Arm _arm;
 	
+	public static USBCamera cam;
+	public static CameraServer server;
+	
 	Compressor compressor;	
 	Command autonomousCommand;
 
@@ -86,9 +89,9 @@ public class Robot extends IterativeRobot {
 		compressor.setClosedLoopControl(true);
 		compressor.start();
 		
-		CameraServer server = CameraServer.getInstance();
+		server = CameraServer.getInstance();
 		server.setQuality(50);
-		USBCamera cam = new USBCamera("cam0");
+		cam = new USBCamera("cam0");
 		cam.setSize(640, 360);
 		cam.setExposureManual(0);
 		cam.setBrightness(0);

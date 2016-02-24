@@ -3,6 +3,7 @@ package org.usfirst.frc.team2559.robot;
 import org.usfirst.frc.team2559.robot.commands.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.SetCamera;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -134,17 +135,14 @@ public class OIJoysticks {
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
 		
-		_driver1POVUp.whenActive(new AdjustShooter(0.3));
-		_driver1POVUp.whenInactive(new AdjustShooter(0));
+		_driver2POVUp.whenActive(new AdjustShooter(0.3));
+		_driver2POVUp.whenInactive(new AdjustShooter(0));
 		
-		_driver1POVDown.whenActive(new AdjustShooter(-0.3));
-		_driver1POVDown.whenInactive(new AdjustShooter(0));
+		_driver2POVDown.whenActive(new AdjustShooter(-0.3));
+		_driver2POVDown.whenInactive(new AdjustShooter(0));
 		
-//		_driver2POVUp.whenActive(new AdjustShooter(0.3));
-//		_driver2POVUp.whenInactive(new AdjustShooter(0));
-//		
-//		_driver2POVDown.whenActive(new AdjustShooter(-0.3));
-//		_driver2POVDown.whenInactive(new AdjustShooter(0));
+		_driver1POVUp.whenActive(new SetCamera(true));
+		_driver1POVDown.whenActive(new SetCamera(false));
 		
 		
 	}
