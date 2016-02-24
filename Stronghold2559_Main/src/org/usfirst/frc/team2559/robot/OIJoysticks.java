@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2559.robot;
 
-import org.usfirst.frc.team2559.robot.commands.PIDTurn;
+import org.usfirst.frc.team2559.robot.autonomous.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.SetCamera;
