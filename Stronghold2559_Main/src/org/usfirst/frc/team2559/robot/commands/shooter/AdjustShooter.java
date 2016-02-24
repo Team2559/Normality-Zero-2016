@@ -8,11 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AdjustShooter extends Command {
+	
+	double value;
 
-    public AdjustShooter() {
+    public AdjustShooter(double val) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot._shooter);
+    	value = val;
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +24,7 @@ public class AdjustShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._shooter.setAdjusterSpeed(-Robot.oi.getSliderVal());
+    	Robot._shooter.setAdjusterSpeed(value);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -51,8 +51,6 @@ public class DobbyForward extends Command {
 	protected void end() {
 		Robot._driveTrain.setAuton(false);
 		Robot._driveTrain.tankDrive(0, 0);
-		Robot.oi.setRumble(RumbleType.kLeftRumble, 0);
-		Robot.oi.setRumble(RumbleType.kRightRumble, 0);
 	}
 
 	// Called when another command which requires one or more of the same

@@ -6,14 +6,18 @@ import org.usfirst.frc.team2559.robot.commands.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
+import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
+import org.usfirst.frc.team2559.robot.triggers.POVTrigger;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -88,9 +92,13 @@ public class OIJoysticks {
 			shooterButton7= new JoystickButton(shooterStick, 7),
 			shooterButton8 = new JoystickButton(shooterStick, 8),
 			shooterButton9 = new JoystickButton(shooterStick, 9),
-			shooterButton10 = new JoystickButton(shooterStick, 10),
-			shooterButton11 = new JoystickButton(shooterStick, 11),
-			shooterButton12 = new JoystickButton(shooterStick, 12);
+			shooterButton10 = new JoystickButton(shooterStick, 10);
+	
+	Trigger _driver1POVUp = new POVTrigger(driverStick1, true);
+	Trigger _driver1POVDown = new POVTrigger(driverStick1, false);
+	
+	Trigger _driver2POVUp = new POVTrigger(driverStick2, true);
+	Trigger _driver2POVDown = new POVTrigger(driverStick2, false);
 	
 	public OIJoysticks() {
 		_forw.whileHeld(new DobbyForward());
@@ -125,6 +133,20 @@ public class OIJoysticks {
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
+		
+		_driver1POVUp.whenActive(new AdjustShooter(0.3));
+		_driver1POVUp.whenInactive(new AdjustShooter(0));
+		
+		_driver1POVDown.whenActive(new AdjustShooter(-0.3));
+		_driver1POVDown.whenInactive(new AdjustShooter(0));
+		
+//		_driver2POVUp.whenActive(new AdjustShooter(0.3));
+//		_driver2POVUp.whenInactive(new AdjustShooter(0));
+//		
+//		_driver2POVDown.whenActive(new AdjustShooter(-0.3));
+//		_driver2POVDown.whenInactive(new AdjustShooter(0));
+		
+		
 	}
 	
 	/**
@@ -135,6 +157,18 @@ public class OIJoysticks {
 	 */
 	public double _zeroDeadzone(double joyValue, double dead) {
 		return Math.abs(joyValue) > dead ? joyValue : 0;
+	}
+	
+	public int getPOVValue() {
+		return driverStick1.getPOV();
+	}
+	
+	public Joystick getLeftDriverJoystick() {
+		return driverStick1;
+	}
+	
+	public Joystick getRightDriverJoystick() {
+		return driverStick2;
 	}
 
 	/**
@@ -159,6 +193,15 @@ public class OIJoysticks {
 	 */
 	public double getSliderVal() {
 		return shooterStick.getRawAxis(3);
+	}
+	
+	/**
+	 * This is used to set the rumble of the driver's xbox controller.
+	 * @param type left, right, or both sides
+	 * @param num intensity of rumble
+	 */
+	public void setRumble(RumbleType type, float num) {
+		shooterStick.setRumble(type, num);
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
+import org.usfirst.frc.team2559.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
@@ -51,8 +52,6 @@ public class DobbyBackward extends Command {
 	protected void end() {
 		Robot._driveTrain.setAuton(false);
 		Robot._driveTrain.tankDrive(0, 0);
-		Robot.oi.setRumble(RumbleType.kLeftRumble, 0);
-		Robot.oi.setRumble(RumbleType.kRightRumble, 0);
 	}
 
 	// Called when another command which requires one or more of the same
