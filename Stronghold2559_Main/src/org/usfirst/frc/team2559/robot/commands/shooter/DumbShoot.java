@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2559.robot.commands.shooter;
 
+import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -27,9 +29,39 @@ public class DumbShoot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addParallel(new Command() {
+			protected void initialize() {
+				Robot._shooter.setShootingStatus(true);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
     	addSequential(new SetShooter(1, 1));
     	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
     	addSequential(new FireServo());
     	addSequential(new SetShooter(0, 0));
+    	addParallel(new Command() {
+			protected void initialize() {
+				Robot._shooter.setShootingStatus(false);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
     }
 }

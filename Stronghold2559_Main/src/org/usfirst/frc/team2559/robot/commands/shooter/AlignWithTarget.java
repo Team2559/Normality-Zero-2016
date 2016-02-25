@@ -23,6 +23,7 @@ public class AlignWithTarget extends Command {
     protected void initialize() {
     	Robot._driveTrain.setAuton(true);
     	distanceToCenter = Robot._shooter.getXOffset();
+    	Robot._shooter.setTargetingStatus(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,7 +44,8 @@ public class AlignWithTarget extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot._driveTrain.tankDrive(0, 0);
-    	Robot._driveTrain.setAuton(false);		
+    	Robot._driveTrain.setAuton(false);
+    	Robot._shooter.setTargetingStatus(false);
     }
 
     // Called when another command which requires one or more of the same

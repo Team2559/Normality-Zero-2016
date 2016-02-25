@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2559.robot.subsystems;
 
+import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 import org.usfirst.frc.team2559.robot.commands.SendLEDState;
 
@@ -9,6 +10,8 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ *
+ * https://youtu.be/QRv2_zAPrhc?t=990
  *
  */
 public class LEDStrip extends Subsystem {
@@ -30,26 +33,36 @@ public class LEDStrip extends Subsystem {
     	_curMode = num;
     }
     
+    /**
+     * The logic here follows one rule:
+     * 
+     * If we are doing something cool, display that.
+     * If we aren't doing something cool, display the default coloring for our mode (or alliance).
+     */
     public void setMode() {
     	if(DriverStation.getInstance().isAutonomous()) {
 			_curMode = RobotMap.AUTONOMOUS_ID;
 		} else if(DriverStation.getInstance().isOperatorControl()){
 			_curMode = RobotMap.TELEOP_ID;
-		} else if(DriverStation.getInstance().isDisabled()) {
-			_curMode = RobotMap.DISABLED_ID;
 		}
     	
     	if(_curMode == RobotMap.TELEOP_ID) {
     		DriverStation.Alliance alliance = DriverStation.getInstance().getAlliance();
-			if(alliance == DriverStation.Alliance.Blue) {
+    		
+    		if (DriverStation.getInstance().getBatteryVoltage() <= 11.5) { // might have to tweak this value
+    			_curMode = RobotMap.TELEOP_LOW_BATTERY_ID;
+    		} else if (Robot._shooter.getTargetingStatus()) {
+    			_curMode = RobotMap.TELEOP_TARGETING_ID;
+    		} else if (Robot._shooter.getShootingStatus()) {
+    			_curMode = RobotMap.TELEOP_SHOOTING_ID;
+    		} else if (DriverStation.getInstance().getMatchTime() <= 20) { // this might not work
+    			_curMode = RobotMap.TELEOP_LOW_BATTERY_ID;
+    		} else if(alliance == DriverStation.Alliance.Blue) {
 				_curMode = RobotMap.TELEOP_BLUE_ID;
-				//System.out.println("alliance == blue");
 			} else if(alliance == DriverStation.Alliance.Red) {
 				_curMode = RobotMap.TELEOP_RED_ID;
-				//System.out.println("alliance == red");
 			} else if(alliance == DriverStation.Alliance.Invalid) {
 				_curMode = RobotMap.TELEOP_INVALID_ID;
-				//System.out.println("alliance == invalid");
 			} else {
 				_curMode = RobotMap.TELEOP_WHAT_ID;
 			}

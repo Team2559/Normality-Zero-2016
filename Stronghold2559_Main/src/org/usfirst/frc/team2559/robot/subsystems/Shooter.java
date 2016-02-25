@@ -32,6 +32,8 @@ public class Shooter extends Subsystem {
 								_engageLatch = new Servo(1);
 	
 	private final CANTalon _adjuster = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
+	
+	private boolean shootingStatus = false, targetingStatus = false;
     
     public double getXOffset() {
     	// i'm a one-liner god
@@ -86,6 +88,22 @@ public class Shooter extends Subsystem {
 
 	public double getFiringServo() {
 		return _pusher.get();
+	}
+	
+	public boolean getShootingStatus() {
+		return shootingStatus;
+	}
+	
+	public boolean getTargetingStatus() {
+		return targetingStatus;
+	}
+	
+	public void setShootingStatus(boolean val) {
+		shootingStatus = val;
+	}
+	
+	public void setTargetingStatus(boolean val) {
+		targetingStatus = val;
 	}
 }
 

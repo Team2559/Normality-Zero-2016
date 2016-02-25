@@ -24,7 +24,11 @@ public class RobotMap {
 							TELEOP_BLUE_ID = 3,
 							TELEOP_RED_ID = 4,
 							TELEOP_INVALID_ID = 5,
-							TELEOP_WHAT_ID = 6;
+							TELEOP_WHAT_ID = 6,
+							TELEOP_LOW_BATTERY_ID = 7,
+							TELEOP_TARGETING_ID = 8,
+							TELEOP_SHOOTING_ID = 9,
+							TELEOP_LOW_TIME_ID = 10;
 	
 	public static final double TURNING_SPEED = 0.4;
 	public static final double TURNING_MIN = 0.4;
