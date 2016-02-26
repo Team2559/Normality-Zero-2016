@@ -12,110 +12,110 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Shooter extends Subsystem {
-    
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+	// Set the default command for a subsystem here.
+	// setDefaultCommand(new MySpecialCommand());
     }
-    
+
     public Shooter() {
-    	this.invertMotors();
+	this.invertMotors();
     }
-    
-	private final Talon 		_left = new Talon(RobotMap.PORT_SHOOTER_LEFT),
-								_right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
-	
-	private final Servo			_pusher = new Servo(0),
-								_engageLatch = new Servo(1);
-	
-	private final CANTalon _adjuster = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
-	
-	private boolean shootingStatus = false, targetingStatus = false;
-    
+
+    private final Talon	   _left	  = new Talon(RobotMap.PORT_SHOOTER_LEFT),
+				   _right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
+
+    private final Servo	   _pusher	  = new Servo(0),
+				   _engageLatch = new Servo(1);
+
+    private final CANTalon _adjuster	  = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
+
+    private boolean	   shootingStatus = false,
+				   targetingStatus = false;
+
     public double getXOffset() {
-    	// i'm a one-liner god
-    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("towerXOffset", 0) : 0;
+	// i'm a one-liner god
+	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("towerXOffset", 0) : 0;
     }
-    
+
     public double getYOffset() {
-    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("towerYOffset", 0) : 0;
+	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("towerYOffset", 0) : 0;
     }
-    
+
     public double getVisionAzimuth() {
-    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("azimuth", 0) : 0;
+	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("azimuth", 0) : 0;
     }
-    
+
     public double getVisionAltitude() {
-    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("altitude", 0) : 0;
+	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("altitude", 0) : 0;
     }
-    
+
     public void setSpinSpeed(double left, double right) {
-    	_left.set(left);
-    	_right.set(right);
+	_left.set(left);
+	_right.set(right);
     }
-    
+
     public void invertMotors() {
-    	//_left.setInverted(true);
-    	_right.setInverted(true);
+	// _left.setInverted(true);
+	_right.setInverted(true);
     }
-    
+
     public double getShooterAngle() {
-    	return 0;
+	return 0;
     }
-    
+
     public void setAdjusterSpeed(double speed) {
-    	_adjuster.set(speed);
+	_adjuster.set(speed);
     }
-    
+
     public void intakeIn() {
-    	this.setSpinSpeed(RobotMap.SHOOTER_INTAKE_SPEED, RobotMap.SHOOTER_INTAKE_SPEED);
+	this.setSpinSpeed(RobotMap.SHOOTER_INTAKE_SPEED, RobotMap.SHOOTER_INTAKE_SPEED);
     }
-    
+
     public void intakeOut() {
-    	this.setSpinSpeed(-RobotMap.SHOOTER_INTAKE_SPEED, -RobotMap.SHOOTER_INTAKE_SPEED);
+	this.setSpinSpeed(-RobotMap.SHOOTER_INTAKE_SPEED, -RobotMap.SHOOTER_INTAKE_SPEED);
     }
-    
+
     public void intakeStop() {
-    	this.setSpinSpeed(0, 0);
+	this.setSpinSpeed(0, 0);
     }
-    
+
     public double getLeftShooterMotor() {
-    	return _left.get();
+	return _left.get();
     }
-    
+
     public double getRightShooterMotor() {
-    	return _right.get();
+	return _right.get();
     }
-    
+
     public void setFiringServo(double val) {
-    	_pusher.set(val);
+	_pusher.set(val);
     }
-    
+
     public void setClutchServo(double val) {
-    	_engageLatch.set(val);
+	_engageLatch.set(val);
     }
 
-	public double getFiringServo() {
-		return _pusher.get();
-	}
-	
-	public boolean getShootingStatus() {
-		return shootingStatus;
-	}
-	
-	public boolean getTargetingStatus() {
-		return targetingStatus;
-	}
-	
-	public void setShootingStatus(boolean val) {
-		shootingStatus = val;
-	}
-	
-	public void setTargetingStatus(boolean val) {
-		targetingStatus = val;
-	}
-}
+    public double getFiringServo() {
+	return _pusher.get();
+    }
 
+    public boolean getShootingStatus() {
+	return shootingStatus;
+    }
+
+    public boolean getTargetingStatus() {
+	return targetingStatus;
+    }
+
+    public void setShootingStatus(boolean val) {
+	shootingStatus = val;
+    }
+
+    public void setTargetingStatus(boolean val) {
+	targetingStatus = val;
+    }
+}
