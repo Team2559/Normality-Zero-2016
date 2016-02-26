@@ -67,9 +67,8 @@ public class Robot extends IterativeRobot {
 				.isOperatorControl());
 		SmartDashboard.putBoolean("FMS", DriverStation.getInstance()
 				.isFMSAttached());
-//		SmartDashboard.putNumber("Forklift Level", _PRISM.getCurrentLevel());
-		SmartDashboard.putNumber("Gyro Angle", _driveTrain.getGyroAngle());
-//		SmartDashboard.putNumber("Range Finder", _driveTrain.getDistanceIn());
+		SmartDashboard.putNumber("heading", Robot._driveTrain.getGyroAngle());
+		//SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
 	}
 	
     /**

@@ -36,7 +36,7 @@ public class Lowbar_1Ball extends CommandGroup {
     	 */
     	
     	addSequential(new DriveForDistance(0.5, 100, true));
-    	addSequential(new PIDTurn(45, 0.3));
+    	addSequential(new PIDTurn766(45));
     	addSequential(new SmartShoot());
     }
 }

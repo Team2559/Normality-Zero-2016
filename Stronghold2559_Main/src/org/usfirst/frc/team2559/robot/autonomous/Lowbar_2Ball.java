@@ -42,16 +42,16 @@ public class Lowbar_2Ball extends CommandGroup {
     	 */
     	
     	addSequential(new DriveForDistance(0.5, 100, true));
-    	addSequential(new PIDTurn(45, 0.3));
+    	addSequential(new PIDTurn766(45));
     	addSequential(new SmartShoot());
-    	addSequential(new PIDTurn(-(int)Robot._driveTrain.getGyroAngle(), 0.3)); // negate the amount we have turned already
+    	addSequential(new PIDTurn766(-(int)Robot._driveTrain.getGyroAngle())); // negate the amount we have turned already
     	addSequential(new DriveForDistance(0.5, 100, true));
     	addParallel(new SetIntake("in"));
     	addSequential(new DriveForDistance(0.5, 12, true));
-    	addSequential(new PIDTurn(180, 0.5));
+    	addSequential(new PIDTurn766(180));
     	addParallel(new SetIntake("off"));
     	addSequential(new DriveForDistance(0.5, 112, true));
-    	addSequential(new PIDTurn(45, 0.3));
+    	addSequential(new PIDTurn766(45));
     	addSequential(new SmartShoot());
     }
 }

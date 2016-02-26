@@ -44,6 +44,14 @@ public class Shooter extends Subsystem {
     	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("towerYOffset", 0) : 0;
     }
     
+    public double getVisionAzimuth() {
+    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("azimuth", 0) : 0;
+    }
+    
+    public double getVisionAltitude() {
+    	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("altitude", 0) : 0;
+    }
+    
     public void setSpinSpeed(double left, double right) {
     	_left.set(left);
     	_right.set(right);
@@ -52,6 +60,10 @@ public class Shooter extends Subsystem {
     public void invertMotors() {
     	//_left.setInverted(true);
     	_right.setInverted(true);
+    }
+    
+    public double getShooterAngle() {
+    	return 0;
     }
     
     public void setAdjusterSpeed(double speed) {
