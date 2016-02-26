@@ -1,9 +1,9 @@
 package org.usfirst.frc.team2559.robot;
 
-import org.usfirst.frc.team2559.robot.autonomous.PIDTurn;
-import org.usfirst.frc.team2559.robot.commands.DobbyBackward;
-import org.usfirst.frc.team2559.robot.commands.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
+import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
+import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
+import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;

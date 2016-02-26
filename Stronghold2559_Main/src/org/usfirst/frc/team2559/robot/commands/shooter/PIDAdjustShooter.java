@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2559.robot.autonomous;
+package org.usfirst.frc.team2559.robot.commands.shooter;
 
 import org.usfirst.frc.team2559.lib.PIDController;
 import org.usfirst.frc.team2559.robot.Robot;

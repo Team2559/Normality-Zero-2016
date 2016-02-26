@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team2559.robot.autonomous.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
+import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.subsystems.Arm;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
