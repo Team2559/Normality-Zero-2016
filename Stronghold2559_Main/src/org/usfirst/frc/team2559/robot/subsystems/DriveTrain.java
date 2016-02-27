@@ -36,8 +36,6 @@ public class DriveTrain extends Subsystem {
 								RobotMap.PORT_ENCODER_RIGHT_2);
 
 	private final Accelerometer _accel = new BuiltInAccelerometer();
-	private final AnalogInput 	_ranger = new AnalogInput(RobotMap.PORT_ANALOG_RANGEFINDER);
-
 	private double _gyroOffset = 0;
 
 	boolean reverseDrive = false, 
@@ -57,10 +55,6 @@ public class DriveTrain extends Subsystem {
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new TankDrive());
-	}
-
-	public double getDistanceIn() {
-		return _ranger.getAverageVoltage() / 0.009765625;
 	}
 
 	public void setReverseDrive(boolean val) {

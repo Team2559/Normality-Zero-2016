@@ -21,25 +21,25 @@ public class SetCamera extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(val) {
-			Robot.server = CameraServer.getInstance();
-			Robot.server.setQuality(50);
-			Robot.cam = new USBCamera("cam0");
-			Robot.cam.setSize(640, 360);
-			Robot.cam.setExposureManual(0);
-			Robot.cam.setBrightness(0);
-			Robot.cam.setWhiteBalanceManual(10000);
-			Robot.server.startAutomaticCapture(Robot.cam);
-    	} else {
-			Robot.server = CameraServer.getInstance();
-			Robot.server.setQuality(50);
-			Robot.cam = new USBCamera("cam0");
-			Robot.cam.setSize(640, 360);
-			Robot.cam.setExposureManual(50);
-			Robot.cam.setBrightness(0);
-			Robot.cam.setWhiteBalanceAuto();
-			Robot.server.startAutomaticCapture(Robot.cam);
-    	}
+//    	if(val) {
+//			Robot.server = CameraServer.getInstance();
+//			Robot.server.setQuality(50);
+//			Robot.cam = new USBCamera("cam0");
+//			Robot.cam.setSize(640, 360);
+//			Robot.cam.setExposureManual(0);
+//			Robot.cam.setBrightness(0);
+//			Robot.cam.setWhiteBalanceManual(10000);
+//			Robot.server.startAutomaticCapture(Robot.cam);
+//    	} else {
+//			Robot.server = CameraServer.getInstance();
+//			Robot.server.setQuality(50);
+//			Robot.cam = new USBCamera("cam0");
+//			Robot.cam.setSize(640, 360);
+//			Robot.cam.setExposureManual(50);
+//			Robot.cam.setBrightness(0);
+//			Robot.cam.setWhiteBalanceAuto();
+//			Robot.server.startAutomaticCapture(Robot.cam);
+//    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
