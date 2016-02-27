@@ -164,7 +164,6 @@ public class Robot extends IterativeRobot {
 	if (autonomousCommand != null)
 	    autonomousCommand.cancel();
 	sendSensorData();
-	System.out.println(oi.getPOVValue());
     }
 
     /**

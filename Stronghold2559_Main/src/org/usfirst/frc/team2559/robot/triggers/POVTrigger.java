@@ -18,9 +18,9 @@ public class POVTrigger extends Trigger {
     
     public boolean get() {
         if (up) {
-        	return joystick.getPOV() >= 60 && joystick.getPOV() <= 120;
+        	return joystick.getPOV() == 315 || joystick.getPOV() == 0 || joystick.getPOV() == 45;
         } else {
-        	return joystick.getPOV() >= 0 && joystick.getPOV() <= 60;
+        	return joystick.getPOV() == 225 || joystick.getPOV() == 180 || joystick.getPOV() == 135;
         }
     }
 }
