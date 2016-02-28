@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.commands.drive;
 
 import org.usfirst.frc.team2559.lib.PIDController;
 import org.usfirst.frc.team2559.robot.Robot;
+import org.usfirst.frc.team2559.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,8 +17,12 @@ public class PIDTurn766 extends Command {
 
     private static final double	ANGLES_TO_DEGREES = 1;
 
-    private PIDController	pid		  = new PIDController(0.35, 0.01, 0.15, -0.5, 0.5, .5);	// creates PID controller with -0.5,
-													// 0.5, and .5 as min/max/tolerance
+    private PIDController	pid		  = new PIDController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -0.5, 0.5, .5);	// creates
+                                                                                                                                                        // PID
+                                                                                                                                                        // controller
+                                                                                                                                                        // with
+                                                                                                                                                        // -0.5,
+    // 0.5, and .5 as min/max/tolerance
 
     public PIDTurn766(double angle) {
 	// Use requires() here to declare subsystem dependencies

@@ -49,7 +49,8 @@ public class PIDSmartShoot extends CommandGroup {
 	    }
 	});
 	addSequential(new PIDTurn766(Robot._shooter.getVisionAzimuth()));
-	addSequential(new PIDAdjustShooter(Robot._shooter.getVisionAltitude()));
+	addSequential(new PIDAdjustShooter(Robot._shooter.getVisionAltitude() - Robot._shooter.getShooterAngle())); // error = goal -
+														    // current position
 	addParallel(new Command() {
 
 	    protected void initialize() {

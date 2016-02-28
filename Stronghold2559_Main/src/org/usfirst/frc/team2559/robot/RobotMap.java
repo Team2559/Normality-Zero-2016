@@ -1,4 +1,5 @@
 package org.usfirst.frc.team2559.robot;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -10,75 +11,113 @@ public class RobotMap {
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
     // public static int rightMotor = 2;
-    
+
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
-	
-	public static boolean XBOX_SCHEMA = false;
-	
-	public static final int DISABLED_ID = 0,
-							AUTONOMOUS_ID = 1,
-							TELEOP_ID = 2,
-							TELEOP_BLUE_ID = 3,
-							TELEOP_RED_ID = 4,
-							TELEOP_INVALID_ID = 5,
-							TELEOP_WHAT_ID = 6,
-							TELEOP_LOW_BATTERY_ID = 7,
-							TELEOP_TARGETING_ID = 8,
-							TELEOP_SHOOTING_ID = 9,
-							TELEOP_LOW_TIME_ID = 10;
-	
-	public static final double TURNING_SPEED = 0.4;
-	public static final double TURNING_MIN = 0.4;
-	
-	public static final double SLOWDRIVE_CONSTANT = 0.75;
-	
-	public static final double 	SHOOTER_INTAKE_SPEED = 0.25,
-								ARM_INTAKE_SPEED = 1;
-	
-	public static final double 	SERVO_DELAY = 0.3;
-	
-	public static final int JOYSTICK_AXIS_DRIVE_LEFT = 1,
-							JOYSTICK_AXIS_DRIVE_RIGHT = 5;
-	
-	public static final int PORT_DRIVETRAIN_LEFT_FR = 1,
-							PORT_DRIVETRAIN_LEFT_BACK = 2,
-							PORT_DRIVETRAIN_RIGHT_FR = 3,
-							PORT_DRIVETRAIN_RIGHT_BACK = 4;
-	
-	public static final int PORT_SHOOTER_LEFT = 2,
-							PORT_SHOOTER_RIGHT = 1,
-							PORT_SHOOTER_ADJUSTER = 5;
-	
-	public static final int PORT_ARM_ADJUSTER = 3,
-							PORT_ARM_INTAKE = 4;
-	
-	public static final int PCM_NODEID = 0,
-							PDP_NODEID = 1,
-							PCM_NODEID_COMPRESSOR = 0;
-	
-	public static final int PORT_ANALOG_GYRO = 0,
-							PORT_ANALOG_RANGEFINDER = 1;	
 
-	public static final int PORT_RELAY_LEFT = 1,
-							PORT_RELAY_RIGHT = 2;
-	
-	public static final int PORT_ENCODER_LEFT_1 = 0,
-							PORT_ENCODER_LEFT_2 = 1,
-							PORT_ENCODER_RIGHT_1 = 2,
-							PORT_ENCODER_RIGHT_2 = 3;
-	
-	public static final String AUTONOMOUS_FILE = "/home/lvuser/recordedAuto";
-	
-	public static final int SMARTSHOOT_X_THRESHOLD = 15,
-							SMARTSHOOT_Y_THRESHOLD = 20;
-	
-	public static final double SMARTSHOOT_TURN_SPEED = 0.41;
-	
-	public static final double SMARTSHOOT_SPINUP_DELAY = 1;
-	
-	public static final boolean ANNOY_THE_FUCK_OUT_OF_THE_DRIVERS = true;
-	public static final boolean USE_TOO_MUCH_BANDWIDTH = false;
+//@formatter:off
+    
+// Do not use Eclipse's built-in code formatting for this file!
+// It will become very messed up.
+
+/*
+ * PID Constants
+ */
+
+public static final double  PID_TURN_Kp			      = 0.35,
+                            PID_TURN_Ki			      = 0.01, 
+                            PID_TURN_Kd			      = 0.15;
+
+public static final double  PID_SHOOTER_Kp		      = 0.35,
+                            PID_SHOOTER_Ki		      = 0.01, 
+                            PID_SHOOTER_Kd		      = 0.15;
+
+/*
+ * LED Constants 
+ */
+
+public static final int	    DISABLED_ID			      = 0,
+                            AUTONOMOUS_ID		      = 1, 
+                            TELEOP_ID			      = 2, 
+                            TELEOP_BLUE_ID 		      = 3, 
+                            TELEOP_RED_ID 		      = 4, 
+                            TELEOP_INVALID_ID		      = 5, 
+                            TELEOP_WHAT_ID		      = 6, 
+                            TELEOP_LOW_BATTERY_ID	      = 7, 
+                            TELEOP_TARGETING_ID 	      = 8, 
+                            TELEOP_SHOOTING_ID		      = 9, 
+                            TELEOP_LOW_TIME_ID		      = 10;
+
+/*
+ * Drivetrain Constants
+ */
+
+public static final double  TURNING_SPEED		      = 0.4,
+                            TURNING_MIN			      = 0.4;
+
+public static final double  SLOWDRIVE_CONSTANT		      = 0.75;
+
+public static final int	    JOYSTICK_AXIS_DRIVE_LEFT	      = 1,
+			    JOYSTICK_AXIS_DRIVE_RIGHT 	      = 5;
+
+public static final int	    PORT_DRIVETRAIN_LEFT_FR	      = 1,
+                            PORT_DRIVETRAIN_LEFT_BACK	      = 2, 
+                            PORT_DRIVETRAIN_RIGHT_FR 	      = 3, 
+                            PORT_DRIVETRAIN_RIGHT_BACK 	      = 4;
+
+public static final int	    PORT_ENCODER_LEFT_1		      = 0,
+                            PORT_ENCODER_LEFT_2		      = 1, 
+                            PORT_ENCODER_RIGHT_1	      = 2, 
+                            PORT_ENCODER_RIGHT_2 	      = 3;
+
+public static final int	    PORT_ANALOG_GYRO		      = 0;
+
+/*
+ * Shooter Constants
+ */
+
+public static final double  SHOOTER_INTAKE_SPEED	      = 0.25,
+                            ARM_INTAKE_SPEED 		      = 1;
+
+public static final int	    PORT_SHOOTER_LEFT		      = 2,
+                            PORT_SHOOTER_RIGHT		      = 1, 
+                            PORT_SHOOTER_ADJUSTER	      = 5;
+
+public static final double  SERVO_DELAY			      = 0.3;
+
+/*
+ * Arm Constants
+ */
+
+public static final int	    PORT_ARM_ADJUSTER		      = 3,
+                            PORT_ARM_INTAKE 		      = 4;
+
+/*
+ * Autonomous Constants
+ */
+
+public static final String  AUTONOMOUS_FILE		      = "/home/lvuser/recordedAuto";
+
+/*
+ * SmartShoot Constants
+ */
+
+public static final int	    SMARTSHOOT_X_THRESHOLD	      = 15, // old
+                            SMARTSHOOT_Y_THRESHOLD	      = 20; // old
+
+public static final double  SMARTSHOOT_TURN_SPEED	      = 0.41;
+
+public static final double  SMARTSHOOT_SPINUP_DELAY	      = 1;
+
+
+/*
+ * Misc Constants
+ */
+
+public static final boolean XBOX_SCHEMA			      = false;
+
+public static final boolean ANNOY_THE_FUCK_OUT_OF_THE_DRIVERS = true,
+			    USE_TOO_MUCH_BANDWIDTH	      = false;
 }
