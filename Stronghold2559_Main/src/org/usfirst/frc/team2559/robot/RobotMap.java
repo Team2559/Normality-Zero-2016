@@ -78,8 +78,8 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
  * Shooter Constants
  */
 
-public static final double  SHOOTER_INTAKE_SPEED	      = 0.25,
-                            ARM_INTAKE_SPEED 		      = 0.25,
+public static final double  SHOOTER_INTAKE_SPEED	      = 0.4,
+                            ARM_INTAKE_SPEED 		      = 0.5,
                             SHOOTER_ZERO		      = 0;
 
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
