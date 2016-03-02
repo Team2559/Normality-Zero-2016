@@ -22,7 +22,7 @@ public class FireServo extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	startTime = System.currentTimeMillis();
-		if (Robot._shooter.getFiringServo() >= 0.1) {
+		if (Robot._shooter.getPusherServo() >= 0.1) {
 			Robot._shooter.setFiringServo(0);
 			Timer.delay(RobotMap.SERVO_DELAY);
 		}

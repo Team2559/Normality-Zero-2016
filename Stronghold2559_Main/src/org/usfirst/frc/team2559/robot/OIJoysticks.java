@@ -5,11 +5,14 @@ import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn;
+import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn766;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
+import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
+import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 import org.usfirst.frc.team2559.robot.triggers.POVTrigger;
@@ -134,6 +137,90 @@ public class OIJoysticks {
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
+		
+		shooterButton1.whenPressed(new PIDTurn766(90));
+		shooterButton2.whenPressed(new SetShooter(1, 1));
+		shooterButton2.whenReleased(new SetShooter(0, 0));
+		shooterButton3.whenPressed(new FireServo());
+		shooterButton4.whenPressed(new SetIntake("in"));
+		shooterButton4.whenReleased(new SetIntake("off"));
+		shooterButton5.whenPressed(new Command() {
+			protected void initialize() {
+				Robot._shooter.setClutchServo(90);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		shooterButton5.whenReleased(new Command() {
+			protected void initialize() {
+				Robot._shooter.setClutchServo(-30);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		
+		shooterButton6.whenPressed(new Command() {
+			protected void initialize() {
+				Robot._shooter.setClutchServo(90);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		shooterButton6.whenReleased(new Command() {
+			protected void initialize() {
+				Robot._shooter.setClutchServo(0);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		
+		shooterButton7.whileHeld(new Command() {
+			protected void initialize() {
+				Robot._arm.setIntakeSpeed(shooterStick.getRawAxis(1));
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
 		
 		_driver2POVUp.whenActive(new AdjustShooter(0.3));
 		_driver2POVUp.whenInactive(new AdjustShooter(0));

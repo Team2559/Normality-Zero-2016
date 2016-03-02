@@ -4,6 +4,7 @@ import org.usfirst.frc.team2559.lib.PIDController;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -26,6 +27,7 @@ public class PIDAdjustShooter extends Command {
     protected void initialize() {
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(1);
+	Timer.delay(0.5);
 	Robot._shooter.setClutchServo(0);
     }
 

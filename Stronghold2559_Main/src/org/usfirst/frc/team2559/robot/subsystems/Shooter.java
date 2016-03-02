@@ -1,8 +1,12 @@
 package org.usfirst.frc.team2559.robot.subsystems;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
 import org.usfirst.frc.team2559.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,16 +28,17 @@ public class Shooter extends Subsystem {
 	this.invertMotors();
     }
 
-    private final Talon	   _left	  = new Talon(RobotMap.PORT_SHOOTER_LEFT),
-				   _right = new Talon(RobotMap.PORT_SHOOTER_RIGHT);
+    private final CANTalon    _left       = new CANTalon(RobotMap.PORT_SHOOTER_LEFT), 
+	    		      _right 	  = new CANTalon(RobotMap.PORT_SHOOTER_RIGHT);
 
-    // private final Servo _pusher = new Servo(0),
-    // _engageLatch = new Servo(1);
+    private final Servo       _pusher     = new Servo(RobotMap.PORT_SHOOTER_PUSHER), 
+	    		     _engageLatch = new Servo(RobotMap.PORT_SHOOTER_LATCH);
     //
-    private final CANTalon _adjuster	  = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
+    private final CANTalon    _adjuster   = new CANTalon(RobotMap.PORT_SHOOTER_ADJUSTER);
+    private final AnalogInput _shooterEnc = new AnalogInput(RobotMap.PORT_SHOOTER_ENCODER);
 
-    private boolean	   shootingStatus = false,
-				   targetingStatus = false;
+    private boolean	   shootingStatus = false, targetingStatus = false;
+    private double	    shooterEncZero = 0;
 
     public double getXOffset() {
 	// i'm a one-liner god
@@ -58,12 +63,16 @@ public class Shooter extends Subsystem {
     }
 
     public void invertMotors() {
-	// _left.setInverted(true);
-	_right.setInverted(true);
+	 _left.setInverted(true);
+	//_right.setInverted(true);
     }
 
     public double getShooterAngle() {
-	return 0;
+	return _shooterEnc.getVoltage() + RobotMap.SHOOTER_ZERO;
+    }
+
+    public void setEncZero(double val) {
+	shooterEncZero = val;
     }
 
     public void setAdjusterSpeed(double speed) {
@@ -91,16 +100,15 @@ public class Shooter extends Subsystem {
     }
 
     public void setFiringServo(double val) {
-	// _pusher.set(val);
+	 _pusher.set(val);
     }
 
     public void setClutchServo(double val) {
-	// _engageLatch.set(val);
+	 _engageLatch.setAngle(val);
     }
 
-    public double getFiringServo() {
-	// return _pusher.get();
-	return 0;
+    public double getPusherServo() {
+	 return _pusher.get();
     }
 
     public boolean getShootingStatus() {

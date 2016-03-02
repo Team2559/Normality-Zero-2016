@@ -30,7 +30,7 @@ public class PlayRecording extends Command {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (RobotMap.ANNOY_THE_FUCK_OUT_OF_THE_DRIVERS) {
+		if (RobotMap.ANNOY_THE_DRIVERS) {
 			Robot.oi.setRumble(RumbleType.kLeftRumble, 1);
 			Robot.oi.setRumble(RumbleType.kRightRumble, 1);
 		}

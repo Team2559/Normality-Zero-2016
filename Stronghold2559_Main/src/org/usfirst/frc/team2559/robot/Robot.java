@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("TeleOp", DriverStation.getInstance().isOperatorControl());
 	SmartDashboard.putBoolean("FMS", DriverStation.getInstance().isFMSAttached());
 	SmartDashboard.putNumber("heading", Robot._driveTrain.getGyroAngle());
+	SmartDashboard.putNumber("Absolute Encoder", Robot._shooter.getShooterAngle());
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
     }
 
@@ -114,6 +115,8 @@ public class Robot extends IterativeRobot {
 		end();
 	    }
 	}.start();
+	
+	//_shooter.setEncZero(_shooter.getShooterAngle());
     }
 
     /**

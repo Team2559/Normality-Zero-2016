@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.subsystems;
 
 import org.usfirst.frc.team2559.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -13,12 +14,16 @@ public class Arm extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private final Talon 	_adjuster = new Talon(RobotMap.PORT_ARM_ADJUSTER),
-							_intake = new Talon(RobotMap.PORT_ARM_INTAKE);
+	private final CANTalon 	_adjuster = new CANTalon(RobotMap.PORT_ARM_ADJUSTER),
+							_intake = new CANTalon(RobotMap.PORT_ARM_INTAKE);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public Arm() {
+	_intake.setInverted(true);
     }
     
     public void setIntakeSpeed(double speed) {
