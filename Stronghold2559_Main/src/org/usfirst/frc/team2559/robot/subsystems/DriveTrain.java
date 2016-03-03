@@ -114,6 +114,7 @@ public class DriveTrain extends Subsystem {
 			lastLeft = -leftCalc;
 			lastRight = -rightCalc;
 		}
+//		System.out.println("Left: " + left + "\nRight: " + right);
 	}
 	
 	public double getLastLeftDrive() {

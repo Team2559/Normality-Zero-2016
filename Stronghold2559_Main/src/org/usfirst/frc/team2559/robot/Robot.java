@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
+import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -62,6 +64,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("FMS", DriverStation.getInstance().isFMSAttached());
 	SmartDashboard.putNumber("heading", Robot._driveTrain.getGyroAngle());
 	SmartDashboard.putNumber("Absolute Encoder", Robot._shooter.getShooterAngle());
+	SmartDashboard.putNumber("Volts Encoder", Robot._shooter.getShooterAngleInVolts());
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
     }
 
@@ -87,8 +90,8 @@ public class Robot extends IterativeRobot {
 	cam.setWhiteBalanceManual(10000);
 	server.startAutomaticCapture(cam);
 
-	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Recorded Autonomous 2", "Drive For Distance (24)" };
-	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new PlayRecording("2"), new DriveForDistance(0.4, 24, true) };
+	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball" };
+	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball() };
 
 	for (int i = 0; i < autonomice.length; i++) {
 	    chooser.addObject(autonomiceNames[i], autonomice[i]);

@@ -50,7 +50,8 @@ public class Shooter extends Subsystem {
     }
 
     public double getVisionAzimuth() {
-	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("azimuth", 0) : 0;
+	System.out.println("Azimuth Value: " + SmartDashboard.getNumber("azimuth", 0));
+	return SmartDashboard.getNumber("azimuth", 0);
     }
 
     public double getVisionAltitude() {
@@ -68,7 +69,11 @@ public class Shooter extends Subsystem {
     }
 
     public double getShooterAngle() {
-	return _shooterEnc.getVoltage() + RobotMap.SHOOTER_ZERO;
+	return (360/5) * (_shooterEnc.getVoltage() - RobotMap.SHOOTER_ZERO);
+    }
+    
+    public double getShooterAngleInVolts() {
+	return _shooterEnc.getVoltage();
     }
 
     public void setEncZero(double val) {
@@ -108,7 +113,7 @@ public class Shooter extends Subsystem {
     }
 
     public double getPusherServo() {
-	 return _pusher.get();
+	 return _pusher.getAngle();
     }
 
     public boolean getShootingStatus() {

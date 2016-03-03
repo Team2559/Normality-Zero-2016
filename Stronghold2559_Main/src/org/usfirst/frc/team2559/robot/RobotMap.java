@@ -26,6 +26,10 @@ public class RobotMap {
  * PID Constants
  */
 
+//public static final double  PID_TURN_Kp			      = 0.003,
+//                            PID_TURN_Ki			      = 0.05, 
+//                            PID_TURN_Kd			      = 0.15;
+    
 public static final double  PID_TURN_Kp			      = 0.35,
                             PID_TURN_Ki			      = 0.01, 
                             PID_TURN_Kd			      = 0.15;
@@ -57,7 +61,7 @@ public static final int	    DISABLED_ID			      = 0,
 public static final double  TURNING_SPEED		      = 0.4,
                             TURNING_MIN			      = 0.4;
 
-public static final double  SLOWDRIVE_CONSTANT		      = 0.75;
+public static final double  SLOWDRIVE_CONSTANT		      = 1;
 
 public static final int	    JOYSTICK_AXIS_DRIVE_LEFT	      = 1,
 			    JOYSTICK_AXIS_DRIVE_RIGHT 	      = 5;
@@ -80,7 +84,7 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
 
 public static final double  SHOOTER_INTAKE_SPEED	      = 0.35,
                             ARM_INTAKE_SPEED 		      = 0.5,
-                            SHOOTER_ZERO		      = 0;
+                            SHOOTER_ZERO		      = 1.866;
 
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_RIGHT		      = 8, 
@@ -89,7 +93,7 @@ public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_LATCH		      = 4,
                             PORT_SHOOTER_PUSHER		      = 5;
 
-public static final double  SERVO_DELAY			      = 0.3;
+public static final double  SERVO_DELAY			      = 0.5;
 
 /*
  * Arm Constants
@@ -113,7 +117,7 @@ public static final int	    SMARTSHOOT_X_THRESHOLD	      = 15, // old
 
 public static final double  SMARTSHOOT_TURN_SPEED	      = 0.41;
 
-public static final double  SMARTSHOOT_SPINUP_DELAY	      = 1;
+public static final double  SMARTSHOOT_SPINUP_DELAY	      = 0.75;
 
 
 /*

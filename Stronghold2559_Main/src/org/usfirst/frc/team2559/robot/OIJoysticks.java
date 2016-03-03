@@ -12,6 +12,8 @@ import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDAdjustShooter;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDSmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
@@ -128,7 +130,7 @@ public class OIJoysticks {
 
 		_align.whenPressed(new AlignWithTarget());
 		
-		_smartShoot.whenPressed(new SmartShoot());
+		_smartShoot.whenPressed(new PIDSmartShoot());
 		
 		_record1.whenPressed(new CreateRecording("1"));
 		_play1.whenPressed(new PlayRecording("1"));
@@ -141,12 +143,12 @@ public class OIJoysticks {
 		shooterButton1.whenPressed(new PIDTurn766(90));
 		shooterButton2.whenPressed(new SetShooter(1, 1));
 		shooterButton2.whenReleased(new SetShooter(0, 0));
-		shooterButton3.whenPressed(new FireServo());
+		shooterButton3.whenPressed(new PIDAdjustShooter(0));
 		shooterButton4.whenPressed(new SetIntake("in"));
 		shooterButton4.whenReleased(new SetIntake("off"));
 		shooterButton5.whenPressed(new Command() {
 			protected void initialize() {
-				Robot._shooter.setClutchServo(90);
+				Robot._shooter.setFiringServo(30);;
 			}
 			protected void execute() {
 			}
@@ -161,7 +163,7 @@ public class OIJoysticks {
 		});
 		shooterButton5.whenReleased(new Command() {
 			protected void initialize() {
-				Robot._shooter.setClutchServo(-30);
+				Robot._shooter.setFiringServo(0);
 			}
 			protected void execute() {
 			}
@@ -177,7 +179,7 @@ public class OIJoysticks {
 		
 		shooterButton6.whenPressed(new Command() {
 			protected void initialize() {
-				Robot._shooter.setClutchServo(90);
+				Robot._shooter.setClutchServo(30);
 			}
 			protected void execute() {
 			}
@@ -208,7 +210,7 @@ public class OIJoysticks {
 		
 		shooterButton7.whileHeld(new Command() {
 			protected void initialize() {
-				Robot._arm.setIntakeSpeed(shooterStick.getRawAxis(1));
+				Robot._arm.setAdjusterSpeed(shooterStick.getRawAxis(1) * 0.3);
 			}
 			protected void execute() {
 			}
@@ -221,6 +223,8 @@ public class OIJoysticks {
 				end();
 			}
 		});
+		
+		shooterButton8.whenPressed(new PIDAdjustShooter(30));
 		
 		_driver2POVUp.whenActive(new AdjustShooter(0.3));
 		_driver2POVUp.whenInactive(new AdjustShooter(0));

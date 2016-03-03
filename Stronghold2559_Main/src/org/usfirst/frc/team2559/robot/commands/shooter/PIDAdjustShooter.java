@@ -14,29 +14,43 @@ public class PIDAdjustShooter extends Command {
 
     private PIDController pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
-            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, .5); // creates PID controller with min, max, and tolerance
+            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 2.5); // creates PID controller with min, max, and tolerance
+    
+    double angle;
 
     public PIDAdjustShooter(double angle) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._shooter);
 	pid.setSetpoint(angle);
+	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 	// disengage clutch
-	Robot._shooter.setAdjusterSpeed(1);
-	Timer.delay(0.5);
-	Robot._shooter.setClutchServo(0);
+	Robot._shooter.setAdjusterSpeed(0.2);
+	Timer.delay(0.01);
+	Robot._shooter.setClutchServo(30);
+	Timer.delay(RobotMap.SERVO_DELAY);
+	Robot._shooter.setAdjusterSpeed(0);
+	Timer.delay(0.01);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	pid.calculate(Robot._shooter.getShooterAngle(), false);
+	double angleError = angle - Robot._shooter.getShooterAngle();
+	if (angleError > 0) {
+	    pid.calculate(Robot._shooter.getShooterAngle(), true);
 
-	double power = pid.getOutput();
-	Robot._shooter.setAdjusterSpeed(power);
+	    double power = pid.getOutput();
+	    Robot._shooter.setAdjusterSpeed(-power);
+	} else {
+	    pid.calculate(-Robot._shooter.getShooterAngle(), true);
+
+	    double power = pid.getOutput();
+	    Robot._shooter.setAdjusterSpeed(power);
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,8 +61,9 @@ public class PIDAdjustShooter extends Command {
     // Called once after isFinished returns true
     protected void end() {
 	// engage clutch latch
+	Robot._shooter.setClutchServo(0);
 	Robot._shooter.setAdjusterSpeed(0);
-	Robot._shooter.setClutchServo(1);
+	
     }
 
     // Called when another command which requires one or more of the same
