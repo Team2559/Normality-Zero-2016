@@ -10,15 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PIDAdjustShooter extends Command {
+public class PIDSetShooter extends Command {
 
     private PIDController pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
-            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 2.5); // creates PID controller with min, max, and tolerance
+            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 1); // creates PID controller with min, max, and tolerance
     
     double angle;
 
-    public PIDAdjustShooter(double angle) {
+    public PIDSetShooter(double angle) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._shooter);
@@ -43,13 +43,13 @@ public class PIDAdjustShooter extends Command {
 	if (angleError > 0) {
 	    pid.calculate(Robot._shooter.getShooterAngle(), true);
 
-	    double power = pid.getOutput();
+	    double power = -pid.getOutput();
 	    Robot._shooter.setAdjusterSpeed(-power);
 	} else {
 	    pid.calculate(-Robot._shooter.getShooterAngle(), true);
 
-	    double power = pid.getOutput();
-	    Robot._shooter.setAdjusterSpeed(power);
+	    double power = -pid.getOutput();
+	    Robot._shooter.setAdjusterSpeed(power * 0.2);
 	}
     }
 

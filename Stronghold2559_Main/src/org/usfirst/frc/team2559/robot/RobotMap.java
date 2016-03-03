@@ -84,7 +84,8 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
 
 public static final double  SHOOTER_INTAKE_SPEED	      = 0.35,
                             ARM_INTAKE_SPEED 		      = 0.5,
-                            SHOOTER_ZERO		      = 1.866;
+                            SHOOTER_ZERO		      = 1.866,
+			    SHOOTER_INTAKE_ANGLE	      = -9;
 
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_RIGHT		      = 8, 

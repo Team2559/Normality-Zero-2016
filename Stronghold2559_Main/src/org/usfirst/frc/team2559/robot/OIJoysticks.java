@@ -12,7 +12,7 @@ import org.usfirst.frc.team2559.robot.commands.shooter.AdjustShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
-import org.usfirst.frc.team2559.robot.commands.shooter.PIDAdjustShooter;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
@@ -80,7 +80,7 @@ public class OIJoysticks {
 			_align = new JoystickButton(driverStick2, 2),
 			_intakeOn = new JoystickButton(driverStick2, 3),
 			_spinup = new JoystickButton(driverStick2, 4),
-			driverStick2Button5 = new JoystickButton(driverStick2, 5),
+			_prepIntake = new JoystickButton(driverStick2, 5),
 			_dumbShoot = new JoystickButton(driverStick2, 6),
 			driverStick2Button7 = new JoystickButton(driverStick2, 7),
 			driverStick2Button8 = new JoystickButton(driverStick2, 8),
@@ -136,6 +136,7 @@ public class OIJoysticks {
 		_play1.whenPressed(new PlayRecording("1"));
 		
 		_spinup.whenPressed(new SpinForSeconds(3));
+		_prepIntake.whenPressed(new PIDSetShooter(RobotMap.SHOOTER_INTAKE_ANGLE));
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
@@ -143,9 +144,7 @@ public class OIJoysticks {
 		shooterButton1.whenPressed(new PIDTurn766(90));
 		shooterButton2.whenPressed(new SetShooter(1, 1));
 		shooterButton2.whenReleased(new SetShooter(0, 0));
-		shooterButton3.whenPressed(new PIDAdjustShooter(0));
-		shooterButton4.whenPressed(new SetIntake("in"));
-		shooterButton4.whenReleased(new SetIntake("off"));
+		shooterButton3.whenPressed(new PIDSetShooter(0));
 		shooterButton5.whenPressed(new Command() {
 			protected void initialize() {
 				Robot._shooter.setFiringServo(30);;
@@ -224,7 +223,7 @@ public class OIJoysticks {
 			}
 		});
 		
-		shooterButton8.whenPressed(new PIDAdjustShooter(30));
+		shooterButton8.whenPressed(new PIDSetShooter(60));
 		
 		_driver2POVUp.whenActive(new AdjustShooter(0.3));
 		_driver2POVUp.whenInactive(new AdjustShooter(0));

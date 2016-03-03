@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
+import org.usfirst.frc.team2559.robot.RobotMap;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,7 +16,6 @@ public class SetIntake extends Command {
     public SetIntake(String forward) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._shooter);
     	requires(Robot._arm);
     	this.forward = forward;
     }

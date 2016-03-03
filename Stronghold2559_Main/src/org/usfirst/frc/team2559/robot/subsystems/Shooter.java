@@ -51,7 +51,7 @@ public class Shooter extends Subsystem {
 
     public double getVisionAzimuth() {
 	System.out.println("Azimuth Value: " + SmartDashboard.getNumber("azimuth", 0));
-	return SmartDashboard.getNumber("azimuth", 0);
+	return SmartDashboard.getBoolean("foundTower") ? SmartDashboard.getNumber("azimuth", 0) : 0;
     }
 
     public double getVisionAltitude() {

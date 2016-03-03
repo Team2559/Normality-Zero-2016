@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2559.robot.subsystems;
 
 import org.usfirst.frc.team2559.robot.RobotMap;
-import org.usfirst.frc.team2559.robot.commands.TankDrive;
+import org.usfirst.frc.team2559.robot.commands.drive.TankDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
