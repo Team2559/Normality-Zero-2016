@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2559.robot;
 
+import org.usfirst.frc.team2559.robot.commands.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.SetCamera;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
@@ -126,10 +127,10 @@ public class OIJoysticks {
 				end();
 			}
 		});
-		_turnLeft.whenPressed(new PIDTurn(-90, RobotMap.TURNING_SPEED));
-		_turnRight.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
+		_turnLeft.whenPressed(new PIDTurn766(-90));
+		_turnRight.whenPressed(new PIDTurn766(90));
 
-		_align.whenPressed(new PIDTurn766(SmartDashboard.getNumber("azimuth", 0)));
+		_align.whenPressed(new PIDVisionTurn());
 		
 		_smartShoot.whenPressed(new PIDSmartShoot());
 		
