@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -128,7 +129,7 @@ public class OIJoysticks {
 		_turnLeft.whenPressed(new PIDTurn(-90, RobotMap.TURNING_SPEED));
 		_turnRight.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 
-		_align.whenPressed(new AlignWithTarget());
+		_align.whenPressed(new PIDTurn766(SmartDashboard.getNumber("azimuth", 0)));
 		
 		_smartShoot.whenPressed(new PIDSmartShoot());
 		

@@ -2,11 +2,13 @@ package org.usfirst.frc.team2559.robot.commands.shooter;
 
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
+import org.usfirst.frc.team2559.robot.commands.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn766;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -48,10 +50,10 @@ public class PIDSmartShoot extends CommandGroup {
 		end();
 	    }
 	});
-	addSequential(new PIDTurn766(Robot._shooter.getVisionAzimuth()));
-	//addSequential(new PIDAdjustShooter(Robot._shooter.getVisionAltitude() - Robot._shooter.getShooterAngle())); // error = goal -
-														    // current position
-	addParallel(new Command() {
+	addSequential(new PIDVisionTurn());
+	addSequential(new PIDVisionShooter());
+//	addSequential(new PIDSetShooter(SmartDashboard.getNumber("altitude", 0))); // current position
+	addParallel(new Command() {    
 
 	    protected void initialize() {
 		Robot._shooter.setTargetingStatus(false);

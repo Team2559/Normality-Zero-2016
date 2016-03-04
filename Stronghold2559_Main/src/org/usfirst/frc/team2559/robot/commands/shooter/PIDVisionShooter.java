@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PIDSetShooter extends Command {
+public class PIDVisionShooter extends Command {
 
     private PIDController pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
@@ -19,17 +19,16 @@ public class PIDSetShooter extends Command {
     
     double angle;
 
-    public PIDSetShooter(double angle) {
+    public PIDVisionShooter() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._shooter);
-	this.angle = angle;
-	pid.setSetpoint(angle);
-	System.out.println("Angle in constructor is: " + angle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	angle = SmartDashboard.getNumber("altitude", 0);
+	pid.setSetpoint(angle);
 	System.out.println("Value: " + SmartDashboard.getNumber("altitude"));
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.2);
@@ -39,6 +38,7 @@ public class PIDSetShooter extends Command {
 	Robot._shooter.setAdjusterSpeed(0);
 	Timer.delay(0.01);
 	pid.reset();
+	pid.setSetpoint(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run

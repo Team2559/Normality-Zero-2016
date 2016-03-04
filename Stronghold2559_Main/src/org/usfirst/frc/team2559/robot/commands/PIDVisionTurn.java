@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2559.robot.commands.drive;
+package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.lib.PIDController;
 import org.usfirst.frc.team2559.robot.Robot;
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * java
  *
  */
-public class PIDTurn766 extends Command {
+public class PIDVisionTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
     double angle;
@@ -23,22 +23,22 @@ public class PIDTurn766 extends Command {
 
     // 0.5, and .5 as min/max/tolerance
 
-    public PIDTurn766(double angle) {
+    public PIDVisionTurn() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._driveTrain);
-	this.angle = angle;
-	pid.setSetpoint(angle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	angle = SmartDashboard.getNumber("azimuth", 0);
 	Robot._driveTrain.setAuton(true);
 	Robot._driveTrain.setFastDrive(false);
 	Robot._driveTrain.setReverseDrive(false);
 	Robot._driveTrain.setSlowDrive(false);
 	Robot._driveTrain.clearGyro();
 	pid.reset();
+	pid.setSetpoint(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run
