@@ -22,7 +22,7 @@ public class DriveForDistance extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot._driveTrain.clearEncoder();
-    	System.out.println("Started drivefordist");
+    	Robot._driveTrain.setAuton(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,6 +52,7 @@ public class DriveForDistance extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot._driveTrain.tankDrive(0, 0);
+    	Robot._driveTrain.setAuton(false);
     	System.out.println("DriveForDistance ended");
     }
 

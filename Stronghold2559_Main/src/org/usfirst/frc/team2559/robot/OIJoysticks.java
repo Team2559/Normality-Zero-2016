@@ -1,8 +1,12 @@
 package org.usfirst.frc.team2559.robot;
 
+import org.usfirst.frc.team2559.robot.commands.GetReadyToRumble;
+import org.usfirst.frc.team2559.robot.commands.LowGoal;
 import org.usfirst.frc.team2559.robot.commands.PIDVisionTurn;
+import org.usfirst.frc.team2559.robot.commands.PrepIntake;
 import org.usfirst.frc.team2559.robot.commands.SetCamera;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
+import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn;
@@ -66,17 +70,17 @@ public class OIJoysticks {
 	Joystick shooterStick = new Joystick(2);
 	
 	Button 	_fast = new JoystickButton(driverStick1, 1),
-			driverStick1Button2 = new JoystickButton(driverStick1, 2),
+			_lowgoal = new JoystickButton(driverStick1, 2),
 			_forw = new JoystickButton(driverStick1, 3),
 			_back = new JoystickButton(driverStick1, 4),
 			_bringItIn = new JoystickButton(driverStick1, 5),
-			driverStick1Button6 = new JoystickButton(driverStick1, 6),
-			_record1 = new JoystickButton(driverStick1, 7),
-			_play1 = new JoystickButton(driverStick1, 8),
-			driverStick1Button9 = new JoystickButton(driverStick1, 9),
-			driverStick1Button10 = new JoystickButton(driverStick1, 10),
-			_stopRecording = new JoystickButton(driverStick1, 11),
-			driverStick1Button12 = new JoystickButton(driverStick1, 12);
+			_lowbar = new JoystickButton(driverStick1, 6),
+			_portcullis = new JoystickButton(driverStick1, 7),
+			_chival = new JoystickButton(driverStick1, 8),
+			_moat = new JoystickButton(driverStick1, 9),
+			_ramparts = new JoystickButton(driverStick1, 10),
+			_drawbridge = new JoystickButton(driverStick1, 11),
+			_sallyport = new JoystickButton(driverStick1, 12);
 	
 	Button 	_smartShoot = new JoystickButton(driverStick2, 1),
 			_align = new JoystickButton(driverStick2, 2),
@@ -86,17 +90,17 @@ public class OIJoysticks {
 			_dumbShoot = new JoystickButton(driverStick2, 6),
 			driverStick2Button7 = new JoystickButton(driverStick2, 7),
 			driverStick2Button8 = new JoystickButton(driverStick2, 8),
-			driverStick2Button9 = new JoystickButton(driverStick2, 9),
-			driverStick2Button10 = new JoystickButton(driverStick2, 10),
-			driverStick2Button11 = new JoystickButton(driverStick2, 11),
-			driverStick2Button12 = new JoystickButton(driverStick2, 12);
+			_rockwall = new JoystickButton(driverStick2, 9),
+			_roughterrain = new JoystickButton(driverStick2, 10),
+			_shooterLowBar = new JoystickButton(driverStick2, 11),
+			_endgame = new JoystickButton(driverStick2, 12);
 
 	Button 	_arm = new JoystickButton(shooterStick, 1),
 			_bringItBack = new JoystickButton(shooterStick, 2),
 			shooterButton3 = new JoystickButton(shooterStick, 3),
 			_resetAll = new JoystickButton(shooterStick, 4),
-			shooterButton5 = new JoystickButton(shooterStick, 5),
-			shooterButton6 = new JoystickButton(shooterStick, 6),
+			_stopRecording = new JoystickButton(shooterStick, 5),
+			_debugShooter = new JoystickButton(shooterStick, 6),
 			shooterButton7= new JoystickButton(shooterStick, 7),
 			shooterButton8 = new JoystickButton(shooterStick, 8),
 			shooterButton9 = new JoystickButton(shooterStick, 9),
@@ -111,6 +115,7 @@ public class OIJoysticks {
 	public OIJoysticks() {
 		_forw.whileHeld(new DobbyForward());
 		_back.whileHeld(new DobbyBackward());
+		_lowgoal.whenPressed(new LowGoal());
 		_fast.whileHeld(new Command() {
 			protected void initialize() {
 				Robot._driveTrain.setFastDrive(true);
@@ -133,11 +138,20 @@ public class OIJoysticks {
 		
 		_smartShoot.whenPressed(new PIDSmartShoot());
 		
-		_record1.whenPressed(new CreateRecording("1"));
-		_play1.whenPressed(new PlayRecording("1"));
+		_lowbar.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
+		_shooterLowBar.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
+		_portcullis.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
+		_chival.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));
+		_moat.whenPressed(new GetReadyToRumble(RobotMap.MOAT_ID));
+		_ramparts.whenPressed(new GetReadyToRumble(RobotMap.RAMPARTS_ID));
+		_drawbridge.whenPressed(new GetReadyToRumble(RobotMap.DRAWBRIDGE_ID));
+		_sallyport.whenPressed(new GetReadyToRumble(RobotMap.SALLYPORT_ID));
+		_rockwall.whenPressed(new GetReadyToRumble(RobotMap.ROCKWALL_ID));
+		_roughterrain.whenPressed(new GetReadyToRumble(RobotMap.ROUGHTERRAIN_ID));
+		_endgame.whenPressed(new GetReadyToRumble(RobotMap.PUSHUP_ENDGAME_ID));
 		
 		_spinup.whenPressed(new SpinForSeconds(3));
-		_prepIntake.whenPressed(new PIDSetShooter(RobotMap.SHOOTER_INTAKE_ANGLE));
+		_prepIntake.whenPressed(new PrepIntake());
 		_intakeOn.whenPressed(new SetIntake("in"));
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
@@ -162,6 +176,23 @@ public class OIJoysticks {
 			protected void initialize() {
 				Robot._shooter.setFiringServo(0);
 				Robot._shooter.setClutchServo(0);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		
+		shooterButton7.whenPressed(new PIDSetArm(30));
+		_debugShooter.whileHeld(new Command() {
+			protected void initialize() {
+				Robot._shooter.setAdjusterSpeed(shooterStick.getRawAxis(1));
 			}
 			protected void execute() {
 			}

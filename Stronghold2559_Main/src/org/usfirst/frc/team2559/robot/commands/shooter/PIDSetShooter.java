@@ -18,12 +18,23 @@ public class PIDSetShooter extends Command {
             RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 1); // creates PID controller with min, max, and tolerance
     
     double angle;
+    boolean delay = false;
 
     public PIDSetShooter(double angle) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._shooter);
 	this.angle = angle;
+	pid.setSetpoint(angle);
+	System.out.println("Angle in constructor is: " + angle);
+    }
+    
+    public PIDSetShooter(double angle, boolean delay) {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(Robot._shooter);
+	this.angle = angle;
+	this.delay = delay;
 	pid.setSetpoint(angle);
 	System.out.println("Angle in constructor is: " + angle);
     }
@@ -68,6 +79,10 @@ public class PIDSetShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+	// Delay for shooter bounce
+	if(delay) {
+	Timer.delay(0.5);
+	}
 	// engage clutch latch
 	Robot._shooter.setClutchServo(0);
 	Robot._shooter.setAdjusterSpeed(0);

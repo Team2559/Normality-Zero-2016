@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
+import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDVisionShooter;
@@ -51,12 +52,13 @@ public class LowGoal extends CommandGroup {
 		end();
 	    }
 	});
-	addSequential(new PIDSetShooter(0));
+	addSequential(new PIDSetArm(41));
+	addSequential(new PIDSetShooter(0));	
 	addParallel(new Command() {    
 
 	    protected void initialize() {
 		Robot._shooter.setTargetingStatus(false);
-		Robot._shooter.setShootingStatus(true);
+//		Robot._shooter.setShootingStatus(true);
 	    }
 
 	    protected void execute() {}
@@ -71,29 +73,29 @@ public class LowGoal extends CommandGroup {
 		end();
 	    }
 	});
-	addSequential(new SetShooter(1, 1));
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
-	addSequential(new FireServo());
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY * 2));
-	addSequential(new SetShooter(0, 0));
-	addParallel(new Command() {
-
-	    protected void initialize() {
-		Robot._shooter.setShootingStatus(false);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+//	addSequential(new SetShooter(1, 1));
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+//	addSequential(new FireServo());
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY * 2));
+//	addSequential(new SetShooter(0, 0));
+//	addParallel(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._shooter.setShootingStatus(false);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
 	
     }
 }

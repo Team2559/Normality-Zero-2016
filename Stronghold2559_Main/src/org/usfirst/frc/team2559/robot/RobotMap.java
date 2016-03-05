@@ -38,6 +38,10 @@ public static final double  PID_SHOOTER_Kp		      = 0.35,
                             PID_SHOOTER_Ki		      = 0.01, 
                             PID_SHOOTER_Kd		      = 0.15;
 
+public static final double  PID_ARM_Kp		     	      = 0.35,
+                            PID_ARM_Ki		      	      = 0.01, 
+                            PID_ARM_Kd		      	      = 0.15;
+
 public static final int     PORTCULLIS_ID 		      = 0,
                             CDF_ID			      = 1,
                             MOAT_ID			      = 2,
@@ -46,7 +50,8 @@ public static final int     PORTCULLIS_ID 		      = 0,
                             SALLYPORT_ID		      = 5,
                             ROCKWALL_ID			      = 6,
                             ROUGHTERRAIN_ID		      = 7,
-                            LOWBAR_ID 			      = 8;
+                            LOWBAR_ID 			      = 8,
+                            PUSHUP_ENDGAME_ID		      = 9;
 
 /*
  * LED Constants 
@@ -94,7 +99,7 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
 
 public static final double  SHOOTER_INTAKE_SPEED	      = 0.35,
                             ARM_INTAKE_SPEED 		      = 0.5,
-                            SHOOTER_ZERO		      = 1.866,
+                            SHOOTER_ZERO		      = 2.086,
 			    SHOOTER_INTAKE_ANGLE	      = -9;
 
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
@@ -111,7 +116,10 @@ public static final double  SERVO_DELAY			      = 0.5;
  */
 
 public static final int	    PORT_ARM_ADJUSTER		      = 9,
-                            PORT_ARM_INTAKE 		      = 10;
+                            PORT_ARM_INTAKE 		      = 10,
+                            PORT_ARM_POT		      = 3,
+                            ARM_HOME			      = 112,
+                            ARM_INTAKE_ANGLE		      = 7;
 
 /*
  * Autonomous Constants
