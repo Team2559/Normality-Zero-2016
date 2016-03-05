@@ -23,7 +23,7 @@ public class RobotMap {
 // It will become very messed up.
 
 /*
- * PID Constants
+ * Programming Constants
  */
 
 //public static final double  PID_TURN_Kp			      = 0.003,
@@ -37,6 +37,16 @@ public static final double  PID_TURN_Kp			      = 0.35,
 public static final double  PID_SHOOTER_Kp		      = 0.35,
                             PID_SHOOTER_Ki		      = 0.01, 
                             PID_SHOOTER_Kd		      = 0.15;
+
+public static final int     PORTCULLIS_ID 		      = 0,
+                            CDF_ID			      = 1,
+                            MOAT_ID			      = 2,
+                            RAMPARTS_ID			      = 3,
+                            DRAWBRIDGE_ID		      = 4,
+                            SALLYPORT_ID		      = 5,
+                            ROCKWALL_ID			      = 6,
+                            ROUGHTERRAIN_ID		      = 7,
+                            LOWBAR_ID 			      = 8;
 
 /*
  * LED Constants 

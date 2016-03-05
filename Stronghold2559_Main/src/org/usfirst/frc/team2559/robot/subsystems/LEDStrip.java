@@ -56,7 +56,7 @@ public class LEDStrip extends Subsystem {
     		} else if (Robot._shooter.getShootingStatus()) {
     			_curMode = RobotMap.TELEOP_SHOOTING_ID;
     		} else if (DriverStation.getInstance().getMatchTime() <= 20) { // this might not work
-    			_curMode = RobotMap.TELEOP_LOW_BATTERY_ID;
+    			_curMode = RobotMap.TELEOP_LOW_TIME_ID;
     		} else if(alliance == DriverStation.Alliance.Blue) {
 				_curMode = RobotMap.TELEOP_BLUE_ID;
 			} else if(alliance == DriverStation.Alliance.Red) {

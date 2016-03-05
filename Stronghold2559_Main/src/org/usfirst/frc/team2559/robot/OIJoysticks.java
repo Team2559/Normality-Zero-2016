@@ -69,8 +69,8 @@ public class OIJoysticks {
 			driverStick1Button2 = new JoystickButton(driverStick1, 2),
 			_forw = new JoystickButton(driverStick1, 3),
 			_back = new JoystickButton(driverStick1, 4),
-			_turnLeft = new JoystickButton(driverStick1, 5),
-			_turnRight = new JoystickButton(driverStick1, 6),
+			_bringItIn = new JoystickButton(driverStick1, 5),
+			driverStick1Button6 = new JoystickButton(driverStick1, 6),
 			_record1 = new JoystickButton(driverStick1, 7),
 			_play1 = new JoystickButton(driverStick1, 8),
 			driverStick1Button9 = new JoystickButton(driverStick1, 9),
@@ -91,10 +91,10 @@ public class OIJoysticks {
 			driverStick2Button11 = new JoystickButton(driverStick2, 11),
 			driverStick2Button12 = new JoystickButton(driverStick2, 12);
 
-	Button 	shooterButton1 = new JoystickButton(shooterStick, 1),
-			shooterButton2 = new JoystickButton(shooterStick, 2),
+	Button 	_arm = new JoystickButton(shooterStick, 1),
+			_bringItBack = new JoystickButton(shooterStick, 2),
 			shooterButton3 = new JoystickButton(shooterStick, 3),
-			shooterButton4 = new JoystickButton(shooterStick, 4),
+			_resetAll = new JoystickButton(shooterStick, 4),
 			shooterButton5 = new JoystickButton(shooterStick, 5),
 			shooterButton6 = new JoystickButton(shooterStick, 6),
 			shooterButton7= new JoystickButton(shooterStick, 7),
@@ -127,8 +127,7 @@ public class OIJoysticks {
 				end();
 			}
 		});
-		_turnLeft.whenPressed(new PIDTurn766(-90));
-		_turnRight.whenPressed(new PIDTurn766(90));
+		_bringItIn.whenPressed(new PIDSetShooter(0));
 
 		_align.whenPressed(new PIDVisionTurn());
 		
@@ -143,75 +142,26 @@ public class OIJoysticks {
 		_intakeOn.whenReleased(new SetIntake("off"));
 		_dumbShoot.whenPressed(new DumbShoot());
 		
-		shooterButton1.whenPressed(new PIDTurn766(90));
-		shooterButton2.whenPressed(new SetShooter(1, 1));
-		shooterButton2.whenReleased(new SetShooter(0, 0));
-		shooterButton3.whenPressed(new PIDSetShooter(0));
-		shooterButton5.whenPressed(new Command() {
-			protected void initialize() {
-				Robot._shooter.setFiringServo(30);;
-			}
-			protected void execute() {
-			}
-			protected boolean isFinished() {
-				return true;
-			}
-			protected void end() {
-			}
-			protected void interrupted() {
-				end();
-			}
-		});
-		shooterButton5.whenReleased(new Command() {
-			protected void initialize() {
-				Robot._shooter.setFiringServo(0);
-			}
-			protected void execute() {
-			}
-			protected boolean isFinished() {
-				return true;
-			}
-			protected void end() {
-			}
-			protected void interrupted() {
-				end();
-			}
-		});
-		
-		shooterButton6.whenPressed(new Command() {
-			protected void initialize() {
-				Robot._shooter.setClutchServo(30);
-			}
-			protected void execute() {
-			}
-			protected boolean isFinished() {
-				return true;
-			}
-			protected void end() {
-			}
-			protected void interrupted() {
-				end();
-			}
-		});
-		shooterButton6.whenReleased(new Command() {
-			protected void initialize() {
-				Robot._shooter.setClutchServo(0);
-			}
-			protected void execute() {
-			}
-			protected boolean isFinished() {
-				return true;
-			}
-			protected void end() {
-			}
-			protected void interrupted() {
-				end();
-			}
-		});
-		
-		shooterButton7.whileHeld(new Command() {
+		_arm.whileHeld(new Command() {
 			protected void initialize() {
 				Robot._arm.setAdjusterSpeed(shooterStick.getRawAxis(1) * 0.3);
+			}
+			protected void execute() {
+			}
+			protected boolean isFinished() {
+				return true;
+			}
+			protected void end() {
+			}
+			protected void interrupted() {
+				end();
+			}
+		});
+		_bringItBack.whenPressed(new PIDSetShooter(0));
+		_resetAll.whenPressed(new Command() {
+			protected void initialize() {
+				Robot._shooter.setFiringServo(0);
+				Robot._shooter.setClutchServo(0);
 			}
 			protected void execute() {
 			}

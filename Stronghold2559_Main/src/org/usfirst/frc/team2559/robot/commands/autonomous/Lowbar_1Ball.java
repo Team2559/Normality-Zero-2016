@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.commands.autonomous;
 
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn766;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDSmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -39,6 +40,6 @@ public class Lowbar_1Ball extends CommandGroup {
     	
     	addSequential(new DriveForDistance(0.5, 100, true));
     	addSequential(new PIDTurn766(45));
-    	addSequential(new SmartShoot());
+    	addSequential(new PIDSmartShoot());
     }
 }
