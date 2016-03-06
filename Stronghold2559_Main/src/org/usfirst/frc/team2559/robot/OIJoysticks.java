@@ -200,6 +200,7 @@ public class OIJoysticks {
 				return true;
 			}
 			protected void end() {
+			    Robot._shooter.setAdjusterSpeed(0);
 			}
 			protected void interrupted() {
 				end();
