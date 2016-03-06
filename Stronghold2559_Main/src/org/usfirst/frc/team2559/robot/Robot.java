@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
-import org.usfirst.frc.team2559.robot.commands.autonomous.RookieAutonomous;
+import org.usfirst.frc.team2559.robot.commands.autonomous.BreachSimpleDefense;
+import org.usfirst.frc.team2559.robot.commands.autonomous.ReachDefense;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
@@ -116,8 +117,8 @@ public class Robot extends IterativeRobot {
 	
 //	cam1 = new USBCamera("cam1");
 
-	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball", "Go Straight Over Obstacle" };
-	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball(), new RookieAutonomous() };
+	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball", "Breach Simple Defense", "Reach Defense" };
+	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball(), new BreachSimpleDefense(), new ReachDefense() };
 
 	for (int i = 0; i < autonomice.length; i++) {
 	    chooser.addObject(autonomiceNames[i], autonomice[i]);
@@ -145,7 +146,6 @@ public class Robot extends IterativeRobot {
 	    }
 	}.start();
 	
-	//_shooter.setEncZero(_shooter.getShooterAngle());
     }
 
     /**

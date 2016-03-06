@@ -48,7 +48,8 @@ public class PIDSetArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return pid.isDone();
+//	return pid.isDone();
+	return true; // commented
     }
 
     // Called once after isFinished returns true
