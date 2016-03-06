@@ -27,13 +27,13 @@ public class SetIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (forward.equals("in")) {
-    		Robot._shooter.intakeIn();
+//    		Robot._shooter.intakeIn(); // commented
     		Robot._arm.intakeIn();
     	} else if(forward.equals("out")){
-    		Robot._shooter.intakeOut();
+//    		Robot._shooter.intakeOut(); // commented
     		Robot._arm.intakeOut();
     	} else {
-    		Robot._shooter.intakeStop();
+//    		Robot._shooter.intakeStop(); // commented
     		Robot._arm.intakeStop();
     	}
     }

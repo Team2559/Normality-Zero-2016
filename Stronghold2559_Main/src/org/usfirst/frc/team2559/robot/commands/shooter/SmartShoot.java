@@ -33,7 +33,7 @@ public class SmartShoot extends CommandGroup {
     	addSequential(new AlignWithTarget());
     	addParallel(new Command() {
 			protected void initialize() {
-				Robot._shooter.setShootingStatus(true);
+//				Robot._shooter.setShootingStatus(true); // commented
 			}
 			protected void execute() {
 			}
@@ -53,7 +53,7 @@ public class SmartShoot extends CommandGroup {
     	addSequential(new SetShooter(0, 0));
     	addParallel(new Command() {
 			protected void initialize() {
-				Robot._shooter.setShootingStatus(false);
+//				Robot._shooter.setShootingStatus(false); // commented
 			}
 			protected void execute() {
 			}

@@ -31,9 +31,9 @@ public class GetReadyToRumble extends CommandGroup {
 	//int shooter_setting=255, arm_setting=255;
 	
 	//Set arm to not in the way position
-	if(val != RobotMap.PUSHUP_ENDGAME_ID){
-	    addSequential(new PIDSetArm(41));
-	}
+//	if(val != RobotMap.PUSHUP_ENDGAME_ID){ // commented
+//	    addSequential(new PIDSetArm(41));
+//	}
 	
 	//Do we need a delay?
 	
@@ -45,24 +45,24 @@ public class GetReadyToRumble extends CommandGroup {
 	    //shooter_setting = 60;
 	}
 	
-	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
-	    // set arms as high as possible
-	    addSequential(new PIDSetArm(0));
-	    //arm_setting= 0;
-	} else if (val == RobotMap.LOWBAR_ID) {
-	    // set arms as far back as possible
-	    addSequential(new PIDSetArm(51));
-	    //arm_setting=51;
-	} else if (val == RobotMap.MOAT_ID || val == RobotMap.RAMPARTS_ID || val == RobotMap.ROCKWALL_ID || val == RobotMap.ROUGHTERRAIN_ID) {
-	    addSequential(new PIDSetArm(41));
-	    //arm_setting=41;
-	} else if (val == RobotMap.CDF_ID) {	
-	    //set arms in the middle
-	    addSequential(new PIDSetArm(8));
-	    //arm_setting=8;
-	} else if (val == RobotMap.PUSHUP_ENDGAME_ID) {
-	    addSequential(new PIDSetArm(-8));
-	}
+//	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
+//	    // set arms as high as possible
+//	    addSequential(new PIDSetArm(0));
+//	    //arm_setting= 0;
+//	} else if (val == RobotMap.LOWBAR_ID) {
+//	    // set arms as far back as possible
+//	    addSequential(new PIDSetArm(51));
+//	    //arm_setting=51;
+//	} else if (val == RobotMap.MOAT_ID || val == RobotMap.RAMPARTS_ID || val == RobotMap.ROCKWALL_ID || val == RobotMap.ROUGHTERRAIN_ID) {
+//	    addSequential(new PIDSetArm(41));
+//	    //arm_setting=41;
+//	} else if (val == RobotMap.CDF_ID) {	
+//	    //set arms in the middle
+//	    addSequential(new PIDSetArm(8));
+//	    //arm_setting=8;
+//	} else if (val == RobotMap.PUSHUP_ENDGAME_ID) {
+//	    addSequential(new PIDSetArm(-8));
+//	} // comment
 	
 	// We have setting, now set shooter and arm to position. 255 IS DO NOTHING VALUE
 	//if()

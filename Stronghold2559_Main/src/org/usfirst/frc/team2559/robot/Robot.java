@@ -19,7 +19,7 @@ import org.usfirst.frc.team2559.robot.subsystems.Arm;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
 import org.usfirst.frc.team2559.robot.subsystems.Recorder;
-import org.usfirst.frc.team2559.robot.subsystems.Shooter;
+//import org.usfirst.frc.team2559.robot.subsystems.Shooter; // commented
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
     public static DriveTrain   _driveTrain;
     public static LEDStrip     _ledStrip;
     public static Recorder     _recorder;
-    public static Shooter      _shooter;
+//    public static Shooter      _shooter; // commented
     public static Arm	  _arm;
 
     public static USBCamera    cam0;
@@ -73,8 +73,8 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("TeleOp", DriverStation.getInstance().isOperatorControl());
 	SmartDashboard.putBoolean("FMS", DriverStation.getInstance().isFMSAttached());
 	SmartDashboard.putNumber("heading", Robot._driveTrain.getGyroAngle());
-	SmartDashboard.putNumber("Absolute Encoder", Robot._shooter.getShooterAngle());
-	SmartDashboard.putNumber("Volts Encoder", Robot._shooter.getShooterAngleInVolts());
+//	SmartDashboard.putNumber("Absolute Encoder", Robot._shooter.getShooterAngle()); // commented
+//	SmartDashboard.putNumber("Volts Encoder", Robot._shooter.getShooterAngleInVolts());
 	SmartDashboard.putNumber("Arm Pot", Robot._arm.getArmAngle());
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
 	
@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 	_driveTrain = new DriveTrain();
 	_ledStrip = new LEDStrip();
 	_recorder = new Recorder();
-	_shooter = new Shooter();
+//	_shooter = new Shooter();
 	_arm = new Arm();
 	// oi = new OIXbox();
 	oi = new OIJoysticks();

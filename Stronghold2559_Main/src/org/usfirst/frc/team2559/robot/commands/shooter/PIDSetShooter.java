@@ -23,7 +23,7 @@ public class PIDSetShooter extends Command {
     public PIDSetShooter(double angle) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(Robot._shooter);
+//	requires(Robot._shooter); // commented
 	this.angle = angle;
 	pid.setSetpoint(angle);
 	System.out.println("Angle in constructor is: " + angle);
@@ -32,7 +32,7 @@ public class PIDSetShooter extends Command {
     public PIDSetShooter(double angle, boolean delay) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(Robot._shooter);
+//	requires(Robot._shooter); // commented
 	this.angle = angle;
 	this.delay = delay;
 	pid.setSetpoint(angle);
@@ -43,33 +43,33 @@ public class PIDSetShooter extends Command {
     protected void initialize() {
 	System.out.println("Value: " + SmartDashboard.getNumber("altitude"));
 	// disengage clutch
-	Robot._shooter.setAdjusterSpeed(0.2);
+//	Robot._shooter.setAdjusterSpeed(0.2); // commented
 	Timer.delay(0.01);
-	Robot._shooter.setClutchServo(30);
+//	Robot._shooter.setClutchServo(30); // commented
 	Timer.delay(RobotMap.SERVO_DELAY);
-	Robot._shooter.setAdjusterSpeed(0);
+//	Robot._shooter.setAdjusterSpeed(0); // commented
 	Timer.delay(0.01);
 	pid.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	double angleError = angle - Robot._shooter.getShooterAngle();
-	if (angleError > 0) {
-	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
-
-	    double power = pid.getOutput();
-	    Robot._shooter.setAdjusterSpeed(power);
-	} else {
-	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
-
-	    double power = -pid.getOutput();
-	    if(angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 1.8);
-	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
-	    }
-	}
+////	double angleError = angle - Robot._shooter.getShooterAngle(); // commented
+//	if (angleError > 0) {
+////	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true); // commented
+//
+//	    double power = pid.getOutput();
+//	    Robot._shooter.setAdjusterSpeed(power);
+//	} else {
+//	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
+//
+//	    double power = -pid.getOutput();
+//	    if(angle < 0) {
+//		Robot._shooter.setAdjusterSpeed(power * 1.8);
+//	    } else {
+//		Robot._shooter.setAdjusterSpeed(power * 0.2);
+//	    }
+//	} // commented
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -84,8 +84,8 @@ public class PIDSetShooter extends Command {
 	Timer.delay(0.5);
 	}
 	// engage clutch latch
-	Robot._shooter.setClutchServo(0);
-	Robot._shooter.setAdjusterSpeed(0);
+//	Robot._shooter.setClutchServo(0); // commented
+//	Robot._shooter.setAdjusterSpeed(0);
 	pid.reset();
 	
     }

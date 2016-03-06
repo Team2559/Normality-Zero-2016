@@ -15,21 +15,21 @@ public class CheckShoot extends Command {
     public CheckShoot() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._shooter);
+//    	requires(Robot._shooter); // commented
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot._shooter.setShootingStatus(true);
+//    	Robot._shooter.setShootingStatus(true); // commented
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if ((Math.abs(Robot._shooter.getXOffset()) <= RobotMap.SMARTSHOOT_X_THRESHOLD) && 
-   			(Math.abs(Robot._shooter.getYOffset()) <= RobotMap.SMARTSHOOT_Y_THRESHOLD)) {
+//    	if ((Math.abs(Robot._shooter.getXOffset()) <= RobotMap.SMARTSHOOT_X_THRESHOLD) &&  // commented
+//   			(Math.abs(Robot._shooter.getYOffset()) <= RobotMap.SMARTSHOOT_Y_THRESHOLD)) { // commented
     		// shoot
     		hasShot = true;
-    	}
+//    	} // commented
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +39,7 @@ public class CheckShoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._shooter.setShootingStatus(false);
+//    	Robot._shooter.setShootingStatus(false); // commented
     }
 
     // Called when another command which requires one or more of the same

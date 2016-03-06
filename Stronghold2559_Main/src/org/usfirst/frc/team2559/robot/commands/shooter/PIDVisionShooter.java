@@ -22,7 +22,7 @@ public class PIDVisionShooter extends Command {
     public PIDVisionShooter() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(Robot._shooter);
+//	requires(Robot._shooter); // commented
     }
 
     // Called just before this Command runs the first time
@@ -31,11 +31,11 @@ public class PIDVisionShooter extends Command {
 	pid.setSetpoint(angle);
 	System.out.println("Value: " + SmartDashboard.getNumber("altitude"));
 	// disengage clutch
-	Robot._shooter.setAdjusterSpeed(0.2);
+//	Robot._shooter.setAdjusterSpeed(0.2); // commented
 	Timer.delay(0.01);
-	Robot._shooter.setClutchServo(30);
+//	Robot._shooter.setClutchServo(30); // commented
 	Timer.delay(RobotMap.SERVO_DELAY);
-	Robot._shooter.setAdjusterSpeed(0);
+//	Robot._shooter.setAdjusterSpeed(0); // commented
 	Timer.delay(0.01);
 	pid.reset();
 	pid.setSetpoint(angle);
@@ -43,22 +43,22 @@ public class PIDVisionShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	double angleError = angle - Robot._shooter.getShooterAngle();
-	if (angleError > 0) {
-	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
-
-	    double power = pid.getOutput();
-	    Robot._shooter.setAdjusterSpeed(power);
-	} else {
-	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
-
-	    double power = -pid.getOutput();
-	    if(angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 1.8);
-	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
-	    }
-	}
+//	double angleError = angle - Robot._shooter.getShooterAngle(); // commented
+//	if (angleError > 0) {
+////	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true); // commented
+//
+//	    double power = pid.getOutput();
+////	    Robot._shooter.setAdjusterSpeed(power); // commented
+//	} else {
+////	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true); // commented
+//
+//	    double power = -pid.getOutput();
+//	    if(angle < 0) {
+//		Robot._shooter.setAdjusterSpeed(power * 1.8);
+//	    } else {
+//		Robot._shooter.setAdjusterSpeed(power * 0.2);
+//	    }
+//	} // commented
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -69,8 +69,8 @@ public class PIDVisionShooter extends Command {
     // Called once after isFinished returns true
     protected void end() {
 	// engage clutch latch
-	Robot._shooter.setClutchServo(0);
-	Robot._shooter.setAdjusterSpeed(0);
+//	Robot._shooter.setClutchServo(0);
+//	Robot._shooter.setAdjusterSpeed(0); // commented
 	pid.reset();
 	
     }

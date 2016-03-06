@@ -15,6 +15,8 @@ public class SetCamera extends Command {
 
     boolean	       val;
     private static String ATTR_EX_MODE = "CameraAttributes::Exposure::Mode";
+    private static String ATTR_EX_VALUE = "CameraAttributes::Exposure::Value";
+
 
     public SetCamera(boolean val) {
 	// Use requires() here to declare subsystem dependencies
@@ -26,9 +28,10 @@ public class SetCamera extends Command {
     protected void initialize() {
 	if (val) {
 
-////	    NIVision.IMAQdxStopAcquisition(Robot.currentSession);
+//	    NIVision.IMAQdxStopAcquisition(Robot.currentSession);
 //	    Robot.currentSession = Robot.session0;
 //	    NIVision.IMAQdxConfigureGrab(Robot.currentSession);
+//	    int m_id = Robot.currentSession, m_exposureValue = 0;
 //	    NIVision.IMAQdxSetAttributeString(m_id, ATTR_EX_MODE, "Manual");
 //		long minv = NIVision.IMAQdxGetAttributeMinimumI64(m_id, ATTR_EX_VALUE);
 //		long maxv = NIVision.IMAQdxGetAttributeMaximumI64(m_id, ATTR_EX_VALUE);
@@ -44,6 +47,17 @@ public class SetCamera extends Command {
 //	    NIVision.IMAQdxStopAcquisition(Robot.currentSession);
 //	    Robot.currentSession = Robot.session1;
 //	    NIVision.IMAQdxConfigureGrab(Robot.currentSession);
+	    
+//	    NIVision.IMAQdxStopAcquisition(Robot.currentSession);
+//	    Robot.currentSession = Robot.session1;
+//	    NIVision.IMAQdxConfigureGrab(Robot.currentSession);
+//	    int m_id = Robot.currentSession, m_exposureValue = 1;
+//	    NIVision.IMAQdxSetAttributeString(m_id, ATTR_EX_MODE, "Manual");
+//		long minv = NIVision.IMAQdxGetAttributeMinimumI64(m_id, ATTR_EX_VALUE);
+//		long maxv = NIVision.IMAQdxGetAttributeMaximumI64(m_id, ATTR_EX_VALUE);
+//		long val = minv + (long) (((double) (maxv - minv)) * (((double) m_exposureValue) / 100.0));
+//		NIVision.IMAQdxSetAttributeI64(m_id, ATTR_EX_VALUE, val);
+//	    }
 	     Robot.cam0.setExposureManual(1);
 	     Robot.cam0.setBrightness(0);
 	     Robot.cam0.setWhiteBalanceAuto();

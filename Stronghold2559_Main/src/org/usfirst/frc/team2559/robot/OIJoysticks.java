@@ -174,8 +174,8 @@ public class OIJoysticks {
 		_bringItBack.whenPressed(new PIDSetShooter(0));
 		_resetAll.whenPressed(new Command() {
 			protected void initialize() {
-				Robot._shooter.setFiringServo(0);
-				Robot._shooter.setClutchServo(0);
+//				Robot._shooter.setFiringServo(0); //commented
+//				Robot._shooter.setClutchServo(0);
 			}
 			protected void execute() {
 			}
@@ -192,7 +192,7 @@ public class OIJoysticks {
 		shooterButton7.whenPressed(new PIDSetArm(30));
 		_debugShooter.whileHeld(new Command() {
 			protected void initialize() {
-				Robot._shooter.setAdjusterSpeed(shooterStick.getRawAxis(1));
+//				Robot._shooter.setAdjusterSpeed(shooterStick.getRawAxis(1)); // commented
 			}
 			protected void execute() {
 			}

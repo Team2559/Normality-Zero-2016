@@ -14,7 +14,7 @@ public class SetShooter extends Command {
     public SetShooter(double left, double right) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._shooter);
+//    	requires(Robot._shooter); // commented
     	_left = -left;
     	_right = -right;
     }
@@ -25,7 +25,7 @@ public class SetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._shooter.setSpinSpeed(_left, _right);
+//    	Robot._shooter.setSpinSpeed(_left, _right); // commented
     }
 
     // Make this return true when this Command no longer needs to run execute()

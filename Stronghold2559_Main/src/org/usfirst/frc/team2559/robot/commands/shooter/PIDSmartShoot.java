@@ -35,7 +35,7 @@ public class PIDSmartShoot extends CommandGroup {
 	addParallel(new Command() {
 
 	    protected void initialize() {
-		Robot._shooter.setTargetingStatus(true);
+//		Robot._shooter.setTargetingStatus(true); // commented
 	    }
 
 	    protected void execute() {}
@@ -56,8 +56,8 @@ public class PIDSmartShoot extends CommandGroup {
 	addParallel(new Command() {    
 
 	    protected void initialize() {
-		Robot._shooter.setTargetingStatus(false);
-		Robot._shooter.setShootingStatus(true);
+//		Robot._shooter.setTargetingStatus(false); // commented
+//		Robot._shooter.setShootingStatus(true);
 	    }
 
 	    protected void execute() {}
@@ -80,7 +80,7 @@ public class PIDSmartShoot extends CommandGroup {
 	addParallel(new Command() {
 
 	    protected void initialize() {
-		Robot._shooter.setShootingStatus(false);
+//		Robot._shooter.setShootingStatus(false); // commented
 	    }
 
 	    protected void execute() {}

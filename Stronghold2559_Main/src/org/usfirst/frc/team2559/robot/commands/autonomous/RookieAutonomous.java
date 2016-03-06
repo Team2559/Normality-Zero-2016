@@ -27,5 +27,7 @@ public class RookieAutonomous extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
 	addSequential(new DriveForDistance(0.8, 180, true));
+	addSequential(new DriveForDistance(1, 20, true));
+	addSequential(new DriveForDistance(1, 10, true));
     }
 }

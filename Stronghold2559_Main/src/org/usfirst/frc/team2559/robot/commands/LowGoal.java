@@ -37,7 +37,7 @@ public class LowGoal extends CommandGroup {
 	addParallel(new Command() {
 
 	    protected void initialize() {
-		Robot._shooter.setTargetingStatus(true);
+//		Robot._shooter.setTargetingStatus(true); // commented
 	    }
 
 	    protected void execute() {}
@@ -57,7 +57,7 @@ public class LowGoal extends CommandGroup {
 	addParallel(new Command() {    
 
 	    protected void initialize() {
-		Robot._shooter.setTargetingStatus(false);
+//		Robot._shooter.setTargetingStatus(false); // commented (this line only)
 //		Robot._shooter.setShootingStatus(true);
 	    }
 

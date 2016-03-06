@@ -16,21 +16,21 @@ public class FireServo extends Command {
     public FireServo() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot._shooter);
+//    	requires(Robot._shooter); // commented
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	startTime = System.currentTimeMillis();
-		if (Robot._shooter.getPusherServo() >= 10) {
-			Robot._shooter.setFiringServo(0);
-			Timer.delay(RobotMap.SERVO_DELAY);
-		}
+//		if (Robot._shooter.getPusherServo() >= 10) {
+//			Robot._shooter.setFiringServo(0);
+//			Timer.delay(RobotMap.SERVO_DELAY);
+//		} // commented
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._shooter.setFiringServo(1);
+//    	Robot._shooter.setFiringServo(1); // commented
     	Timer.delay(RobotMap.SERVO_DELAY);
     }
 
@@ -41,7 +41,7 @@ public class FireServo extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._shooter.setFiringServo(0);
+//    	Robot._shooter.setFiringServo(0); // commented
     }
 
     // Called when another command which requires one or more of the same
