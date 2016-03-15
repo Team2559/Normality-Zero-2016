@@ -27,9 +27,9 @@ public class PIDVisionShooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	angle = SmartDashboard.getNumber("altitude", 0);
+	angle = SmartDashboard.getNumber("angle", 0);
 	pid.setSetpoint(angle);
-	System.out.println("Value: " + SmartDashboard.getNumber("altitude"));
+	System.out.println("Value: " + SmartDashboard.getNumber("angle"));
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.2);
 	Timer.delay(0.01);
