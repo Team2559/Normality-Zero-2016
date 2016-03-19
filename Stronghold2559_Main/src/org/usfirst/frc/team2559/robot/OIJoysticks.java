@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2559.robot;
 
+import org.usfirst.frc.team2559.robot.commands.Cancel;
 import org.usfirst.frc.team2559.robot.commands.GetReadyToRumble;
 import org.usfirst.frc.team2559.robot.commands.LowGoal;
 import org.usfirst.frc.team2559.robot.commands.PIDVisionTurn;
@@ -97,7 +98,7 @@ public class OIJoysticks {
 
 	Button 	_arm = new JoystickButton(shooterStick, 1),
 			_bringItBack = new JoystickButton(shooterStick, 2),
-			shooterButton3 = new JoystickButton(shooterStick, 3),
+			_cancel = new JoystickButton(shooterStick, 3),
 			_resetAll = new JoystickButton(shooterStick, 4),
 			_stopRecording = new JoystickButton(shooterStick, 5),
 			_debugShooter = new JoystickButton(shooterStick, 6),
@@ -208,6 +209,7 @@ public class OIJoysticks {
 		});
 		
 		shooterButton8.whenPressed(new PIDSetShooter(60));
+		_cancel.whenPressed(new Cancel());
 		
 		_driver2POVUp.whenActive(new AdjustShooter(0.3));
 		_driver2POVUp.whenInactive(new AdjustShooter(0));
