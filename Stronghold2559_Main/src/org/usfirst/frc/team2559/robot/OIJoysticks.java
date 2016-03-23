@@ -20,6 +20,7 @@ import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSmartShoot;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
@@ -209,12 +210,12 @@ public class OIJoysticks {
 		});
 		
 		shooterButton8.whenPressed(new PIDSetShooter(60));
-		_cancel.whenPressed(new Cancel());
+		_cancel.whenPressed(new Cancel(false));
 		
-		_driver2POVUp.whenActive(new AdjustShooter(0.3));
-		_driver2POVUp.whenInactive(new AdjustShooter(0));
+		_driver2POVUp.whenActive(new PIDStayOnTarget());
+//		_driver2POVUp.whenInactive(new AdjustShooter(0));
 		
-		_driver2POVDown.whenActive(new AdjustShooter(-0.3));
+		_driver2POVDown.whenActive(new Cancel(true));
 		_driver2POVDown.whenInactive(new AdjustShooter(0));
 		
 		_driver1POVUp.whenActive(new SetCamera(true));

@@ -8,12 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Cancel extends Command {
-
-    public Cancel() {
+    
+    public Cancel(boolean shooter) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-	requires(Robot._arm);
-	requires(Robot._shooter);
+	if(shooter) 
+	    requires(Robot._shooter);
+	else
+	    requires(Robot._arm);
     }
 
     // Called just before this Command runs the first time
