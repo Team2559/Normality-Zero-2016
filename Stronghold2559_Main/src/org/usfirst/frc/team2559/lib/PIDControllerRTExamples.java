@@ -26,6 +26,41 @@ public class PIDControllerRTExamples {
 		while(!pidCommand.isFinished())
 			pidCommand.execute();
 		pidCommand.end();
+		
+		/**
+		 * MOVEMENT. WE ARE GOING TO MOVE FOR 10 UNITS OF TIME
+		 */
+		System.out.println("\n***** Example: Staying on target. Robot moving to right with no PID control");
+		double angle = 90;
+		for(int i=0; i<10; i++){
+			System.out.println("Before we move we are pointing at " + angle);
+			
+			// our robot is veering to the right 
+			angle = angle + 0.25 + Math.random();
+			
+			// no control here so we'll probably end up as > 90
+			
+			System.out.println("After we move we are pointing at  " + angle);
+		}
+		
+		System.out.println("\n***** Example: Staying on target. Robot moving to right with PID control");
+		angle = 90;
+		PIDControllerRT pid = new PIDControllerRT(0.8, 0.4, 0.4, 0.1, true);
+		pid.setSetpoint(90);
+		
+		for(int i=0; i<10; i++){
+			System.out.println("Before we move we are pointing at " + angle);
+			
+			// our robot is veering to the right 
+			angle = angle + 0.25 + Math.random();
+			
+			// PID to stay on target
+			pid.calculate(angle, true);
+			double amountToMove = pid.getOutput();
+			angle = angle + amountToMove;
+			
+			System.out.println("After we move we are pointing at  " + angle);
+		}		
 	}
 
 	private static class PIDVisionShooter {
