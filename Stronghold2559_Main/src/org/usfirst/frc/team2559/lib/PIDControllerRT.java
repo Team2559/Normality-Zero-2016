@@ -275,6 +275,8 @@ public class PIDControllerRT {
 			derivative = (cur_error - prev_error) / dt;
 		}
 
+		pr("current error: " + cur_error + "\tintegral:" + integral + "\tderivative: " + derivative);
+
 		double out = Kp * cur_error + Ki * integral + Kd * derivative;
 
 		return out;
@@ -314,8 +316,9 @@ public class PIDControllerRT {
 		// just return default
 		if (timeReadings < 3)
 			return defaultPeriod;
-		// If there is no smart time then use default
-		if (averagePeriod <= 0l)
+		// If there is no smart time then use default = or less than 1ms as that
+		// is our min measurement value
+		if (averagePeriod <= 1.0)
 			return defaultPeriod;
 
 		// Otherwise normalize the current period to the average. I.e. if the
