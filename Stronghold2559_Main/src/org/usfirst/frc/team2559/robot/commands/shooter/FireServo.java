@@ -23,14 +23,14 @@ public class FireServo extends Command {
     protected void initialize() {
     	startTime = System.currentTimeMillis();
 		if (Robot._shooter.getPusherServo() >= 10) {
-			Robot._shooter.setFiringServo(0);
+			Robot._shooter.setFiringServo(1);
 			Timer.delay(RobotMap.SERVO_DELAY);
 		}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._shooter.setFiringServo(1);
+    	Robot._shooter.setFiringServo(0);
     	Timer.delay(RobotMap.SERVO_DELAY);
     }
 
@@ -41,7 +41,7 @@ public class FireServo extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._shooter.setFiringServo(0);
+    	Robot._shooter.setFiringServo(1);
     }
 
     // Called when another command which requires one or more of the same

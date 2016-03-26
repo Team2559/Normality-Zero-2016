@@ -74,9 +74,10 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("TeleOp", DriverStation.getInstance().isOperatorControl());
 	SmartDashboard.putBoolean("FMS", DriverStation.getInstance().isFMSAttached());
 	SmartDashboard.putNumber("heading", Robot._driveTrain.getGyroAngle());
-	SmartDashboard.putNumber("Absolute Encoder", Robot._shooter.getShooterAngle());
-	SmartDashboard.putNumber("Volts Encoder", Robot._shooter.getShooterAngleInVolts());
-	SmartDashboard.putNumber("Arm Pot", Robot._arm.getArmAngle());
+	SmartDashboard.putNumber("Shooter Enc", Robot._shooter.getShooterAngle());
+	SmartDashboard.putNumber("Shooter Volts Enc", Robot._shooter.getShooterAngleInVolts());
+	SmartDashboard.putNumber("Arm Enc", Robot._arm.getArmAngle());
+	SmartDashboard.putNumber("Arm Volts Enc", Robot._arm.getArmAngleInVolts());
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
 	
 //	NIVision.IMAQdxGrab(currentSession, cameraFrame, 1);

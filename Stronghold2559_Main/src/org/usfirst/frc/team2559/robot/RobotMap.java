@@ -97,9 +97,8 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
  * Shooter Constants
  */
 
-public static final double  SHOOTER_INTAKE_SPEED	      = 0.35,
-                            ARM_INTAKE_SPEED 		      = 0.5,
-                            SHOOTER_ZERO		      = 2.086,
+public static final double  SHOOTER_INTAKE_SPEED	      = 0.43,
+                            SHOOTER_ZERO		      = 2.045,
 			    SHOOTER_INTAKE_ANGLE	      = -9;
 
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
@@ -117,9 +116,14 @@ public static final double  SERVO_DELAY			      = 0.5;
 
 public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             PORT_ARM_INTAKE 		      = 10,
-                            PORT_ARM_POT		      = 3,
-                            ARM_HOME			      = 112,
-                            ARM_INTAKE_ANGLE		      = 7;
+                            PORT_ARM_ENC		      = 3,
+                            ARM_INTAKE_ANGLE		      = 174,
+                            ARM_INITIAL_POS_ANGLE	      = 56;
+
+
+public static final double  ARM_ZERO			      = 0.875,
+			    ARM_INTAKE_SPEED 		      = 0.5;
+
 
 /*
  * Autonomous Constants
@@ -145,6 +149,6 @@ public static final double  SMARTSHOOT_SPINUP_DELAY	      = 0.75;
 
 public static final boolean XBOX_SCHEMA			      = false;
 
-public static final boolean ANNOY_THE_DRIVERS = true,
+public static final boolean ANNOY_THE_DRIVERS 		      = true,
 			    USE_TOO_MUCH_BANDWIDTH	      = false;
 }

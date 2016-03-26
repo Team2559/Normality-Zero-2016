@@ -22,7 +22,6 @@ public class PIDSetArm extends Command {
 	requires(Robot._arm);
 	this.angle = angle;
 	pid.setSetpoint(angle);
-	System.out.println("Angle in arm constructor is: " + angle);
     }
 
     // Called just before this Command runs the first time
@@ -34,12 +33,12 @@ public class PIDSetArm extends Command {
     protected void execute() {
 	double angleError = angle - Robot._arm.getArmAngle();
 	if (angleError > 0) {
-	    pid.calculateDebug(-Robot._arm.getArmAngle(), true);
+	    pid.calculateDebug(Robot._arm.getArmAngle(), true);
 
 	    double power = pid.getOutput();
-	    Robot._arm.setAdjusterSpeed(-power);
+	    Robot._arm.setAdjusterSpeed(power);
 	} else {
-	    pid.calculateDebug(Robot._arm.getArmAngle(), true);
+	    pid.calculateDebug(-Robot._arm.getArmAngle(), true);
 
 	    double power = -pid.getOutput();
 	    Robot._arm.setAdjusterSpeed(power);
@@ -48,8 +47,7 @@ public class PIDSetArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//	return pid.isDone();
-	return true; // commented
+	return pid.isDone();
     }
 
     // Called once after isFinished returns true

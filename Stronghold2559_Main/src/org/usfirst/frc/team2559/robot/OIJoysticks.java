@@ -191,7 +191,7 @@ public class OIJoysticks {
 			}
 		});
 		
-		shooterButton7.whenPressed(new PIDSetArm(30));
+		shooterButton7.whenPressed(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 		_debugShooter.whileHeld(new Command() {
 			protected void initialize() {
 				Robot._shooter.setAdjusterSpeed(shooterStick.getRawAxis(1));
@@ -209,14 +209,14 @@ public class OIJoysticks {
 			}
 		});
 		
-		shooterButton8.whenPressed(new PIDSetShooter(60));
+		shooterButton8.whenPressed(new PIDSetShooter(45));
 		_cancel.whenPressed(new Cancel(false));
 		
 		_driver2POVUp.whenActive(new PIDStayOnTarget());
 //		_driver2POVUp.whenInactive(new AdjustShooter(0));
 		
 		_driver2POVDown.whenActive(new Cancel(true));
-		_driver2POVDown.whenInactive(new AdjustShooter(0));
+//		_driver2POVDown.whenInactive(new AdjustShooter(0));
 		
 		_driver1POVUp.whenActive(new SetCamera(true));
 		_driver1POVDown.whenActive(new SetCamera(false));

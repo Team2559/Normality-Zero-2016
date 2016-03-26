@@ -26,7 +26,6 @@ public class Shooter extends Subsystem {
 
     public Shooter() {
 	this.invertMotors();
-	_adjuster.
     }
 
     private final CANTalon    _left       = new CANTalon(RobotMap.PORT_SHOOTER_LEFT), 

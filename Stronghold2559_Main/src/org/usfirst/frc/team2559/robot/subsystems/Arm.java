@@ -19,7 +19,8 @@ public class Arm extends Subsystem {
 
     private final CANTalon    _adjuster   = new CANTalon(RobotMap.PORT_ARM_ADJUSTER), _intake = new CANTalon(RobotMap.PORT_ARM_INTAKE);
 
-    private final Potentiometer _armPot = new AnalogPotentiometer(RobotMap.PORT_ARM_POT, 360, -RobotMap.ARM_HOME);
+    private final AnalogInput _armEncoder = new AnalogInput(RobotMap.PORT_ARM_ENC);
+    
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -58,9 +59,12 @@ public class Arm extends Subsystem {
     	return _adjuster.get();
     }
     
+    public double getArmAngleInVolts() {
+	return _armEncoder.getVoltage();
+    }
+    
     public double getArmAngle() {
-//	return 0;
-	return _armPot.get();
+	return (360/5) * (_armEncoder.getVoltage() - RobotMap.ARM_ZERO);
     }
     
 }
