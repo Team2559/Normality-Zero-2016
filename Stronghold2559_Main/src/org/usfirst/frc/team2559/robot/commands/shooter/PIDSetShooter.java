@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class PIDSetShooter extends Command {
+    
+    // doesn't work for negative numbers
 
     private PIDController pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
-            RobotMap.PID_SHOOTER_Kd, -0.2, 0.2, 1); // creates PID controller with min, max, and tolerance
+            RobotMap.PID_SHOOTER_Kd, -0.7, 0.7, 1); // creates PID controller with min, max, and tolerance
     
     double angle;
     boolean delay = false;
@@ -58,16 +60,16 @@ public class PIDSetShooter extends Command {
 	if (angleError > 0) {
 	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
 
-	    double power = -pid.getOutput();
+	    double power = pid.getOutput();
 	    Robot._shooter.setAdjusterSpeed(power);
 	} else {
 	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
 
-	    double power = pid.getOutput();
+	    double power = -pid.getOutput();
 	    if(angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
+		Robot._shooter.setAdjusterSpeed(power * 0.5);
 	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
+		Robot._shooter.setAdjusterSpeed(power * 0.5);
 	    }
 	}
     }
