@@ -1,20 +1,12 @@
 package org.usfirst.frc.team2559.robot;
 
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-
+import org.usfirst.frc.team2559.robot.commands.autonomous.BreachSimpleDefense;
+import org.usfirst.frc.team2559.robot.commands.autonomous.CrossCDF;
+import org.usfirst.frc.team2559.robot.commands.autonomous.CrossPortcullis;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
-import org.usfirst.frc.team2559.robot.commands.autonomous.BreachSimpleDefense;
 import org.usfirst.frc.team2559.robot.commands.autonomous.ReachDefense;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
-import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
 import org.usfirst.frc.team2559.robot.subsystems.Arm;
 import org.usfirst.frc.team2559.robot.subsystems.DriveTrain;
@@ -22,9 +14,15 @@ import org.usfirst.frc.team2559.robot.subsystems.LEDStrip;
 import org.usfirst.frc.team2559.robot.subsystems.Recorder;
 import org.usfirst.frc.team2559.robot.subsystems.Shooter;
 
-import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
@@ -44,23 +42,23 @@ public class Robot extends IterativeRobot {
     public static LEDStrip     _ledStrip;
     public static Recorder     _recorder;
     public static Shooter      _shooter;
-    public static Arm	  _arm;
+    public static Arm	       _arm;
 
     public static USBCamera    cam0;
     public static CameraServer server;
-    
-    public static int currentSession,
-    			session0, session1;
-    
-    public static Image cameraFrame;
 
-    Compressor		 compressor;
-    Command		    autonomousCommand;
+    public static int	       currentSession,
+            session0, session1;
+
+    public static Image	       cameraFrame;
+
+    Compressor		       compressor;
+    Command		       autonomousCommand;
 
     // tribute to Hurricane Joe
-    String[]		   autonomiceNames;
-    Command[]		  autonomice;
-    SendableChooser	    chooser = new SendableChooser();
+    String[]		       autonomiceNames;
+    Command[]		       autonomice;
+    SendableChooser	       chooser = new SendableChooser();
 
     private void sendSensorData() {
 	SmartDashboard.putData(Scheduler.getInstance());
@@ -79,9 +77,9 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Arm Enc", Robot._arm.getArmAngle());
 	SmartDashboard.putNumber("Arm Volts Enc", Robot._arm.getArmAngleInVolts());
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
-	
-//	NIVision.IMAQdxGrab(currentSession, cameraFrame, 1);
-//	CameraServer.getInstance().setImage(cameraFrame);
+
+	// NIVision.IMAQdxGrab(currentSession, cameraFrame, 1);
+	// CameraServer.getInstance().setImage(cameraFrame);
     }
 
     /**
@@ -105,21 +103,21 @@ public class Robot extends IterativeRobot {
 	cam0.setBrightness(0);
 	cam0.setWhiteBalanceManual(10000);
 	server.startAutomaticCapture(cam0);
-	
-//	cameraFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-//
-//	session0 = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-//	        
-//	session1 = NIVision.IMAQdxOpenCamera("cam1", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-//
-//	currentSession = session0;
-//
-//	NIVision.IMAQdxConfigureGrab(currentSession);
-	
-//	cam1 = new USBCamera("cam1");
 
-	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball", "Breach Simple Defense", "Reach Defense" };
-	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball(), new BreachSimpleDefense(), new ReachDefense() };
+	// cameraFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+	//
+	// session0 = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	//
+	// session1 = NIVision.IMAQdxOpenCamera("cam1", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	//
+	// currentSession = session0;
+	//
+	// NIVision.IMAQdxConfigureGrab(currentSession);
+
+	// cam1 = new USBCamera("cam1");
+
+	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball", "Breach Simple Defense", "Reach Defense", "Cross CDF", "Cross Portcullis" };
+	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball(), new BreachSimpleDefense(), new ReachDefense(), new CrossCDF(), new CrossPortcullis() };
 
 	for (int i = 0; i < autonomice.length; i++) {
 	    chooser.addObject(autonomiceNames[i], autonomice[i]);
@@ -146,7 +144,7 @@ public class Robot extends IterativeRobot {
 		end();
 	    }
 	}.start();
-	
+
     }
 
     /**

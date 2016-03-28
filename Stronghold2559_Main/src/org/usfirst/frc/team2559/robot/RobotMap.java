@@ -118,7 +118,8 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             PORT_ARM_INTAKE 		      = 10,
                             PORT_ARM_ENC		      = 3,
                             ARM_INTAKE_ANGLE		      = 174,
-                            ARM_INITIAL_POS_ANGLE	      = 56;
+                            ARM_INITIAL_POS_ANGLE	      = 56,
+                            ARM_GROUND_ANGLE  		      = 168;
 
 
 public static final double  ARM_ZERO			      = 0.875,
@@ -130,6 +131,9 @@ public static final double  ARM_ZERO			      = 0.875,
  */
 
 public static final String  AUTONOMOUS_FILE		      = "/home/lvuser/recordedAuto";
+
+// 96 inches from field to outer-works this kid claims... http://www.chiefdelphi.com/forums/showthread.php?t=144448
+public static final double DISTANCE_TO_OUTERWORKS	      = 96.5;
 
 /*
  * SmartShoot Constants

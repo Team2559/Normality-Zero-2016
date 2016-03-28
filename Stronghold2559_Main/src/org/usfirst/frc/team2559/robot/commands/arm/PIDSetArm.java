@@ -4,23 +4,69 @@ import org.usfirst.frc.team2559.lib.PIDController;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDSetArm extends Command {
 
-    private PIDController pid = new PIDController(RobotMap.PID_ARM_Kp,
-            RobotMap.PID_ARM_Ki,
-            RobotMap.PID_ARM_Kd, -0.4, 0.4, 1); // creates PID controller with min, max, and tolerance
-    
-    double angle;
+    private PIDController pid;	// creates PID controller with min, max, and tolerance
 
+    double		  angle;
+
+    /**
+     * Class constructor for a PID controller to move the arm to a certain degree.
+     * 0 degrees is as far back it can go (i.e. lowbar configuration) without hurting the robot. 240 degrees is the position the robot is at when it does a pushup (i.e. endgame pushup).
+     * Defaults to a PID controller with 40% speed and +/- 1 degree of tolerance (range of 2 degrees).
+     * 
+     * @param angle angle to move the arm to
+     */
     public PIDSetArm(double angle) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._arm);
 	this.angle = angle;
+	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	        RobotMap.PID_ARM_Ki,
+	        RobotMap.PID_ARM_Kd, -0.4, 0.4, 1);
+	pid.setSetpoint(angle);
+    }
+
+    /**
+     * Class constructor for a PID controller to move the arm to a certain degree.
+     * 0 degrees is as far back it can go (i.e. lowbar configuration) without hurting the robot. 240 degrees is the position the robot is at when it does a pushup (i.e. endgame pushup).
+     * Defaults to a PID controller with +/- 1 degree of tolerance (range of 2 degrees).
+     * 
+     * @param angle angle to move the arm to
+     * @param min maximum backwards speed, range of -1 to 0
+     * @param max maximum forwards speed, range of 0 to 1
+     */
+    public PIDSetArm(double angle, double min, double max) {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(Robot._arm);
+	this.angle = angle;
+	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	        RobotMap.PID_ARM_Ki,
+	        RobotMap.PID_ARM_Kd, min, max, 1);
+	pid.setSetpoint(angle);
+    }
+
+    /**
+     * Class constructor for a PID controller to move the arm to a certain degree.
+     * 0 degrees is as far back it can go (i.e. lowbar configuration) without hurting the robot. 240 degrees is the position the robot is at when it does a pushup (i.e. endgame pushup).
+     * 
+     * @param angle angle to move the arm to
+     * @param min maximum backwards speed, range of -1 to 0
+     * @param max maximum forwards speed, range of 0 to 1
+     * @param tolerance how accurate the PID controller must be to be considered done, if the tolerance is 1 then there is a range of two degrees
+     */
+    public PIDSetArm(double angle, double min, double max, int tolerance) {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(Robot._arm);
+	this.angle = angle;
+	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	        RobotMap.PID_ARM_Ki,
+	        RobotMap.PID_ARM_Kd, min, max, tolerance);
 	pid.setSetpoint(angle);
     }
 
