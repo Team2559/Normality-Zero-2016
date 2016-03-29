@@ -32,7 +32,6 @@ public class PIDTurn766 extends Command {
 	requires(Robot._driveTrain);
 	this.angle = angle;
 	pid = new PIDController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -0.5, 0.5, 1);
-	pid.setSetpoint(angle);
     }
 
     /**
@@ -78,6 +77,7 @@ public class PIDTurn766 extends Command {
 	Robot._driveTrain.setReverseDrive(false);
 	Robot._driveTrain.setSlowDrive(false);
 	Robot._driveTrain.clearGyro();
+	pid.setSetpoint(angle);
 	pid.reset();
     }
 

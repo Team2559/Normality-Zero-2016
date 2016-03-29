@@ -92,7 +92,6 @@ public class DriveTrain extends Subsystem {
 		double rightCalc = (right * Math.pow(Math.abs(right), 0.6)) * RobotMap.SLOWDRIVE_CONSTANT;
 		if (auton) {
 			_drive.tankDrive(left, right);
-			System.out.println("Left: " + left + "\nRight: " + right);
 			lastLeft = left;
 			lastRight = right;
 		} else if (!reverseDrive && !fastDrive) {

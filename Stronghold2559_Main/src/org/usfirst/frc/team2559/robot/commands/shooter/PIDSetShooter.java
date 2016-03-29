@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2559.robot.commands.shooter;
 
-import org.usfirst.frc.team2559.lib.PIDController;
+import org.usfirst.frc.team2559.lib.PIDControllerRT;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
@@ -15,7 +15,7 @@ public class PIDSetShooter extends Command {
 
     // doesn't work for negative numbers
 
-    private PIDController pid;		// creates PID controller with min, max, and tolerance
+    private PIDControllerRT pid;		// creates PID controller with min, max, and tolerance
 
     double		  angle;
     boolean		  delay	= false;
@@ -30,9 +30,9 @@ public class PIDSetShooter extends Command {
 	// eg. requires(chassis);
 	requires(Robot._shooter);
 	this.angle = angle;
-	pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, -0.7, 0.7, 1);
+	        RobotMap.PID_SHOOTER_Kd, -0.7, 0.7, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -49,9 +49,9 @@ public class PIDSetShooter extends Command {
 	requires(Robot._shooter);
 	this.angle = angle;
 	this.delay = delay;
-	pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, -0.7, 0.7, 1);
+	        RobotMap.PID_SHOOTER_Kd, -0.7, 0.7, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -69,9 +69,9 @@ public class PIDSetShooter extends Command {
 	requires(Robot._shooter);
 	this.angle = angle;
 	this.delay = delay;
-	pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, min, max, 1);
+	        RobotMap.PID_SHOOTER_Kd, min, max, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -89,15 +89,14 @@ public class PIDSetShooter extends Command {
 	requires(Robot._shooter);
 	this.angle = angle;
 	this.delay = delay;
-	pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, min, max, tolerance);
+	        RobotMap.PID_SHOOTER_Kd, min, max, tolerance, true);
 	pid.setSetpoint(angle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	System.out.println("Value: " + SmartDashboard.getNumber("altitude"));
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.2);
 	Timer.delay(0.01);

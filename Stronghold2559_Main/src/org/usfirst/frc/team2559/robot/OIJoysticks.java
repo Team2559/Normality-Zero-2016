@@ -15,6 +15,7 @@ import org.usfirst.frc.team2559.robot.commands.shooter.ManualShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSmartShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDVisionShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 import org.usfirst.frc.team2559.robot.triggers.POVTrigger;
 
@@ -88,11 +89,11 @@ public class OIJoysticks {
             _endgame = new JoystickButton(driverStick2, 12);
 
     Button   _manualArm	     = new JoystickButton(shooterStick, 1),
-            _bringItBack = new JoystickButton(shooterStick, 2),
-            _cancel = new JoystickButton(shooterStick, 3),
+            _increment = new JoystickButton(shooterStick, 2),
+            _decrement = new JoystickButton(shooterStick, 3),
             _manualShooter = new JoystickButton(shooterStick, 4),
             _stopRecording = new JoystickButton(shooterStick, 5),
-            _debugShooter = new JoystickButton(shooterStick, 6),
+            shooterButton6 = new JoystickButton(shooterStick, 6),
             shooterButton7 = new JoystickButton(shooterStick, 7),
             shooterButton8 = new JoystickButton(shooterStick, 8),
             shooterButton9 = new JoystickButton(shooterStick, 9),
@@ -170,33 +171,14 @@ public class OIJoysticks {
 		end();
 	    }
 	});
-	_bringItBack.whenPressed(new PIDSetShooter(0));
+	_increment.whenPressed(new PIDSetShooter(Robot._shooter.getShooterAngle() + 2));
+	_decrement.whenPressed(new PIDSetShooter(Robot._shooter.getShooterAngle() + 2));
 	_manualShooter.whileHeld(new ManualShooter());
 
-	shooterButton7.whenPressed(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
-	_debugShooter.whileHeld(new Command() {
-
-	    protected void initialize() {
-		Robot._shooter.setAdjusterSpeed(shooterStick.getRawAxis(1));
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {
-		Robot._shooter.setAdjusterSpeed(0);
-	    }
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+	shooterButton6.whenPressed(new PIDVisionTurn());
+	shooterButton7.whenPressed(new PIDVisionShooter());
 
 	shooterButton8.whenPressed(new PIDSetShooter(45));
-	_cancel.whenPressed(new Cancel(false));
 
 	_driver2POVUp.whenActive(new PIDStayOnTarget());
 	// _driver2POVUp.whenInactive(new AdjustShooter(0));

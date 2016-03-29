@@ -47,7 +47,7 @@ public class DumbShoot extends CommandGroup {
     	addSequential(new SetShooter(1, 1));
     	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
     	addSequential(new FireServo());
-    	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY * 2));
+    	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
     	addSequential(new SetShooter(0, 0));
     	addParallel(new Command() {
 			protected void initialize() {

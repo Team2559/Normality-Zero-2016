@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2559.robot.commands.arm;
 
-import org.usfirst.frc.team2559.lib.PIDController;
+import org.usfirst.frc.team2559.lib.PIDControllerRT;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class PIDSetArm extends Command {
 
-    private PIDController pid;	// creates PID controller with min, max, and tolerance
+    private PIDControllerRT pid;	// creates PID controller with min, max, and tolerance
 
     double		  angle;
 
@@ -24,9 +24,9 @@ public class PIDSetArm extends Command {
 	// eg. requires(chassis);
 	requires(Robot._arm);
 	this.angle = angle;
-	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_ARM_Kp,
 	        RobotMap.PID_ARM_Ki,
-	        RobotMap.PID_ARM_Kd, -0.4, 0.4, 1);
+	        RobotMap.PID_ARM_Kd, -0.4, 0.4, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -44,9 +44,9 @@ public class PIDSetArm extends Command {
 	// eg. requires(chassis);
 	requires(Robot._arm);
 	this.angle = angle;
-	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_ARM_Kp,
 	        RobotMap.PID_ARM_Ki,
-	        RobotMap.PID_ARM_Kd, min, max, 1);
+	        RobotMap.PID_ARM_Kd, min, max, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -64,9 +64,9 @@ public class PIDSetArm extends Command {
 	// eg. requires(chassis);
 	requires(Robot._arm);
 	this.angle = angle;
-	pid = new PIDController(RobotMap.PID_ARM_Kp,
+	pid = new PIDControllerRT(RobotMap.PID_ARM_Kp,
 	        RobotMap.PID_ARM_Ki,
-	        RobotMap.PID_ARM_Kd, min, max, tolerance);
+	        RobotMap.PID_ARM_Kd, min, max, tolerance, true);
 	pid.setSetpoint(angle);
     }
 

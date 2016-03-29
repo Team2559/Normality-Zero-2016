@@ -101,6 +101,8 @@ public static final double  SHOOTER_INTAKE_SPEED	      = 0.43,
                             SHOOTER_ZERO		      = 2.045,
 			    SHOOTER_INTAKE_ANGLE	      = -9;
 
+// min shooting angle is 21
+
 public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_RIGHT		      = 8, 
                             PORT_SHOOTER_ADJUSTER	      = 5,
@@ -144,7 +146,7 @@ public static final int	    SMARTSHOOT_X_THRESHOLD	      = 15, // old
 
 public static final double  SMARTSHOOT_TURN_SPEED	      = 0.41;
 
-public static final double  SMARTSHOOT_SPINUP_DELAY	      = 0.75;
+public static final double  SMARTSHOOT_SPINUP_DELAY	      = 0.4;
 
 
 /*
