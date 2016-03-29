@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2559.robot.commands.shooter;
 
-import org.usfirst.frc.team2559.lib.PIDController;
+import org.usfirst.frc.team2559.lib.PIDControllerRT;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PIDStayOnTarget extends Command {
 
-    private PIDController pid = new PIDController(RobotMap.PID_SHOOTER_Kp,
+    private PIDControllerRT pid	= new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
-            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 1); // creates PID controller with min, max, and tolerance
-    
-    double angle;
+            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 1, true);		      // creates PID controller with min, max, and tolerance
+
+    double		    angle;
 
     public PIDStayOnTarget() {
 	// Use requires() here to declare subsystem dependencies
@@ -56,7 +56,7 @@ public class PIDStayOnTarget extends Command {
 	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
 
 	    double power = -pid.getOutput();
-	    if(angle < 0) {
+	    if (angle < 0) {
 		Robot._shooter.setAdjusterSpeed(power * 1.8);
 	    } else {
 		Robot._shooter.setAdjusterSpeed(power * 0.2);
@@ -75,7 +75,7 @@ public class PIDStayOnTarget extends Command {
 	Robot._shooter.setClutchServo(0);
 	Robot._shooter.setAdjusterSpeed(0);
 	pid.reset();
-	
+
     }
 
     // Called when another command which requires one or more of the same
