@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2559.robot.commands;
 
 import org.usfirst.frc.team2559.lib.PIDController;
+import org.usfirst.frc.team2559.lib.PIDControllerRT;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
@@ -19,7 +20,7 @@ public class PIDVisionTurn extends Command {
     private static final double ANGLES_TO_DEGREES = 1;
     double angle;
 
-   private PIDController       pid	       = new PIDController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -0.5, 0.5, 1); // creates
+   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -0.5, 0.5, 1, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 
@@ -43,17 +44,21 @@ public class PIDVisionTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (angle > 0) {
-	    pid.calculate(-Robot._driveTrain.getGyroAngle(), true);
+	pid.calculateDebug(Robot._driveTrain.getGyroAngle(), true);
+	double power = pid.getOutput() * ANGLES_TO_DEGREES;
+	Robot._driveTrain.tankDrive(power, -power);
+	    
+	/*if (angle > 0) {
+	    pid.calculateDebug(-Robot._driveTrain.getGyroAngle(), true);
 
 	    double power = pid.getOutput() * ANGLES_TO_DEGREES;
 	    Robot._driveTrain.tankDrive(-power, power);
 	} else {
-	    pid.calculate(Robot._driveTrain.getGyroAngle(), true);
+	    pid.calculateDebug(Robot._driveTrain.getGyroAngle(), true);
 
 	    double power = pid.getOutput() * ANGLES_TO_DEGREES;
 	    Robot._driveTrain.tankDrive(power, -power);
-	}
+	}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
