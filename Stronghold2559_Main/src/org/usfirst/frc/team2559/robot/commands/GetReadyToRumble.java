@@ -33,7 +33,7 @@ public class GetReadyToRumble extends CommandGroup {
 
 	// Set arm to not in the way position
 	// check where we are
-	if ((val != RobotMap.PUSHUP_ENDGAME_ID) || (Robot._arm.getArmAngle() < 35)) {
+	if ((val != RobotMap.PUSHUP_ENDGAME_ID) && (Robot._arm.getArmAngle() < 35.0)) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
 
@@ -62,7 +62,7 @@ public class GetReadyToRumble extends CommandGroup {
 	    addSequential(new PIDSetArm(145));
 	    // arm_setting=8;
 	} else if (val == RobotMap.PUSHUP_ENDGAME_ID) {
-	    addSequential(new PIDSetArm(240));
+	    addSequential(new PIDSetArm(240, -0.8, 0.8));
 	}
 
 	// We have setting, now set shooter and arm to position. 255 IS DO NOTHING VALUE
