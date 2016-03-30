@@ -51,7 +51,7 @@ public class PIDSmartShoot extends CommandGroup {
 	    }
 	});
 	addSequential(new PIDVisionTurn());
-	addSequential(new PIDVisionShooter());
+	addSequential(new PIDVisionTurn());
 	addParallel(new Command() {    
 
 	    protected void initialize() {
