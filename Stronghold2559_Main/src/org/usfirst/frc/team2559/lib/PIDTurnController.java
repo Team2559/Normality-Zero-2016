@@ -9,12 +9,12 @@ package org.usfirst.frc.team2559.lib;
  */
 public class PIDTurnController extends PIDControllerRT {
 	// How close we need to get to start slowing down;
-	private double outerThreshold = 20.0;
+	private double outerThreshold = 25.0;
 	private double innerThreshold = 10.0;
 
 	// How much to slow down. 0.5=50% slow down, 0.2=20% slow down etc.
-	private double outerSlowdown = 0.6;
-	private double innerSlowdown = 0.55;
+	private double outerSlowdown = 0.65;
+	private double innerSlowdown = 0.5;
 
 	// If we have factored in the slowdown yet
 	private boolean startedInnerSlowdown = false;
@@ -29,9 +29,9 @@ public class PIDTurnController extends PIDControllerRT {
 
 	// After we have finished, allow the bot to settle and then enable control
 	// again for a short period
-	private long settleTimeMs = 1000;
+	private long settleTimeMs = 300;
 	private long currentSettleTimeMs = 0;
-	private long maxRetryTimeMs = 1050;
+	private long maxRetryTimeMs = 350;
 	private long currentRetryTimeMs = 0;
 	private boolean isNormallyDone = false;
 
