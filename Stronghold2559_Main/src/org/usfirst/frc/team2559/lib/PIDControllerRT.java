@@ -18,6 +18,7 @@ public class PIDControllerRT {
 	protected double output_value = 0;
 
 	protected double integral = 0;
+	private double maxIntegralFactor = 2.0;
 
 	/**
 	 * Make sure we can call isDone() before we start, i.e. if I want
@@ -135,7 +136,7 @@ public class PIDControllerRT {
 	 *            the end threshold for declaring the PID 'done'
 	 */
 	public PIDControllerRT(double P, double I, double D, double threshold, boolean useSmartTime) {
-		this(P, I,D, -1.0, 1.0, threshold, useSmartTime);
+		this(P, I, D, -1.0, 1.0, threshold, useSmartTime);
 	}
 
 	/**
@@ -189,6 +190,7 @@ public class PIDControllerRT {
 	 *            True if you want the output to be clamped
 	 */
 	protected double dt = 1;
+
 	public void calculate(double cur_input, boolean clamp) {
 		// We have started, so it is now possible for us to return TRUE in
 		// isDone()
@@ -196,7 +198,7 @@ public class PIDControllerRT {
 
 		// Check if we are at the set point but don't stop, calculate anyway
 		cur_error = (setpoint - cur_input);
-		if(isDone()){
+		if (isDone()) {
 			pr("pid done");
 		}
 
@@ -256,12 +258,12 @@ public class PIDControllerRT {
 		if (!preventWindUp) {
 			integral += cur_error * dt;
 
-			if (integral > maxoutput_high) {
-				pr("Capping max integral to: " + maxoutput_high + " from " + integral);
-				integral = maxoutput_high;
-			} else if (integral < maxoutput_low) {
-				pr("Capping min integral to: " + maxoutput_low + " from " + integral);
-				integral = maxoutput_low;
+			if (integral > maxoutput_high * maxIntegralFactor) {
+				pr("Capping max integral to: " + maxoutput_high * maxIntegralFactor + " from " + integral);
+				integral = maxoutput_high * maxIntegralFactor;
+			} else if (integral < maxoutput_low * maxIntegralFactor) {
+				pr("Capping min integral to: " + maxoutput_low * maxIntegralFactor + " from " + integral);
+				integral = maxoutput_low * maxIntegralFactor;
 			}
 
 			// double out = Kp * cur_error;
