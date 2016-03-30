@@ -17,7 +17,7 @@ public class PIDStayOnTarget extends Command {
             RobotMap.PID_SHOOTER_Ki,
             RobotMap.PID_SHOOTER_Kd, -0.5, 0.6, 1, true);		      // creates PID controller with min, max, and tolerance
 
-    double		    angle;
+    double		    angle, prevAngle;
 
     public PIDStayOnTarget() {
 	// Use requires() here to declare subsystem dependencies
@@ -44,24 +44,18 @@ public class PIDStayOnTarget extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	angle = SmartDashboard.getNumber("angle", 0);
-	pid.reset();
-	pid.setSetpoint(angle);
-	double angleError = angle - Robot._shooter.getShooterAngle();
-	if (angleError > 0) {
-	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
-
-	    double power = pid.getOutput();
-	    Robot._shooter.setAdjusterSpeed(power);
+	if (angle != 0) {
+	    pid.setSetpoint(angle);
+	    prevAngle = angle;
 	} else {
-	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
-
-	    double power = -pid.getOutput();
-	    if (angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 1.8);
-	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
-	    }
+	    pid.setSetpoint(prevAngle);
 	}
+	pid.calculate(Robot._shooter.getShooterAngle(), true);
+	double power = pid.getOutput();
+	if(power >= 0)
+	    Robot._shooter.setAdjusterSpeed(power);
+	else
+	    Robot._shooter.setAdjusterSpeed(power * 0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

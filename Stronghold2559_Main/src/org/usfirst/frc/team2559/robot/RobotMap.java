@@ -38,8 +38,8 @@ public static final double  PID_SHOOTER_Kp		      = 0.35,
                             PID_SHOOTER_Ki		      = 0.01, 
                             PID_SHOOTER_Kd		      = 0.15;
 
-public static final double  PID_ARM_Kp		     	      = 0.35,
-                            PID_ARM_Ki		      	      = 0.01, 
+public static final double  PID_ARM_Kp		     	      = 0.5,
+                            PID_ARM_Ki		      	      = 0.3, 
                             PID_ARM_Kd		      	      = 0.15;
 
 public static final int     PORTCULLIS_ID 		      = 0,

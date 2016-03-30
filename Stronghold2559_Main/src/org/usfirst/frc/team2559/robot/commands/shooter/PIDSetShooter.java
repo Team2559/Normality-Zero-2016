@@ -109,22 +109,28 @@ public class PIDSetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	double angleError = angle - Robot._shooter.getShooterAngle();
-	if (angleError > 0) {
-	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
-
-	    double power = pid.getOutput();
+//	double angleError = angle - Robot._shooter.getShooterAngle();
+//	if (angleError > 0) {
+//	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
+//
+//	    double power = pid.getOutput();
+//	    Robot._shooter.setAdjusterSpeed(power);
+//	} else {
+//	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
+//
+//	    double power = -pid.getOutput();
+//	    if (angle < 0) {
+//		Robot._shooter.setAdjusterSpeed(power * 0.5);
+//	    } else {
+//		Robot._shooter.setAdjusterSpeed(power * 0.5);
+//	    }
+//	}
+	pid.calculate(Robot._shooter.getShooterAngle(), true);
+	double power = pid.getOutput();
+	if(power >= 0)
 	    Robot._shooter.setAdjusterSpeed(power);
-	} else {
-	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
-
-	    double power = -pid.getOutput();
-	    if (angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 0.5);
-	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.5);
-	    }
-	}
+	else
+	    Robot._shooter.setAdjusterSpeed(power * 0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

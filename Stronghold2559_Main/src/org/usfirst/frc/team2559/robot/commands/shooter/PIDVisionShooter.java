@@ -45,12 +45,12 @@ public class PIDVisionShooter extends Command {
     protected void execute() {
 	double angleError = angle - Robot._shooter.getShooterAngle();
 	if (angleError > 0) {
-	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
+	    pid.calculate(Robot._shooter.getShooterAngle(), true);
 
 	    double power = pid.getOutput();
 	    Robot._shooter.setAdjusterSpeed(power);
 	} else {
-	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
+	    pid.calculate(-Robot._shooter.getShooterAngle(), true);
 
 	    double power = -pid.getOutput();
 	    if(angle < 0) {

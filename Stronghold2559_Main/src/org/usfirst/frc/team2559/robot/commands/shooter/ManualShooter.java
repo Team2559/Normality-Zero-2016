@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ManualShooter extends Command {
 
+    public ManualShooter() {
+	requires(Robot._shooter);
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
 	// disengage clutch

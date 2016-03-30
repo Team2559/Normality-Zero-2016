@@ -77,18 +77,21 @@ public class PIDSetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	double angleError = angle - Robot._arm.getArmAngle();
-	if (angleError > 0) {
-	    pid.calculateDebug(Robot._arm.getArmAngle(), true);
-
-	    double power = pid.getOutput();
-	    Robot._arm.setAdjusterSpeed(power);
-	} else {
-	    pid.calculateDebug(-Robot._arm.getArmAngle(), true);
-
-	    double power = -pid.getOutput();
-	    Robot._arm.setAdjusterSpeed(power);
-	}
+//	double angleError = angle - Robot._arm.getArmAngle();
+//	if (angleError > 0) {
+//	    pid.calculateDebug(Robot._arm.getArmAngle(), true);
+//
+//	    double power = pid.getOutput();
+//	    Robot._arm.setAdjusterSpeed(power);
+//	} else {
+//	    pid.calculateDebug(-Robot._arm.getArmAngle(), true);
+//
+//	    double power = -pid.getOutput();
+//	    Robot._arm.setAdjusterSpeed(power);
+//	}
+	pid.calculate(Robot._arm.getArmAngle(), true);
+	double power = pid.getOutput();
+	Robot._arm.setAdjusterSpeed(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -98,6 +101,7 @@ public class PIDSetArm extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+	Robot._arm.setAdjusterSpeed(0);
 	pid.reset();
     }
 

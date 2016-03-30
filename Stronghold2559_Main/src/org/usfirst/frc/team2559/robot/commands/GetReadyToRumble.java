@@ -33,18 +33,20 @@ public class GetReadyToRumble extends CommandGroup {
 
 	// Set arm to not in the way position
 	// check where we are
-	if ((val != RobotMap.PUSHUP_ENDGAME_ID) && (Robot._arm.getArmAngle() < 35.0)) {
+	if (Robot._arm.getArmAngle() < 35.0) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
 
 	// Do we need a delay?
 
-	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID || val == RobotMap.LOWBAR_ID) {
+	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
 	    addSequential(new PIDSetShooter(10));
 	    // shooter_setting = 10;
 	} else if (val == RobotMap.CDF_ID || val == RobotMap.MOAT_ID || val == RobotMap.RAMPARTS_ID || val == RobotMap.ROCKWALL_ID || val == RobotMap.ROUGHTERRAIN_ID) {
 	    addSequential(new PIDSetShooter(60));
 	    // shooter_setting = 60;
+	} else if (val == RobotMap.LOWBAR_ID) {
+	    addSequential(new PIDSetShooter(-4));
 	}
 
 	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
