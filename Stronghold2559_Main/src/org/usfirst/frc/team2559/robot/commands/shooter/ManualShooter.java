@@ -24,7 +24,12 @@ public class ManualShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal() * 0.5);
+	double val = Robot.oi.getShooterStickVal();
+	if (val > 0)
+	    Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal()* 0.25);
+	else {
+	    Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal());
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

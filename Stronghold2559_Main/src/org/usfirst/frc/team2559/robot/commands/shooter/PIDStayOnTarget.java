@@ -15,7 +15,7 @@ public class PIDStayOnTarget extends Command {
 
     private PIDControllerRT pid	= new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
-            RobotMap.PID_SHOOTER_Kd, -0.5, 0.5, 1, true);		      // creates PID controller with min, max, and tolerance
+            RobotMap.PID_SHOOTER_Kd, -0.5, 0.6, 1, true);		      // creates PID controller with min, max, and tolerance
 
     double		    angle;
 

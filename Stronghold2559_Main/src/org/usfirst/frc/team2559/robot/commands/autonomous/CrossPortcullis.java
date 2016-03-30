@@ -6,6 +6,7 @@ import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -31,10 +32,13 @@ public class CrossPortcullis extends CommandGroup {
 	// arm.
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
-	addParallel(new GetReadyToRumble(RobotMap.CDF_ID));
+	addSequential(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
+	addSequential(new WaitCommand(1));
 	addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_OUTERWORKS));
+	addSequential(new WaitCommand(1));
 	// bring our arms up while driving through the defense slowly
 	addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
+	addSequential(new WaitCommand(1));
 	addSequential(new DriveForDistance(0.5, RobotMap.DISTANCE_TO_OUTERWORKS));
 
 	// add shooting logic here later

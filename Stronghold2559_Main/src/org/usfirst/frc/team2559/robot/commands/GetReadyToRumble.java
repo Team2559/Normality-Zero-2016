@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2559.robot.commands;
 
+import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
@@ -32,7 +33,7 @@ public class GetReadyToRumble extends CommandGroup {
 
 	// Set arm to not in the way position
 	// check where we are
-	if (val != RobotMap.PUSHUP_ENDGAME_ID) {
+	if ((val != RobotMap.PUSHUP_ENDGAME_ID) || (Robot._arm.getArmAngle() < 35)) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
 
@@ -58,7 +59,7 @@ public class GetReadyToRumble extends CommandGroup {
 	    // arm_setting=41;
 	} else if (val == RobotMap.CDF_ID) {
 	    // set arms in the middle
-	    addSequential(new PIDSetArm(165));
+	    addSequential(new PIDSetArm(145));
 	    // arm_setting=8;
 	} else if (val == RobotMap.PUSHUP_ENDGAME_ID) {
 	    addSequential(new PIDSetArm(240));
