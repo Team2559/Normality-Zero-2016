@@ -4,20 +4,20 @@ public class PIDControllerRT {
 
 	private boolean print = false;
 
-	private double Kp = 0;
-	private double Ki = 0;
-	private double Kd = 0;
-	private double maxoutput_low = 0;
-	private double maxoutput_high = 0;
+	protected double Kp = 0;
+	protected double Ki = 0;
+	protected double Kd = 0;
+	protected double maxoutput_low = 0;
+	protected double maxoutput_high = 0;
 	private double endthreshold = 0;
 
-	private double setpoint = 0;
+	protected double setpoint = 0;
 
 	private double cur_error = 0;
 	private double prev_error = 0;
-	private double output_value = 0;
+	protected double output_value = 0;
 
-	private double integral = 0;
+	protected double integral = 0;
 
 	/**
 	 * Make sure we can call isDone() before we start, i.e. if I want
@@ -44,7 +44,7 @@ public class PIDControllerRT {
 	 * prevent us potentially swinging high above and below the setpoint
 	 * 
 	 */
-	private boolean preventWindUp = true;
+	protected boolean preventWindUp = true;
 
 	/**
 	 * We will remember the original error so that we can tell if we've crossed
@@ -88,7 +88,7 @@ public class PIDControllerRT {
 	 */
 	private boolean useSmartTime = true;
 	private double averagePeriod = 0;
-	private long lastCalledTime = 0;
+	protected long lastCalledTime = 0;
 	private double defaultPeriod = 1.0;
 	// We initially have -1 readings as we need at least 2 reading to start the
 	// calculation
@@ -135,13 +135,7 @@ public class PIDControllerRT {
 	 *            the end threshold for declaring the PID 'done'
 	 */
 	public PIDControllerRT(double P, double I, double D, double threshold, boolean useSmartTime) {
-		Kp = P;
-		Ki = I;
-		Kd = D;
-		maxoutput_low = -1;
-		maxoutput_high = 1;
-		endthreshold = threshold;
-		this.useSmartTime = useSmartTime;
+		this(P, I,D, -1.0, 1.0, threshold, useSmartTime);
 	}
 
 	/**
@@ -194,23 +188,22 @@ public class PIDControllerRT {
 	 * @param clamp
 	 *            True if you want the output to be clamped
 	 */
+	protected double dt = 1;
 	public void calculate(double cur_input, boolean clamp) {
 		// We have started, so it is now possible for us to return TRUE in
 		// isDone()
 		isStarted = true;
 
-		// Check if we are at the set point
+		// Check if we are at the set point but don't stop, calculate anyway
 		cur_error = (setpoint - cur_input);
-		if (isDone()) {
-			output_value = 0;
+		if(isDone()){
 			pr("pid done");
-			return;
 		}
 
 		pr("Running PID loop with input: " + cur_input + ", current error: " + cur_error);
 
 		// Only get dt once per call
-		double dt = getSmartDt();
+		dt = getSmartDt();
 
 		// Perform the pid calculation
 		double out = performCalc(dt);

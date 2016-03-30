@@ -1,7 +1,7 @@
-package org.usfirst.frc.team2559.robot.commands;
+package org.usfirst.frc.team2559.robot.commands.drive;
 
 import org.usfirst.frc.team2559.lib.PIDController;
-import org.usfirst.frc.team2559.lib.PIDControllerRT;
+import org.usfirst.frc.team2559.lib.PIDTurnController;
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 
@@ -20,7 +20,7 @@ public class PIDVisionTurn extends Command {
     private static final double ANGLES_TO_DEGREES = 1;
     double angle;
 
-   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -0.45, 0.45, 1, true); // creates
+   private PIDTurnController       pid	       = new PIDTurnController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 1, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 
