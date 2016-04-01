@@ -5,8 +5,6 @@ import org.usfirst.frc.team2559.robot.RobotMap;
 import org.usfirst.frc.team2559.robot.commands.GetReadyToRumble;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
-import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn;
-import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn766;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
@@ -18,11 +16,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- * 
+ *
  */
-public class CrossLowbar extends CommandGroup {
+public class CrossSimpleDefense extends CommandGroup {
     
-    public  CrossLowbar() {
+    public  CrossSimpleDefense() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -39,9 +37,8 @@ public class CrossLowbar extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-	addParallel(new GetReadyToRumble(RobotMap.LOWBAR_ID));
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS * 2));
-	// push our arms down the whole way to push the CDF down
+	addParallel(new GetReadyToRumble(RobotMap.MOAT_ID));
+	addSequential(new DriveForDistance(0.7, RobotMap.DISTANCE_TO_OUTERWORKS * 2));
 	addParallel(new PIDSetShooter(30));
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	// turn the proper direction

@@ -135,6 +135,7 @@ public static final double  ARM_ZERO			      = 0.875,
 public static final String  AUTONOMOUS_FILE		      = "/home/lvuser/recordedAuto";
 
 // 96 inches from field to outer-works this kid claims... http://www.chiefdelphi.com/forums/showthread.php?t=144448
+// this may need to be higher! 150?
 public static final double DISTANCE_TO_OUTERWORKS	      = 96.5;
 
 /*

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2559.robot.commands.drive;
+package org.usfirst.frc.team2559.robot.commands.autonomous;
 
 import org.usfirst.frc.team2559.lib.PIDTurnController;
 import org.usfirst.frc.team2559.robot.Robot;
@@ -8,19 +8,27 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
+ * 
+ * @author Evan T
+ * 
+ * The purpose of this class is to make the robot turn until it sees the retro-reflective tape.
+ * 
+ * It does this by grabbing the state of a SendableChooser, or a set of radio buttons on the driver station.
+ * The only thing that might need changing is the speed the robot turns at. This might need to be higher
+ * for carpet.
  *
  */
-public class PIDLowbarTurn extends Command {
+public class PIDAutonTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
-    double angle, originalVal;
+    private static final double TURN_SPEED = 0.5;
+    double angle, originalVal, direction;
 
-    // 0.5, and .5 as min/max/tolerance
-
-    public PIDLowbarTurn() {
+    public PIDAutonTurn(int direction) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._driveTrain);
+	this.direction = direction;
     }
 
     // Called just before this Command runs the first time
@@ -35,13 +43,17 @@ public class PIDLowbarTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	Robot._driveTrain.tankDrive(0.5, -0.5);
+	if (direction == 1) {
+	Robot._driveTrain.tankDrive(-TURN_SPEED, TURN_SPEED);
+	} else if (direction == 2) {
+	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
+	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 	angle = SmartDashboard.getNumber("azimuth", 0);
-	return (angle != originalVal) && (angle != 0);
+	return ((angle != originalVal) && (angle != 0)) || direction == 0;
     }
 
     // Called once after isFinished returns true

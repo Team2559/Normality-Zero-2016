@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
+ * The purpose of this class is to cross the Cheval de Frise in autonomous and then shoot.
+ * 
+ * @author Evan T
  *
  */
 public class CrossCDF extends CommandGroup {
@@ -39,17 +42,18 @@ public class CrossCDF extends CommandGroup {
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
 	addSequential(new GetReadyToRumble(RobotMap.CDF_ID));
-	addSequential(new WaitCommand(1));
 	addSequential(new DriveForDistance(0.5, RobotMap.DISTANCE_TO_OUTERWORKS));
-	addSequential(new WaitCommand(1));
+	addSequential(new WaitCommand(0.5));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
-	addSequential(new WaitCommand(1));
 	// move full speed over the CDF
 	addSequential(new DriveForDistance(0.6, 20));
 	addParallel(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS + 20));
+	// put arm down so we don't shoot it
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
+	// turn after crossing
+	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	/** vision **/
 	addSequential(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());

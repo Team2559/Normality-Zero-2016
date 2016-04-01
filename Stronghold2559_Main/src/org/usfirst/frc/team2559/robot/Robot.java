@@ -4,6 +4,7 @@ import org.usfirst.frc.team2559.robot.commands.autonomous.BreachSimpleDefense;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossCDF;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossLowbar;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossPortcullis;
+import org.usfirst.frc.team2559.robot.commands.autonomous.CrossSimpleDefense;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.ReachDefense;
@@ -57,9 +58,11 @@ public class Robot extends IterativeRobot {
     Command		       autonomousCommand;
 
     // tribute to Hurricane Joe
-    String[]		       autonomiceNames;
+    String[]		       autonomiceNames, autonTurnDirections;
     Command[]		       autonomice;
+    int[] 		       autonTurnCodes;
     SendableChooser	       chooser = new SendableChooser();
+    public static SendableChooser autonTurnDirection = new SendableChooser();
 
     private void sendSensorData() {
 	SmartDashboard.putData(Scheduler.getInstance());
@@ -117,14 +120,21 @@ public class Robot extends IterativeRobot {
 
 	// cam1 = new USBCamera("cam1");
 
-	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Breach Simple Defense", "Reach Defense", "Cross Lowbar", "Cross CDF", "Cross Portcullis" };
-	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new BreachSimpleDefense(), new ReachDefense(), new CrossLowbar(), new CrossCDF(), new CrossPortcullis() };
+	autonomiceNames = new String[] { "Cross Lowbar", "Cross Simple Defense", "Cross CDF", "Cross Portcullis", "Breach Simple Defense (Deprecated)", "Reach Defense (Deprecated)", "Do Nothing"};
+	autonomice = new Command[] { new CrossLowbar(), new CrossSimpleDefense(), new CrossCDF(), new CrossPortcullis(), new BreachSimpleDefense(), new ReachDefense(), new DoNothing() };
+	autonTurnDirections = new String[] { "Don't Turn", "Turn Left", "Turn Right" };
+	autonTurnCodes = new int[] { 0, 1, 2 };
 
 	for (int i = 0; i < autonomice.length; i++) {
 	    chooser.addObject(autonomiceNames[i], autonomice[i]);
 	}
+	
+	for (int i = 0; i < autonTurnDirections.length; i++) {
+	    autonTurnDirection.addObject(autonTurnDirections[i], autonTurnCodes[i]);
+	}
 
 	SmartDashboard.putData("Which autonomous?", chooser);
+	SmartDashboard.putData("Which turn direction?", autonTurnDirection);
 	SmartDashboard.putData(Scheduler.getInstance());
 
 	new Command("Sensor feedback") {

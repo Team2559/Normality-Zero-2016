@@ -87,6 +87,9 @@ public class CrossPortcullis extends CommandGroup {
 	addSequential(new WaitCommand(2));
 	addSequential(new DriveForDistance(0.5, RobotMap.DISTANCE_TO_OUTERWORKS));
 	addSequential(new WaitCommand(2));
+	// turn after crossing
+	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+	/* vision */
 	addSequential(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {
