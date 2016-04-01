@@ -7,6 +7,8 @@ import org.usfirst.frc.team2559.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * 
+ * Don't use this! It's bad, old, and inefficient. And it's ugly.
  *
  * Based on
  * https://github.com/Team766/2015/blob/5d027b62ec1535861083adb06a34e343caa21e7b/src/org/usfirst/frc/team766/robot/commands/Drive/DriveTurn.

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PIDStayOnTarget extends Command {
+public class PIDStayOnTarget_Shooter extends Command {
 
     private PIDControllerRT pid	= new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
             RobotMap.PID_SHOOTER_Ki,
@@ -19,7 +19,7 @@ public class PIDStayOnTarget extends Command {
 
     double		    angle, prevAngle;
 
-    public PIDStayOnTarget() {
+    public PIDStayOnTarget_Shooter() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._shooter);

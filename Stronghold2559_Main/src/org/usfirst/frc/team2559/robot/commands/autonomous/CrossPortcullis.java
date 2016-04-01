@@ -8,7 +8,7 @@ import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
-import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget_Shooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDVisionShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
 

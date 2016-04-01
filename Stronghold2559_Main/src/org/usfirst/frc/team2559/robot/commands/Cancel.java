@@ -14,8 +14,7 @@ public class Cancel extends Command {
         // eg. requires(chassis);
 	if(shooter) 
 	    requires(Robot._shooter);
-	else
-	    requires(Robot._arm);
+	requires(Robot._arm);
     }
 
     // Called just before this Command runs the first time
