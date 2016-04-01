@@ -7,6 +7,7 @@ import org.usfirst.frc.team2559.robot.commands.PrepIntake;
 import org.usfirst.frc.team2559.robot.commands.SetCamera;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
+import org.usfirst.frc.team2559.robot.commands.autonomous.PIDAutonTurn;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
@@ -90,8 +91,8 @@ public class OIJoysticks {
             _endgame = new JoystickButton(driverStick2, 12);
 
     Button   _manualArm	     = new JoystickButton(shooterStick, 1),
-            _increment = new JoystickButton(shooterStick, 2),
-            _decrement = new JoystickButton(shooterStick, 3),
+            shooterButton2 = new JoystickButton(shooterStick, 2),
+            shooterButton3 = new JoystickButton(shooterStick, 3),
             _manualShooter = new JoystickButton(shooterStick, 4),
             _stopRecording = new JoystickButton(shooterStick, 5),
             shooterButton6 = new JoystickButton(shooterStick, 6),
@@ -172,14 +173,12 @@ public class OIJoysticks {
 		end();
 	    }
 	});
-	_increment.whenPressed(new PIDSetShooter(Robot._shooter.getShooterAngle() + 2));
-	_decrement.whenPressed(new PIDSetShooter(Robot._shooter.getShooterAngle() + 2));
 	_manualShooter.whileHeld(new ManualShooter());
 
 	shooterButton6.whenPressed(new PIDVisionTurn());
 	shooterButton7.whenPressed(new PIDVisionShooter());
 
-	shooterButton8.whenPressed(new PIDSetShooter(45));
+	shooterButton8.whenPressed(new PIDAutonTurn());
 
 	_driver2POVUp.whenActive(new PIDStayOnTarget_Shooter());
 	// _driver2POVUp.whenInactive(new AdjustShooter(0));

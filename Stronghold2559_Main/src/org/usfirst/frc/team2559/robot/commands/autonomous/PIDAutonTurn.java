@@ -22,17 +22,18 @@ public class PIDAutonTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
     private static final double TURN_SPEED = 0.5;
-    double angle, originalVal, direction;
+    double angle, originalVal;
+    int direction;
 
-    public PIDAutonTurn(int direction) {
+    public PIDAutonTurn() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._driveTrain);
-	this.direction = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	direction = (int)Robot.autonTurnDirection.getSelected();
 	Robot._driveTrain.setAuton(true);
 	Robot._driveTrain.setFastDrive(false);
 	Robot._driveTrain.setReverseDrive(false);
@@ -43,11 +44,12 @@ public class PIDAutonTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (direction == 1) {
-	Robot._driveTrain.tankDrive(-TURN_SPEED, TURN_SPEED);
-	} else if (direction == 2) {
-	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
-	}	
+//	if (direction == 1) {
+//	Robot._driveTrain.tankDrive(-TURN_SPEED, TURN_SPEED);
+//	} else if (direction == 2) {
+//	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
+//	}	
+	System.out.print(direction);
     }
 
     // Make this return true when this Command no longer needs to run execute()

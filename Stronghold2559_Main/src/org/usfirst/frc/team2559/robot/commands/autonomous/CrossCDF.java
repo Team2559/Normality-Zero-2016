@@ -53,7 +53,8 @@ public class CrossCDF extends CommandGroup {
 	// put arm down so we don't shoot it
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	// turn after crossing
-	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+//	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+	addSequential(new PIDAutonTurn());
 	/** vision **/
 	addSequential(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
