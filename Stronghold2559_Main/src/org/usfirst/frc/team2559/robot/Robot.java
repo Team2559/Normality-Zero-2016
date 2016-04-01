@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot;
 
 import org.usfirst.frc.team2559.robot.commands.autonomous.BreachSimpleDefense;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossCDF;
+import org.usfirst.frc.team2559.robot.commands.autonomous.CrossLowbar;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossPortcullis;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
@@ -116,8 +117,8 @@ public class Robot extends IterativeRobot {
 
 	// cam1 = new USBCamera("cam1");
 
-	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Lowbar - 1 Ball", "Lowbar - 2 Ball", "Breach Simple Defense", "Reach Defense", "Cross CDF", "Cross Portcullis" };
-	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new Lowbar_1Ball(), new Lowbar_2Ball(), new BreachSimpleDefense(), new ReachDefense(), new CrossCDF(), new CrossPortcullis() };
+	autonomiceNames = new String[] { "Do Nothing", "Recorded Autonomous 1", "Breach Simple Defense", "Reach Defense", "Cross Lowbar", "Cross CDF", "Cross Portcullis" };
+	autonomice = new Command[] { new DoNothing(), new PlayRecording("1"), new BreachSimpleDefense(), new ReachDefense(), new CrossLowbar(), new CrossCDF(), new CrossPortcullis() };
 
 	for (int i = 0; i < autonomice.length; i++) {
 	    chooser.addObject(autonomiceNames[i], autonomice[i]);

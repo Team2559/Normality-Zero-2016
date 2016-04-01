@@ -32,7 +32,7 @@ public class PIDSetShooter extends Command {
 	this.angle = angle;
 	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, -0.5, 0.6, 1, true);
+	        RobotMap.PID_SHOOTER_Kd, -0.6, 0.7, 1, true);
 	pid.setSetpoint(angle);
     }
 

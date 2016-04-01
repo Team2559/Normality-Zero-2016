@@ -95,7 +95,6 @@ public class OIXbox {
 				end();
 			}
 		});
-		_turn.whenPressed(new PIDTurn(90, RobotMap.TURNING_SPEED));
 
 		_align.whenPressed(new AlignWithTarget());
 		

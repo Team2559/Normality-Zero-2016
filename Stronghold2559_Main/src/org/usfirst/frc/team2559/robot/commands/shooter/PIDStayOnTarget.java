@@ -44,12 +44,7 @@ public class PIDStayOnTarget extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	angle = SmartDashboard.getNumber("angle", 0);
-	if (angle != 0) {
-	    pid.setSetpoint(angle);
-	    prevAngle = angle;
-	} else {
-	    pid.setSetpoint(prevAngle);
-	}
+	pid.setSetpoint(angle);
 	pid.calculate(Robot._shooter.getShooterAngle(), true);
 	double power = pid.getOutput();
 	if(power >= 0)

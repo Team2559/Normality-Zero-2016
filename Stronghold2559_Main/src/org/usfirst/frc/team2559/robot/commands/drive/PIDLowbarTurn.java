@@ -10,20 +10,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PIDTurn extends Command {
+public class PIDLowbarTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
-    double angle;
-
-   private PIDTurnController       pid	       = new PIDTurnController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 1, true); // creates
+    double angle, originalVal;
 
     // 0.5, and .5 as min/max/tolerance
 
-    public PIDTurn(double angle) {
+    public PIDLowbarTurn() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._driveTrain);
-	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
@@ -33,20 +30,18 @@ public class PIDTurn extends Command {
 	Robot._driveTrain.setReverseDrive(false);
 	Robot._driveTrain.setSlowDrive(false);
 	Robot._driveTrain.clearGyro();
-	pid.reset();
-	pid.setSetpoint(angle);
+	originalVal = Robot._shooter.getVisionAltitude();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	pid.calculateDebug(Robot._driveTrain.getGyroAngle(), true);
-	double power = pid.getOutput() * ANGLES_TO_DEGREES;
-	Robot._driveTrain.tankDrive(power, -power);
+	Robot._driveTrain.tankDrive(0.5, -0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return pid.isDone();
+	angle = SmartDashboard.getNumber("azimuth", 0);
+	return (angle != originalVal) && (angle != 0);
     }
 
     // Called once after isFinished returns true

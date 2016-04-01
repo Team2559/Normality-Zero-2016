@@ -46,7 +46,7 @@ public class GetReadyToRumble extends CommandGroup {
 	    addSequential(new PIDSetShooter(60));
 	    // shooter_setting = 60;
 	} else if (val == RobotMap.LOWBAR_ID) {
-	    addSequential(new PIDSetShooter(-4));
+	    addSequential(new PIDSetShooter(1));
 	}
 
 	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
