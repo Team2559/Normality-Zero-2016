@@ -42,6 +42,10 @@ public static final double  PID_ARM_Kp		     	      = 0.5,
                             PID_ARM_Ki		      	      = 0.3, 
                             PID_ARM_Kd		      	      = 0.15;
 
+public static final double  PID_STRAIGHT_Kp	     	      = 0.5,
+                            PID_STRAIGHT_Ki	      	      = 0.3, 
+                            PID_STRAIGHT_Kd	      	      = 0.15;
+
 public static final int     PORTCULLIS_ID 		      = 0,
                             CDF_ID			      = 1,
                             MOAT_ID			      = 2,
@@ -119,10 +123,10 @@ public static final double  SERVO_DELAY			      = 0.5;
 public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             PORT_ARM_INTAKE 		      = 10,
                             PORT_ARM_ENC		      = 3,
-                            ARM_INTAKE_ANGLE		      = 182,
+                            ARM_INTAKE_ANGLE		      = 175, // 182
                             ARM_INITIAL_POS_ANGLE	      = 56,
                             ARM_GROUND_ANGLE  		      = 168,
-                            ARM_MAX_ANGLE		      = 200;
+                            ARM_MAX_ANGLE		      = 175; // 200
 
 
 public static final double  ARM_ZERO			      = 0.833,

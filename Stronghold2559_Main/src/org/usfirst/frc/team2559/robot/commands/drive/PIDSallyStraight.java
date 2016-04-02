@@ -11,16 +11,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PIDDriveStraightForDistance extends Command {
+public class PIDSallyStraight extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
-    double angle;
 
-   private PIDControllerRT       pid	       = new PIDTurnController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 1, true); // creates
+   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 0.5, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 
-    public PIDDriveStraightForDistance() {
+    public PIDSallyStraight() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	requires(Robot._driveTrain);
@@ -28,19 +27,18 @@ public class PIDDriveStraightForDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	angle = SmartDashboard.getNumber("azimuth", 0);
 	Robot._driveTrain.setAuton(true);
 	Robot._driveTrain.setFastDrive(false);
 	Robot._driveTrain.setReverseDrive(false);
 	Robot._driveTrain.setSlowDrive(false);
 	Robot._driveTrain.clearGyro();
 	pid.reset();
-	pid.setSetpoint(angle);
+	pid.setSetpoint(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	pid.calculateDebug(Robot._driveTrain.getGyroAngle(), true);
+	pid.calculate(Robot._driveTrain.getGyroAngle(), true);
 	double power = pid.getOutput() * ANGLES_TO_DEGREES;
 	Robot._driveTrain.tankDrive(power, -power);
 	    
