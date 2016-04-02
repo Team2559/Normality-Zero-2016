@@ -36,18 +36,18 @@ public class SetCamera extends Command {
 //		NIVision.IMAQdxSetAttributeI64(m_id, ATTR_EX_VALUE, val);
 //	    }
 
-	     Robot.cam0.setExposureManual(0);
-	     Robot.cam0.setBrightness(0);
-	     Robot.cam0.setWhiteBalanceManual(10000);
-	     Robot.server.startAutomaticCapture(Robot.cam0);
+	     Robot.cam1.setExposureManual(0);
+	     Robot.cam1.setBrightness(0);
+	     Robot.cam1.setWhiteBalanceManual(10000);
+	     Robot.server.startAutomaticCapture(Robot.cam1);
 	} else {
 //	    NIVision.IMAQdxStopAcquisition(Robot.currentSession);
 //	    Robot.currentSession = Robot.session1;
 //	    NIVision.IMAQdxConfigureGrab(Robot.currentSession);
-	     Robot.cam0.setExposureManual(1);
-	     Robot.cam0.setBrightness(0);
-	     Robot.cam0.setWhiteBalanceAuto();
-	     Robot.server.startAutomaticCapture(Robot.cam0);
+	     Robot.cam1.setExposureManual(1);
+	     Robot.cam1.setBrightness(0);
+	     Robot.cam1.setWhiteBalanceAuto();
+	     Robot.server.startAutomaticCapture(Robot.cam1);
 	}
     }
 

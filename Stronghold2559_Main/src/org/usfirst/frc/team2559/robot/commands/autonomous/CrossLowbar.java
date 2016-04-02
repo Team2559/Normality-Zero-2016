@@ -41,7 +41,6 @@ public class CrossLowbar extends CommandGroup {
         // arm.
 	addParallel(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS * 2));
-	// push our arms down the whole way to push the CDF down
 	addParallel(new PIDSetShooter(30));
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	// turn the proper direction

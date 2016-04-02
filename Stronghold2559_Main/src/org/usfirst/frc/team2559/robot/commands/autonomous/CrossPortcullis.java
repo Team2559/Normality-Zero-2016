@@ -4,10 +4,12 @@ import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
 import org.usfirst.frc.team2559.robot.commands.GetReadyToRumble;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
+import org.usfirst.frc.team2559.robot.commands.arm.PortcullisTwitch;
 import org.usfirst.frc.team2559.robot.commands.drive.DriveForDistance;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.FireServo;
+import org.usfirst.frc.team2559.robot.commands.shooter.PIDSetShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget_Shooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDVisionShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SetShooter;
@@ -41,52 +43,50 @@ public class CrossPortcullis extends CommandGroup {
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
 	addSequential(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
-	addSequential(new WaitCommand(2));
-	addSequential(new DriveForDistance(0.5, RobotMap.DISTANCE_TO_OUTERWORKS));
-	addSequential(new WaitCommand(2));
+	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS * 1.2), 3);
 	// bring our arms up while driving through the defense slowly
-	addSequential(new Command() {
-
-	    protected void initialize() {
-		Robot._arm.setAdjusterSpeed(-1);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
-	addSequential(new WaitCommand(0.4));
-	addSequential(new Command() {
-
-	    protected void initialize() {
-		Robot._arm.setAdjusterSpeed(0);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
-	addSequential(new WaitCommand(2));
-	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
-	addSequential(new WaitCommand(2));
-	addSequential(new DriveForDistance(0.5, RobotMap.DISTANCE_TO_OUTERWORKS));
-	addSequential(new WaitCommand(2));
+//	addSequential(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._arm.setAdjusterSpeed(-1);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+//	addSequential(new WaitCommand(0.4));
+//	addSequential(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._arm.setAdjusterSpeed(0);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+	addSequential(new PortcullisTwitch());
+	addSequential(new WaitCommand(0.3));
+	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
+	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS / 1.5), 2);
+	addParallel(new PIDSetShooter(30));
 	// turn after crossing
 //	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());

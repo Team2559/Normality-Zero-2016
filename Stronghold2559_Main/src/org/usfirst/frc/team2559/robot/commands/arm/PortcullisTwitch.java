@@ -46,7 +46,7 @@ public class PortcullisTwitch extends CommandGroup {
 		end();
 	    }
 	});
-	addSequential(new WaitCommand(0.2));
+	addSequential(new WaitCommand(0.7));
 	addSequential(new Command() {
 
 	    protected void initialize() {

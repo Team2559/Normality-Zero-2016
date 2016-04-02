@@ -6,6 +6,7 @@ import org.usfirst.frc.team2559.robot.commands.LowGoal;
 import org.usfirst.frc.team2559.robot.commands.PrepIntake;
 import org.usfirst.frc.team2559.robot.commands.SetCamera;
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
+import org.usfirst.frc.team2559.robot.commands.arm.ManualArm;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.autonomous.PIDAutonTurn;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
@@ -96,8 +97,8 @@ public class OIJoysticks {
             _portcullisShooter = new JoystickButton(shooterStick, 3),
             _manualShooter = new JoystickButton(shooterStick, 4),
             _endgameShooter = new JoystickButton(shooterStick, 5),
-            shooterButton6 = new JoystickButton(shooterStick, 6),
-            shooterButton7 = new JoystickButton(shooterStick, 7),
+            _chevalShooter = new JoystickButton(shooterStick, 6),
+            _moatShooter = new JoystickButton(shooterStick, 7),
             shooterButton8 = new JoystickButton(shooterStick, 8),
             shooterButton9 = new JoystickButton(shooterStick, 9),
             shooterButton10 = new JoystickButton(shooterStick, 10);
@@ -113,6 +114,8 @@ public class OIJoysticks {
 	_lowbarShooter.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullisShooter.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
 	_endgameShooter.whenPressed(new GetReadyToRumble(RobotMap.PUSHUP_ENDGAME_ID));
+	_chevalShooter.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));
+	_moatShooter.whenPressed(new GetReadyToRumble(RobotMap.MOAT_ID));
 	_forw.whileHeld(new DobbyForward());
 	_back.whileHeld(new DobbyBackward());
 	_lowgoal.whenPressed(new LowGoal());
@@ -161,24 +164,7 @@ public class OIJoysticks {
 	_intakeOn.whenReleased(new SetIntake("off"));
 	_dumbShoot.whenPressed(new DumbShoot());
 
-	_manualArm.whileHeld(new Command() {
-
-	    protected void initialize() {
-		Robot._arm.setAdjusterSpeed(shooterStick.getRawAxis(1) * 0.3);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+	_manualArm.whileHeld(new ManualArm());
 	_manualShooter.whileHeld(new ManualShooter());
 
 	_driver2POVUp.whenActive(new PIDStayOnTarget_Shooter());

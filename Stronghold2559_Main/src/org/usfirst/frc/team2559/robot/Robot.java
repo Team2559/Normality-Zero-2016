@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
     public static Shooter      _shooter;
     public static Arm	       _arm;
 
-    public static USBCamera    cam0;
+    public static USBCamera    cam1;
     public static CameraServer server;
 
     public static int	       currentSession,
@@ -99,12 +99,12 @@ public class Robot extends IterativeRobot {
 
 	server = CameraServer.getInstance();
 	server.setQuality(50);
-	cam0 = new USBCamera("cam0");
-	cam0.setSize(640, 360);
-	cam0.setExposureManual(0);
-	cam0.setBrightness(0);
-	cam0.setWhiteBalanceManual(10000);
-	server.startAutomaticCapture(cam0);
+	cam1 = new USBCamera("cam1");
+	cam1.setSize(640, 360);
+	cam1.setExposureManual(0);
+	cam1.setBrightness(0);
+	cam1.setWhiteBalanceManual(10000);
+	server.startAutomaticCapture(cam1);
 
 	// cameraFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 	//
