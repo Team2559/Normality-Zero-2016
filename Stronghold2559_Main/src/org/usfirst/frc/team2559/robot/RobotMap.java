@@ -126,7 +126,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
 
 
 public static final double  ARM_ZERO			      = 0.833,
-			    ARM_INTAKE_SPEED 		      = 0.5;
+			    ARM_INTAKE_SPEED 		      = 0.7;
 
 
 /*
