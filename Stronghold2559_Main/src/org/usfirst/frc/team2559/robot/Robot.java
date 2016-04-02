@@ -5,8 +5,6 @@ import org.usfirst.frc.team2559.robot.commands.autonomous.CrossCDF;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossLowbar;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossPortcullis;
 import org.usfirst.frc.team2559.robot.commands.autonomous.CrossSimpleDefense;
-import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_1Ball;
-import org.usfirst.frc.team2559.robot.commands.autonomous.Lowbar_2Ball;
 import org.usfirst.frc.team2559.robot.commands.autonomous.ReachDefense;
 import org.usfirst.frc.team2559.robot.commands.control.DoNothing;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;

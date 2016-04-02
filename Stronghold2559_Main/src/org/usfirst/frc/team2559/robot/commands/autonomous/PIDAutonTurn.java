@@ -44,12 +44,11 @@ public class PIDAutonTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//	if (direction == 1) {
-//	Robot._driveTrain.tankDrive(-TURN_SPEED, TURN_SPEED);
-//	} else if (direction == 2) {
-//	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
-//	}	
-	System.out.print(direction);
+	if (direction == 1) {
+	Robot._driveTrain.tankDrive(-TURN_SPEED, TURN_SPEED);
+	} else if (direction == 2) {
+	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
+	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()

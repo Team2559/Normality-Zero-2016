@@ -32,7 +32,7 @@ public class PIDSetShooter extends Command {
 	this.angle = angle;
 	pid = new PIDControllerRT(RobotMap.PID_SHOOTER_Kp,
 	        RobotMap.PID_SHOOTER_Ki,
-	        RobotMap.PID_SHOOTER_Kd, -0.6, 0.7, 1, true);
+	        RobotMap.PID_SHOOTER_Kd, -0.8, 0.8, 1, true);
 	pid.setSetpoint(angle);
     }
 
@@ -130,7 +130,7 @@ public class PIDSetShooter extends Command {
 	if(power >= 0)
 	    Robot._shooter.setAdjusterSpeed(power);
 	else
-	    Robot._shooter.setAdjusterSpeed(power * 0.2);
+	    Robot._shooter.setAdjusterSpeed(power * 0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

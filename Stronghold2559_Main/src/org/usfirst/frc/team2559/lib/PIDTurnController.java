@@ -13,8 +13,8 @@ public class PIDTurnController extends PIDControllerRT {
 	private double innerThreshold = 10.0;
 
 	// How much to slow down. 0.5=50% slow down, 0.2=20% slow down etc.
-	private double outerSlowdown = 0.65;
-	private double innerSlowdown = 0.5;
+	private double outerSlowdown = 0.7;
+	private double innerSlowdown = 0.6;
 
 	// If we have factored in the slowdown yet
 	private boolean startedInnerSlowdown = false;

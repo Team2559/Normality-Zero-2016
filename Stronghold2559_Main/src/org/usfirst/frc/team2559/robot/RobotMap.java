@@ -124,7 +124,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             ARM_GROUND_ANGLE  		      = 168;
 
 
-public static final double  ARM_ZERO			      = 0.875,
+public static final double  ARM_ZERO			      = 0.829,
 			    ARM_INTAKE_SPEED 		      = 0.5;
 
 

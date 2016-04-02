@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.commands.shooter;
 
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
+import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn766;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
 
@@ -50,6 +51,7 @@ public class PIDSmartShoot extends CommandGroup {
 		end();
 	    }
 	});
+	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	addSequential(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {    
