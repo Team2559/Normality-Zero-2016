@@ -47,6 +47,7 @@ public class CrossCDF extends CommandGroup {
 	addSequential(new WaitCommand(1));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
+	addSequential(new WaitCommand(0.5));
 	// move full speed over the CDF
 	addSequential(new DriveForDistance(0.8, 20));
 	addParallel(new PIDSetShooter(30));
@@ -56,10 +57,10 @@ public class CrossCDF extends CommandGroup {
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	// turn after crossing
 //	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
-	addSequential(new PIDAutonTurn(), 3);
+	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addSequential(new PIDVisionTurn());
-	addSequential(new PIDVisionShooter());
+	addParallel(new PIDVisionTurn(), 3);
+	addSequential(new PIDVisionShooter(), 3);
 	addParallel(new Command() {
 		protected void initialize() {
 			Robot._shooter.setShootingStatus(true);

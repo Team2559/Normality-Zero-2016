@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DobbySpin extends Command {
 
     boolean left;
-    double  speed = 0.5;
+    double  speed = 0.7;
 
     /**
      * Class constructor for a function that makes the robot spin in a circle.

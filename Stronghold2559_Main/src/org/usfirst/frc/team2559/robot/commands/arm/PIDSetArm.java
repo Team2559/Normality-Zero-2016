@@ -26,7 +26,7 @@ public class PIDSetArm extends Command {
 	this.angle = angle;
 	pid = new PIDControllerRT(RobotMap.PID_ARM_Kp,
 	        RobotMap.PID_ARM_Ki,
-	        RobotMap.PID_ARM_Kd, -0.6, 0.6, 1, true);
+	        RobotMap.PID_ARM_Kd, -0.55, 0.55, 1, true);
 	pid.setSetpoint(angle);
     }
 

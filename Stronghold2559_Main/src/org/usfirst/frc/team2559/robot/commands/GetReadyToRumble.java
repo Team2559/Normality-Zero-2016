@@ -11,28 +11,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class GetReadyToRumble extends CommandGroup {
+    
+    int val;
 
     public GetReadyToRumble(int val) {
-	// Add Commands here:
-	// e.g. addSequential(new Command1());
-	// addSequential(new Command2());
-	// these will run in order.
-
-	// To run multiple commands at the same time,
-	// use addParallel()
-	// e.g. addParallel(new Command1());
-	// addSequential(new Command2());
-	// Command1 and Command2 will run in parallel.
-
-	// A command group will require all of the subsystems that each member
-	// would require.
-	// e.g. if Command1 requires chassis, and Command2 requires arm,
-	// a CommandGroup containing them would require both the chassis and the
-	// arm.
-	// int shooter_setting=255, arm_setting=255;
-
-	// Set arm to not in the way position
-	// check where we are
+	this.val = val;
+    }
+    
+    protected void initialize() {
 	if (Robot._arm.getArmAngle() < 35.0) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
@@ -43,7 +29,7 @@ public class GetReadyToRumble extends CommandGroup {
 	    addSequential(new PIDSetShooter(10));
 	    // shooter_setting = 10;
 	} else if (val == RobotMap.CDF_ID || val == RobotMap.MOAT_ID || val == RobotMap.RAMPARTS_ID || val == RobotMap.ROCKWALL_ID || val == RobotMap.ROUGHTERRAIN_ID) {
-	    addSequential(new PIDSetShooter(60));
+	    addSequential(new PIDSetShooter(40.5));
 	    // shooter_setting = 60;
 	} else if (val == RobotMap.LOWBAR_ID) {
 	    addSequential(new PIDSetShooter(1));
@@ -68,8 +54,5 @@ public class GetReadyToRumble extends CommandGroup {
 	} else if (val == RobotMap.PUSHUP_ENDGAME_ID) {
 	    addSequential(new PIDSetArm(210, -0.8, 0.8));
 	}
-
-	// We have setting, now set shooter and arm to position. 255 IS DO NOTHING VALUE
-	// if()
     }
 }

@@ -12,6 +12,7 @@ import org.usfirst.frc.team2559.robot.commands.autonomous.PIDAutonTurn;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbySpin;
+import org.usfirst.frc.team2559.robot.commands.drive.PIDSallyStraight;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDVisionTurn;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.ManualShooter;
@@ -99,7 +100,7 @@ public class OIJoysticks {
             _endgameShooter = new JoystickButton(shooterStick, 5),
             _chevalShooter = new JoystickButton(shooterStick, 6),
             _moatShooter = new JoystickButton(shooterStick, 7),
-            shooterButton8 = new JoystickButton(shooterStick, 8),
+            _testStraight = new JoystickButton(shooterStick, 8),
             shooterButton9 = new JoystickButton(shooterStick, 9),
             shooterButton10 = new JoystickButton(shooterStick, 10);
 
@@ -108,8 +109,31 @@ public class OIJoysticks {
 
     Trigger  _driver2POVUp   = new POVTrigger(driverStick2, true);
     Trigger  _driver2POVDown = new POVTrigger(driverStick2, false);
+    
+    boolean goStraight = false;
 
     public OIJoysticks() {
+	
+	_testStraight.whenPressed(new PIDSallyStraight());
+	_testStraight.whenReleased(new Command() {
+
+	    protected void initialize() {
+		Robot.oi.setGoStraight(false);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return false;
+	    }
+
+	    protected void end() {
+	    }
+
+	    protected void interrupted() {
+		end();
+	    }
+	});
 	
 	_lowbarShooter.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullisShooter.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
@@ -254,5 +278,13 @@ public class OIJoysticks {
      */
     public boolean getRecorderStopButton() {
 	return true;
+    }
+    
+    public void setGoStraight(boolean val) {
+	goStraight = val;
+    }
+    
+    public boolean getGoStraight() {
+	return !goStraight;
     }
 }

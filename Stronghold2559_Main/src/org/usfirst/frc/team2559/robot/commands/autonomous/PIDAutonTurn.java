@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class PIDAutonTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
-    private static final double TURN_SPEED = 0.5;
+    private static final double TURN_SPEED = 0.65;
     double angle, originalVal;
     int direction;
 

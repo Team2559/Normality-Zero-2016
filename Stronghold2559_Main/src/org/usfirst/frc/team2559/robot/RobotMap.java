@@ -101,7 +101,7 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
  * Shooter Constants
  */
 
-public static final double  SHOOTER_INTAKE_SPEED	      = 0.45,
+public static final double  SHOOTER_INTAKE_SPEED	      = 0.5,
                             SHOOTER_ZERO		      = 2.045,
 			    SHOOTER_INTAKE_ANGLE	      = -9;
 
@@ -123,14 +123,14 @@ public static final double  SERVO_DELAY			      = 0.5;
 public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             PORT_ARM_INTAKE 		      = 10,
                             PORT_ARM_ENC		      = 3,
-                            ARM_INTAKE_ANGLE		      = 175, // 182
+                            ARM_INTAKE_ANGLE		      = 182, // 182
                             ARM_INITIAL_POS_ANGLE	      = 56,
                             ARM_GROUND_ANGLE  		      = 168,
-                            ARM_MAX_ANGLE		      = 175; // 200
+                            ARM_MAX_ANGLE		      = 200; // 200
 
 
-public static final double  ARM_ZERO			      = 0.833,
-			    ARM_INTAKE_SPEED 		      = 0.7;
+public static final double  ARM_ZERO			      = 0.837,
+			    ARM_INTAKE_SPEED 		      = 1;
 
 
 /*

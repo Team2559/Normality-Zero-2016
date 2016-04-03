@@ -44,8 +44,8 @@ public class CrossSimpleDefense extends CommandGroup {
 	// turn the proper direction
 	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addSequential(new PIDVisionTurn());
-	addSequential(new PIDVisionShooter());
+	addParallel(new PIDVisionTurn(), 3);
+	addSequential(new PIDVisionShooter(), 3);
 	addParallel(new Command() {
 		protected void initialize() {
 			Robot._shooter.setShootingStatus(true);
