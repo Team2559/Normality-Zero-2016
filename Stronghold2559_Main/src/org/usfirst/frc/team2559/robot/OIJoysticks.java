@@ -23,6 +23,7 @@ import org.usfirst.frc.team2559.robot.commands.shooter.PIDStayOnTarget_Shooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.PIDVisionShooter;
 import org.usfirst.frc.team2559.robot.commands.shooter.SpinForSeconds;
 import org.usfirst.frc.team2559.robot.triggers.POVTrigger;
+import org.usfirst.frc.team2559.robot.triggers.XboxTrigger;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -93,14 +94,14 @@ public class OIJoysticks {
             _shooterLowBar = new JoystickButton(driverStick2, 11),
             _endgame = new JoystickButton(driverStick2, 12);
 
-    Button   _manualArm	     = new JoystickButton(shooterStick, 1),
-            _lowbarShooter = new JoystickButton(shooterStick, 2),
-            _portcullisShooter = new JoystickButton(shooterStick, 3),
-            _manualShooter = new JoystickButton(shooterStick, 4),
-            _endgameShooter = new JoystickButton(shooterStick, 5),
-            _chevalShooter = new JoystickButton(shooterStick, 6),
-            _moatShooter = new JoystickButton(shooterStick, 7),
-            _testStraight = new JoystickButton(shooterStick, 8),
+    Button   _frequentConfig     = new JoystickButton(shooterStick, 1),
+            _lowbarConfig = new JoystickButton(shooterStick, 2),
+            _portcullisConfig = new JoystickButton(shooterStick, 3),
+            _chevalConfig = new JoystickButton(shooterStick, 4),
+            _intakeConfig = new JoystickButton(shooterStick, 5),
+            _shootingConfig = new JoystickButton(shooterStick, 6),
+            shooterButton7 = new JoystickButton(shooterStick, 7),
+            shooterButton8 = new JoystickButton(shooterStick, 8),
             shooterButton9 = new JoystickButton(shooterStick, 9),
             shooterButton10 = new JoystickButton(shooterStick, 10);
 
@@ -110,36 +111,43 @@ public class OIJoysticks {
     Trigger  _driver2POVUp   = new POVTrigger(driverStick2, true);
     Trigger  _driver2POVDown = new POVTrigger(driverStick2, false);
     
+    Trigger _endgameConfig = new POVTrigger(shooterStick, true);
+    Trigger _homeConfig = new POVTrigger(shooterStick, false);
+    
+    Trigger _shooterManualArm = new XboxTrigger(shooterStick, true);
+    Trigger _shooterManualShooter = new XboxTrigger(shooterStick, false);
+    
     boolean goStraight = false;
 
     public OIJoysticks() {
 	
-	_testStraight.whenPressed(new PIDSallyStraight());
-	_testStraight.whenReleased(new Command() {
-
-	    protected void initialize() {
-		Robot.oi.setGoStraight(false);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return false;
-	    }
-
-	    protected void end() {
-	    }
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+//	_testStraight.whenPressed(new PIDSallyStraight());
+//	_testStraight.whenReleased(new Command() {
+//
+//	    protected void initialize() {
+//		Robot.oi.setGoStraight(false);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return false;
+//	    }
+//
+//	    protected void end() {
+//	    }
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
 	
-	_lowbarShooter.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
-	_portcullisShooter.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
-	_endgameShooter.whenPressed(new GetReadyToRumble(RobotMap.PUSHUP_ENDGAME_ID));
-	_chevalShooter.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));
-	_moatShooter.whenPressed(new GetReadyToRumble(RobotMap.MOAT_ID));
+	_lowbarConfig.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
+	_portcullisConfig.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
+	_endgameConfig.whenActive(new GetReadyToRumble(RobotMap.PUSHUP_ENDGAME_ID));
+	_homeConfig.whenActive(new GetReadyToRumble(RobotMap.HOME_ID));
+	_chevalConfig.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));
+	_frequentConfig.whenPressed(new GetReadyToRumble(RobotMap.MOAT_ID));
 	_forw.whileHeld(new DobbyForward());
 	_back.whileHeld(new DobbyBackward());
 	_lowgoal.whenPressed(new LowGoal());
@@ -188,8 +196,8 @@ public class OIJoysticks {
 	_intakeOn.whenReleased(new SetIntake("off"));
 	_dumbShoot.whenPressed(new DumbShoot());
 
-	_manualArm.whileHeld(new ManualArm());
-	_manualShooter.whileHeld(new ManualShooter());
+	_shooterManualArm.whileActive(new ManualArm());
+	_shooterManualShooter.whileActive(new ManualShooter());
 
 	_driver2POVUp.whenActive(new PIDStayOnTarget_Shooter());
 	// _driver2POVUp.whenInactive(new AdjustShooter(0));

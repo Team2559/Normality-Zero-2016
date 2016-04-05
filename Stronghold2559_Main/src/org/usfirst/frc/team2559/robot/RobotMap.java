@@ -55,7 +55,8 @@ public static final int     PORTCULLIS_ID 		      = 0,
                             ROCKWALL_ID			      = 6,
                             ROUGHTERRAIN_ID		      = 7,
                             LOWBAR_ID 			      = 8,
-                            PUSHUP_ENDGAME_ID		      = 9;
+                            PUSHUP_ENDGAME_ID		      = 9,
+                            HOME_ID			      = 10;
 
 /*
  * LED Constants 
