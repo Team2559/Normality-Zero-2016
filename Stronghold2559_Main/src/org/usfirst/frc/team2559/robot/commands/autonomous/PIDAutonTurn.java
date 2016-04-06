@@ -22,7 +22,8 @@ public class PIDAutonTurn extends Command {
 
     private static final double ANGLES_TO_DEGREES = 1;
     private static final double TURN_SPEED = 0.65;
-    double angle, originalVal;
+    boolean hasFound = false;
+    double angle, originalVal, timeFound;
     int direction;
 
     public PIDAutonTurn() {
@@ -49,12 +50,17 @@ public class PIDAutonTurn extends Command {
 	} else if (direction == 2) {
 	    Robot._driveTrain.tankDrive(TURN_SPEED, -TURN_SPEED);
 	}	
+	if ((angle != originalVal) && (angle != 0) && (!hasFound)) {
+	    timeFound = System.currentTimeMillis();
+	    hasFound = true;
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 	angle = SmartDashboard.getNumber("azimuth", 0);
-	return ((angle != originalVal) && (angle != 0)) || direction == 0;
+//	return ((angle != originalVal) && (angle != 0)) || direction == 0;
+	return (hasFound && (timeFound < System.currentTimeMillis() + 500));
     }
 
     // Called once after isFinished returns true
