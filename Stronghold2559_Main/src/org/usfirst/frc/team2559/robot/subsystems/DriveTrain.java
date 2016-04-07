@@ -6,13 +6,21 @@ import org.usfirst.frc.team2559.robot.commands.drive.TankDrive;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
- *
+ * 
+ * @author evant
+ * 
+ *         if you're reading this then it's too late
+ *         the lizard people are taking over
+ *         you must find the ring. it will know what to do
+ * 
+ * 
  */
 public class DriveTrain extends Subsystem {
 
@@ -30,9 +38,9 @@ public class DriveTrain extends Subsystem {
 
     // If encoders aren't working, they might need to be negative
     private final Encoder	_leftEncoder	   = new Encoder(RobotMap.PORT_ENCODER_LEFT_1,
-            RobotMap.PORT_ENCODER_LEFT_2);
+            RobotMap.PORT_ENCODER_LEFT_2, false, EncodingType.k4X);
     private final Encoder	_rightEncoder	   = new Encoder(RobotMap.PORT_ENCODER_RIGHT_1,
-            RobotMap.PORT_ENCODER_RIGHT_2);
+            RobotMap.PORT_ENCODER_RIGHT_2, false, EncodingType.k4X);
 
     private final Accelerometer	_accel		   = new BuiltInAccelerometer();
     private double		_gyroOffset	   = 0;
@@ -48,7 +56,7 @@ public class DriveTrain extends Subsystem {
 
     // Encoder Distance Constants
     public static final double	wheelDiameter	   = 8;
-    public static final double	pulsePerRevolution = 360;
+    public static final double	pulsePerRevolution = 1440;
     public static final double	encoderGearRatio   = 1;
     public static final double	gearRatio	   = 1;
     public static final double	Fudgefactor	   = 1.0;
