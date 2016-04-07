@@ -43,38 +43,41 @@ public class CrossCDF extends CommandGroup {
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
 	addSequential(new GetReadyToRumble(RobotMap.CDF_ID));
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS / 1.8), 3);
+	addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS / 1.8), 3);
 	addSequential(new WaitCommand(1));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
 	addSequential(new WaitCommand(0.5));
 	// move full speed over the CDF
-	addSequential(new DriveForDistance(0.8, 20));
+	// addSequential(new DriveForDistance(0.8, 20));
 	addParallel(new PIDSetShooter(30));
 	addParallel(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS + 20));
 	// put arm down so we don't shoot it
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	// turn after crossing
-//	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+	// addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());
 	/** vision **/
 	addParallel(new PIDVisionTurn(), 3);
 	addSequential(new PIDVisionShooter(), 3);
 	addParallel(new Command() {
-		protected void initialize() {
-			Robot._shooter.setShootingStatus(true);
-		}
-		protected void execute() {
-		}
-		protected boolean isFinished() {
-			return true;
-		}
-		protected void end() {
-		}
-		protected void interrupted() {
-			end();
-		}
+
+	    protected void initialize() {
+		Robot._shooter.setShootingStatus(true);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return true;
+	    }
+
+	    protected void end() {}
+
+	    protected void interrupted() {
+		end();
+	    }
 	});
 	addSequential(new SetShooter(1, 1));
 	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
