@@ -16,9 +16,7 @@ public class GetReadyToRumble extends CommandGroup {
 
     public GetReadyToRumble(int val) {
 	this.val = val;
-    }
-    
-    protected void initialize() {
+	
 	if (Robot._arm.getArmAngle() < 35.0) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
@@ -58,5 +56,9 @@ public class GetReadyToRumble extends CommandGroup {
 	} else if (val == RobotMap.HOME_ID) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	}
+    }
+    
+    protected void initialize() {
+	
     }
 }

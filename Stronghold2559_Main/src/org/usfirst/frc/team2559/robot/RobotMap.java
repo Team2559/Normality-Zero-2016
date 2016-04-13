@@ -113,7 +113,8 @@ public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_ADJUSTER	      = 5,
                             PORT_SHOOTER_ENCODER	      = 1,
                             PORT_SHOOTER_LATCH		      = 4,
-                            PORT_SHOOTER_PUSHER		      = 5;
+                            PORT_SHOOTER_PUSHER		      = 5,
+                            SERVO_PULLOUT_GAME		      = 50;
 
 public static final double  SERVO_DELAY			      = 0.5;
 
@@ -130,7 +131,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             ARM_MAX_ANGLE		      = 200; // 200
 
 
-public static final double  ARM_ZERO			      = 0.837,
+public static final double  ARM_ZERO			      = 0.071,
 			    ARM_INTAKE_SPEED 		      = 1;
 
 

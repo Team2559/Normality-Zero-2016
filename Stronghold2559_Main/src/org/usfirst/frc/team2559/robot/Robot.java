@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Shooter Volts Enc", Robot._shooter.getShooterAngleInVolts());
 	SmartDashboard.putNumber("Arm Enc", Robot._arm.getArmAngle());
 	SmartDashboard.putNumber("Arm Volts Enc", Robot._arm.getArmAngleInVolts());
+	SmartDashboard.putNumber("Arm Dial Enc", Robot._arm.getArmAngleInVolts()); // 243
 	// SmartDashboard.putNumber("angleOfShooter", Robot._shooter.getShooterAngle());
 
 	// NIVision.IMAQdxGrab(currentSession, cameraFrame, 1);

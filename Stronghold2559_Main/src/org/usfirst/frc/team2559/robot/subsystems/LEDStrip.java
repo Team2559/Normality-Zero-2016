@@ -48,24 +48,22 @@ public class LEDStrip extends Subsystem {
     	
     	if(_curMode == RobotMap.TELEOP_ID) {
     		DriverStation.Alliance alliance = DriverStation.getInstance().getAlliance();
-    		
-    		if (DriverStation.getInstance().getBatteryVoltage() <= 11.5) { // might have to tweak this value
-    			_curMode = RobotMap.TELEOP_LOW_BATTERY_ID;
-    		} else if (Robot._shooter.getTargetingStatus()) {
-    			_curMode = RobotMap.TELEOP_TARGETING_ID;
-    		} else if (Robot._shooter.getShootingStatus()) {
-    			_curMode = RobotMap.TELEOP_SHOOTING_ID;
-//    		} else if (DriverStation.getInstance().getMatchTime() <= 20) { // this might not work
-//    			_curMode = RobotMap.TELEOP_LOW_TIME_ID;
-    		} else if(alliance == DriverStation.Alliance.Blue) {
-				_curMode = RobotMap.TELEOP_BLUE_ID;
-			} else if(alliance == DriverStation.Alliance.Red) {
-				_curMode = RobotMap.TELEOP_RED_ID;
-			} else if(alliance == DriverStation.Alliance.Invalid) {
-				_curMode = RobotMap.TELEOP_INVALID_ID;
-			} else {
-				_curMode = RobotMap.TELEOP_WHAT_ID;
-			}
+
+	    if (Robot._shooter.getTargetingStatus()) {
+		_curMode = RobotMap.TELEOP_TARGETING_ID;
+	    } else if (Robot._shooter.getShootingStatus()) {
+		_curMode = RobotMap.TELEOP_SHOOTING_ID;
+		// } else if (DriverStation.getInstance().getMatchTime() <= 20) { // this might not work
+		// _curMode = RobotMap.TELEOP_LOW_TIME_ID;
+	    } else if (alliance == DriverStation.Alliance.Blue) {
+		_curMode = RobotMap.TELEOP_BLUE_ID;
+	    } else if (alliance == DriverStation.Alliance.Red) {
+		_curMode = RobotMap.TELEOP_RED_ID;
+	    } else if (alliance == DriverStation.Alliance.Invalid) {
+		_curMode = RobotMap.TELEOP_INVALID_ID;
+	    } else {
+		_curMode = RobotMap.TELEOP_WHAT_ID;
+	    }
     	}
     	//System.out.println("Current mode: " + _curMode);
     }

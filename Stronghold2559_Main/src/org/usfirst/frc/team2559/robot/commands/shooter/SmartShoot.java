@@ -2,6 +2,7 @@ package org.usfirst.frc.team2559.robot.commands.shooter;
 
 import org.usfirst.frc.team2559.robot.Robot;
 import org.usfirst.frc.team2559.robot.RobotMap;
+import org.usfirst.frc.team2559.robot.commands.drive.AlignWithTarget;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;

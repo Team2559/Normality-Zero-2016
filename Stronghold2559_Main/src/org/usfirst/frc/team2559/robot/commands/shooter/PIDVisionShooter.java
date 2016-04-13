@@ -33,7 +33,7 @@ public class PIDVisionShooter extends Command {
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.2);
 	Timer.delay(0.01);
-	Robot._shooter.setClutchServo(30);
+	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
 	Timer.delay(RobotMap.SERVO_DELAY);
 	Robot._shooter.setAdjusterSpeed(0);
 	Timer.delay(0.01);

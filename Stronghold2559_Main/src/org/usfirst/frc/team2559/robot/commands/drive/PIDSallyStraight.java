@@ -16,7 +16,7 @@ public class PIDSallyStraight extends Command {
     private static final double ANGLES_TO_DEGREES = 1;
     private static final double SPEED = 0.6;
 
-   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_STRAIGHT_Kp, RobotMap.PID_STRAIGHT_Ki, RobotMap.PID_STRAIGHT_Kd, -0.3, 0.3, 0.5, true); // creates
+   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_STRAIGHT_Kp, RobotMap.PID_STRAIGHT_Ki, RobotMap.PID_STRAIGHT_Kd, -0.4, 0.4, 1, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 
@@ -43,24 +43,12 @@ public class PIDSallyStraight extends Command {
 	pid.calculate(Robot._driveTrain.getGyroAngle(), true);
 	double scale = pid.getOutput() * ANGLES_TO_DEGREES;
 	Robot._driveTrain.tankDrive(SPEED + scale, SPEED - scale);
-	    
-	/*if (angle > 0) {
-	    pid.calculateDebug(-Robot._driveTrain.getGyroAngle(), true);
-
-	    double power = pid.getOutput() * ANGLES_TO_DEGREES;
-	    Robot._driveTrain.tankDrive(-power, power);
-	} else {
-	    pid.calculateDebug(Robot._driveTrain.getGyroAngle(), true);
-
-	    double power = pid.getOutput() * ANGLES_TO_DEGREES;
-	    Robot._driveTrain.tankDrive(power, -power);
-	}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 //	return Robot.oi.getPIDSallyStraightButton();
-	return Robot.oi.getGoStraight();
+	return false;
     }
 
     // Called once after isFinished returns true

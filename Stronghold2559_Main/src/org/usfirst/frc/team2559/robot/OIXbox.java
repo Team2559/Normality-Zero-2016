@@ -1,12 +1,12 @@
 package org.usfirst.frc.team2559.robot;
 
 import org.usfirst.frc.team2559.robot.commands.SetIntake;
+import org.usfirst.frc.team2559.robot.commands.drive.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.PIDTurn;
 import org.usfirst.frc.team2559.robot.commands.recorder.CreateRecording;
 import org.usfirst.frc.team2559.robot.commands.recorder.PlayRecording;
-import org.usfirst.frc.team2559.robot.commands.shooter.AlignWithTarget;
 import org.usfirst.frc.team2559.robot.commands.shooter.DumbShoot;
 import org.usfirst.frc.team2559.robot.commands.shooter.SmartShoot;
 
