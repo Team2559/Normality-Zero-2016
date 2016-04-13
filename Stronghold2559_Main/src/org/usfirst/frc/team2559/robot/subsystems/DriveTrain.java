@@ -55,11 +55,11 @@ public class DriveTrain extends Subsystem {
     double			lastLeft	   = 0, lastRight = 0;
 
     // Encoder Distance Constants
-    public static final double	wheelDiameter	   = 8;
+    public static final double	wheelDiameter	   = 7.5;
     public static final double	pulsePerRevolution = 1440;
     public static final double	encoderGearRatio   = 1;
     public static final double	gearRatio	   = 1;
-    public static final double	Fudgefactor	   = 1.0;
+    public static final double	Fudgefactor	   = 3.4;
 
     final double		distanceperpulse   = Math.PI * wheelDiameter / pulsePerRevolution /
             encoderGearRatio / gearRatio * Fudgefactor;

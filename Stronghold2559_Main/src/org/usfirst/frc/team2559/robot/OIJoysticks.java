@@ -111,7 +111,7 @@ public class OIJoysticks {
     Trigger  _driver2POVUp   = new POVTrigger(driverStick2, true);
     Trigger  _driver2POVDown = new POVTrigger(driverStick2, false);
     
-    Trigger _endgameConfig = new POVTrigger(shooterStick, true);
+    Trigger _homeConfig2 = new POVTrigger(shooterStick, true);
     Trigger _homeConfig = new POVTrigger(shooterStick, false);
     
     Trigger _shooterManualArm = new XboxTrigger(shooterStick, true);
@@ -144,10 +144,11 @@ public class OIJoysticks {
 	
 	_lowbarConfig.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullisConfig.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
-	_endgameConfig.whenActive(new GetReadyToRumble(RobotMap.PUSHUP_ENDGAME_ID));
+	_homeConfig2.whenActive(new GetReadyToRumble(RobotMap.HOME_ID));
 	_homeConfig.whenActive(new GetReadyToRumble(RobotMap.HOME_ID));
 	_chevalConfig.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));
 	_frequentConfig.whenPressed(new GetReadyToRumble(RobotMap.MOAT_ID));
+	_intakeConfig.whenPressed(new PrepIntake());
 	_forw.whileHeld(new DobbyForward());
 	_back.whileHeld(new DobbyBackward());
 	_lowgoal.whenPressed(new LowGoal());
