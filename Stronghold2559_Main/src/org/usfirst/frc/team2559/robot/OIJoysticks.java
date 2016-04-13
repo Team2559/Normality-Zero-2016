@@ -141,7 +141,7 @@ public class OIJoysticks {
 //		end();
 //	    }
 //	});
-	
+	_shootingConfig.whenPressed(new GetReadyToRumble(RobotMap.SHOOTING_ID));
 	_lowbarConfig.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullisConfig.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
 	_homeConfig2.whenActive(new GetReadyToRumble(RobotMap.HOME_ID));

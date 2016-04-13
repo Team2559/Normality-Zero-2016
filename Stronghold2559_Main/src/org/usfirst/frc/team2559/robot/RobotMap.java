@@ -40,7 +40,7 @@ public static final double  PID_SHOOTER_Kp		      = 0.35,
 
 public static final double  PID_ARM_Kp		     	      = 0.5,
                             PID_ARM_Ki		      	      = 0.3, 
-                            PID_ARM_Kd		      	      = 0.15;
+                            PID_ARM_Kd		      	      = 0.3;
 
 public static final double  PID_STRAIGHT_Kp	     	      = 0.5,
                             PID_STRAIGHT_Ki	      	      = 0.3, 
@@ -56,7 +56,8 @@ public static final int     PORTCULLIS_ID 		      = 0,
                             ROUGHTERRAIN_ID		      = 7,
                             LOWBAR_ID 			      = 8,
                             PUSHUP_ENDGAME_ID		      = 9,
-                            HOME_ID			      = 10;
+                            HOME_ID			      = 10,
+                            SHOOTING_ID			      = 11;
 
 /*
  * LED Constants 
@@ -126,7 +127,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             PORT_ARM_INTAKE 		      = 10,
                             PORT_ARM_ENC		      = 3,
                             ARM_INTAKE_ANGLE		      = 182, // 182
-                            ARM_INITIAL_POS_ANGLE	      = 56,
+                            ARM_INITIAL_POS_ANGLE	      = 45,
                             ARM_GROUND_ANGLE  		      = 168,
                             ARM_MAX_ANGLE		      = 200; // 200
 

@@ -35,6 +35,8 @@ public class GetReadyToRumble extends CommandGroup {
 	    addSequential(new PIDSetShooter(30));
 	} else if (val == RobotMap.HOME_ID) {
 	    addSequential(new PIDSetShooter(35));
+	} else if (val == RobotMap.SHOOTING_ID) {
+	    addSequential(new PIDSetShooter(30));
 	}
 
 	if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
@@ -55,6 +57,8 @@ public class GetReadyToRumble extends CommandGroup {
 	    addSequential(new PIDSetArm(210, -0.8, 0.8));
 	} else if (val == RobotMap.HOME_ID) {
 	    addSequential(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
+	} else if (val == RobotMap.SHOOTING_ID) {
+	    addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	}
     }
     
