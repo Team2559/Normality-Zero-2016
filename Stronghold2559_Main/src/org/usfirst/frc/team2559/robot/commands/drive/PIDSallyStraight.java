@@ -16,7 +16,7 @@ public class PIDSallyStraight extends Command {
     private static final double ANGLES_TO_DEGREES = 1;
     private static final double SPEED = 0.6;
 
-   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_STRAIGHT_Kp, RobotMap.PID_STRAIGHT_Ki, RobotMap.PID_STRAIGHT_Kd, -0.4, 0.4, 1, true); // creates
+   private PIDControllerRT       pid	       = new PIDControllerRT(RobotMap.PID_STRAIGHT_Kp, RobotMap.PID_STRAIGHT_Ki, RobotMap.PID_STRAIGHT_Kd, -0.4, 0.4, 5, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 

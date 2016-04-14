@@ -70,7 +70,7 @@ public class OIJoysticks {
     Joystick driverStick2    = new Joystick(1);
     Joystick shooterStick    = new Joystick(2);
 
-    Button   driverButton1	     = new JoystickButton(driverStick1, 1),
+    Button   _sallyStraight	     = new JoystickButton(driverStick1, 1),
             driverButton2 = new JoystickButton(driverStick1, 2),
             _forw = new JoystickButton(driverStick1, 3),
             _back = new JoystickButton(driverStick1, 4),
@@ -123,26 +123,7 @@ public class OIJoysticks {
 
     public OIJoysticks() {
 	
-//	_testStraight.whenPressed(new PIDSallyStraight());
-//	_testStraight.whenReleased(new Command() {
-//
-//	    protected void initialize() {
-//		Robot.oi.setGoStraight(false);
-//	    }
-//
-//	    protected void execute() {}
-//
-//	    protected boolean isFinished() {
-//		return false;
-//	    }
-//
-//	    protected void end() {
-//	    }
-//
-//	    protected void interrupted() {
-//		end();
-//	    }
-//	});
+	_sallyStraight.whileHeld(new PIDSallyStraight());
 	
 	_teleAutoCheval.whenPressed(new TeleAutoCheval());
 	_teleAutoPort.whenPressed(new TeleAutoPortcullis());
