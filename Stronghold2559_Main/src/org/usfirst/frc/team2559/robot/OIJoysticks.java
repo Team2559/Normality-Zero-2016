@@ -9,6 +9,8 @@ import org.usfirst.frc.team2559.robot.commands.SetIntake;
 import org.usfirst.frc.team2559.robot.commands.arm.ManualArm;
 import org.usfirst.frc.team2559.robot.commands.arm.PIDSetArm;
 import org.usfirst.frc.team2559.robot.commands.autonomous.PIDAutonTurn;
+import org.usfirst.frc.team2559.robot.commands.autonomous.TeleAutoCheval;
+import org.usfirst.frc.team2559.robot.commands.autonomous.TeleAutoPortcullis;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyBackward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbyForward;
 import org.usfirst.frc.team2559.robot.commands.drive.DobbySpin;
@@ -68,12 +70,12 @@ public class OIJoysticks {
     Joystick driverStick2    = new Joystick(1);
     Joystick shooterStick    = new Joystick(2);
 
-    Button   _fast	     = new JoystickButton(driverStick1, 1),
-            _lowgoal = new JoystickButton(driverStick1, 2),
+    Button   driverButton1	     = new JoystickButton(driverStick1, 1),
+            driverButton2 = new JoystickButton(driverStick1, 2),
             _forw = new JoystickButton(driverStick1, 3),
             _back = new JoystickButton(driverStick1, 4),
-            _bringItIn = new JoystickButton(driverStick1, 5),
-            _lowbar = new JoystickButton(driverStick1, 6),
+            _teleAutoCheval = new JoystickButton(driverStick1, 5),
+            _teleAutoPort = new JoystickButton(driverStick1, 6),
             _portcullis = new JoystickButton(driverStick1, 7),
             _chival = new JoystickButton(driverStick1, 8),
             _moat = new JoystickButton(driverStick1, 9),
@@ -141,6 +143,10 @@ public class OIJoysticks {
 //		end();
 //	    }
 //	});
+	
+	_teleAutoCheval.whenPressed(new TeleAutoCheval());
+	_teleAutoPort.whenPressed(new TeleAutoPortcullis());
+	
 	_shootingConfig.whenPressed(new GetReadyToRumble(RobotMap.SHOOTING_ID));
 	_lowbarConfig.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullisConfig.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
@@ -151,35 +157,13 @@ public class OIJoysticks {
 	_intakeConfig.whenPressed(new PrepIntake());
 	_forw.whileHeld(new DobbyForward());
 	_back.whileHeld(new DobbyBackward());
-	_lowgoal.whenPressed(new LowGoal());
 	_sallySpin.whileHeld(new DobbySpin(true));
-	_fast.whileHeld(new Command() {
-
-	    protected void initialize() {
-		Robot._driveTrain.setFastDrive(true);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return false;
-	    }
-
-	    protected void end() {
-		Robot._driveTrain.setFastDrive(false);
-	    }
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
-	_bringItIn.whenPressed(new PIDSetShooter(0));
+	
 
 	_align.whenPressed(new PIDVisionTurn());
 
 	_smartShoot.whenPressed(new PIDSmartShoot());
 
-	_lowbar.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_shooterLowBar.whenPressed(new GetReadyToRumble(RobotMap.LOWBAR_ID));
 	_portcullis.whenPressed(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
 	_chival.whenPressed(new GetReadyToRumble(RobotMap.CDF_ID));

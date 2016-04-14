@@ -52,7 +52,7 @@ public class PIDSmartShoot extends CommandGroup {
 	    }
 	});
 	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
-	addSequential(new PIDVisionTurn());
+	addParallel(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {    
 
