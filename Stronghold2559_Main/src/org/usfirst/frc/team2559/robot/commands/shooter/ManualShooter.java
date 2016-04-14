@@ -18,8 +18,8 @@ public class ManualShooter extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 	// disengage clutch
-	Robot._shooter.setAdjusterSpeed(0.2);
-	Timer.delay(0.01);
+	Robot._shooter.setAdjusterSpeed(0.4);
+	Timer.delay(0.02);
 	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
 	Timer.delay(RobotMap.SERVO_DELAY);
 	Robot._shooter.setAdjusterSpeed(0);

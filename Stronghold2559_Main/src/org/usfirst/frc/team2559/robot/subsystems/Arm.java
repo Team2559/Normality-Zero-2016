@@ -64,7 +64,7 @@ public class Arm extends Subsystem {
     }
     
     public double getArmAngle() {
-	return (360/5) * (_armEncoder.getVoltage() - RobotMap.ARM_ZERO);
+	return (360.0/5.0) * (_armEncoder.getVoltage() - RobotMap.ARM_ZERO);
     }
     
 }

@@ -18,6 +18,7 @@ public class PIDVisionShooter extends Command {
             RobotMap.PID_SHOOTER_Kd, -0.5, 0.6, 1); // creates PID controller with min, max, and tolerance
     
     double angle;
+    boolean hasFired = false;
 
     public PIDVisionShooter() {
 	// Use requires() here to declare subsystem dependencies
@@ -59,6 +60,10 @@ public class PIDVisionShooter extends Command {
 		Robot._shooter.setAdjusterSpeed(power * 0.2);
 	    }
 	}
+	
+//	if(pid.isDone() && !hasFired) {
+//	    Robot._shooter.setSpinSpeed(-1, -1);
+//	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

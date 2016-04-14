@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
     public static Arm	       _arm;
 
     public static USBCamera    cam1;
-    public static CameraServer server;
+    public static CameraServer2 server;
 
     public static int	       currentSession,
             session0, session1;
@@ -98,7 +98,7 @@ public class Robot extends IterativeRobot {
 	// oi = new OIXbox();
 	oi = new OIJoysticks();
 
-	server = CameraServer.getInstance();
+	server = CameraServer2.getInstance();
 	server.setQuality(50);
 	cam1 = new USBCamera("cam1");
 	cam1.setSize(640, 360);

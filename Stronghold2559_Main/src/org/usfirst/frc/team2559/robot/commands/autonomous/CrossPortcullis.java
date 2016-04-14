@@ -43,17 +43,17 @@ public class CrossPortcullis extends CommandGroup {
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
 	addSequential(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS * 1.2), 3);
+	addSequential(new DriveForDistance(0.65, RobotMap.DISTANCE_TO_OUTERWORKS), 3);
 	addSequential(new PortcullisTwitch());
 	addSequential(new WaitCommand(0.3));
 	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS / 1.5), 2);
+	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS / 2), 2);
 	addParallel(new PIDSetShooter(30));
 	// turn after crossing
 //	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());
 	/* vision */
-	addSequential(new PIDVisionTurn());
+	addParallel(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {
 		protected void initialize() {

@@ -57,7 +57,8 @@ public static final int     PORTCULLIS_ID 		      = 0,
                             LOWBAR_ID 			      = 8,
                             PUSHUP_ENDGAME_ID		      = 9,
                             HOME_ID			      = 10,
-                            SHOOTING_ID			      = 11;
+                            SHOOTING_ID			      = 11,
+                            LOWGOAL_SHOOTING_ID		      = 12;
 
 /*
  * LED Constants 
@@ -115,7 +116,7 @@ public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_ENCODER	      = 1,
                             PORT_SHOOTER_LATCH		      = 4,
                             PORT_SHOOTER_PUSHER		      = 5,
-                            SERVO_PULLOUT_GAME		      = 50;
+                            SERVO_PULLOUT_GAME		      = 60;
 
 public static final double  SERVO_DELAY			      = 0.5;
 
@@ -132,7 +133,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             ARM_MAX_ANGLE		      = 200; // 200
 
 
-public static final double  ARM_ZERO			      = 0.071,
+public static final double  ARM_ZERO			      = 0.389,
 			    ARM_INTAKE_SPEED 		      = 1;
 
 
@@ -144,7 +145,7 @@ public static final String  AUTONOMOUS_FILE		      = "/home/lvuser/recordedAuto"
 
 // 96 inches from field to outer-works this kid claims... http://www.chiefdelphi.com/forums/showthread.php?t=144448
 // this may need to be higher! 150?
-public static final double DISTANCE_TO_OUTERWORKS	      = 96.5;
+public static final double DISTANCE_TO_OUTERWORKS	      = 84.5;
 
 /*
  * SmartShoot Constants

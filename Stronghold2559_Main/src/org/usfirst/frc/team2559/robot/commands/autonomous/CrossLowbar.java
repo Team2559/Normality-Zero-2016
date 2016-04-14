@@ -47,7 +47,7 @@ public class CrossLowbar extends CommandGroup {
 //	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addSequential(new PIDVisionTurn());
+	addParallel(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {
 		protected void initialize() {

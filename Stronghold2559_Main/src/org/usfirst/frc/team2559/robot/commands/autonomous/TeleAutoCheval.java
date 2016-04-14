@@ -33,21 +33,20 @@ public class TeleAutoCheval extends CommandGroup {
         // arm.
 	addSequential(new GetReadyToRumble(RobotMap.CDF_ID));
 	// drive to the CDF and touch it
-	addSequential(new DriveForDistance(0.8, 20), 2);
+	addSequential(new DriveForDistance(0.8, 10), 1);
 	// addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS / 1.8), 3);
 	// let the robot roll down off a little
-	addSequential(new WaitCommand(1));
+	addSequential(new WaitCommand(0.5));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
 	// wait before we move at full speed
-	addSequential(new WaitCommand(0.5));
-	// addSequential(new DriveForDistance(0.8, 20));
+	addSequential(new DriveForDistance(0.8, 20));
 	// get the shooter ready for shooting
-	addParallel(new PIDSetShooter(30));
 	// get the arm up so we don't bang it when we hit the ground
 	addParallel(new PIDSetArm(RobotMap.ARM_INITIAL_POS_ANGLE));
 	// move full speed over the CDF
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS / 2));
+	
+	addSequential(new DriveForDistance(0.7, RobotMap.DISTANCE_TO_OUTERWORKS / 2));
 
     }
 }

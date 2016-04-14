@@ -84,7 +84,7 @@ public class OIJoysticks {
             _sallyport = new JoystickButton(driverStick1, 12);
 
     Button   _smartShoot     = new JoystickButton(driverStick2, 1),
-            _align = new JoystickButton(driverStick2, 2),
+            _lowGoal = new JoystickButton(driverStick2, 2),
             _intakeOn = new JoystickButton(driverStick2, 3),
             _spinup = new JoystickButton(driverStick2, 4),
             _prepIntake = new JoystickButton(driverStick2, 5),
@@ -141,7 +141,7 @@ public class OIJoysticks {
 	_sallySpin.whileHeld(new DobbySpin(true));
 	
 
-	_align.whenPressed(new PIDVisionTurn());
+	_lowGoal.whenPressed(new GetReadyToRumble(RobotMap.LOWGOAL_SHOOTING_ID));
 
 	_smartShoot.whenPressed(new PIDSmartShoot());
 

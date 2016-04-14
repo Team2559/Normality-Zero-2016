@@ -18,7 +18,8 @@ public class PIDSetShooter extends Command {
     private PIDControllerRT pid;		// creates PID controller with min, max, and tolerance
 
     double		  angle;
-    boolean		  delay	= false;
+    boolean		 delay = false, hasSetClutchServo = false, hasStoppedAdjuster = false;
+    Long		    startTime;
 
     /**
      * Class constructor specifying the angle to move the shooter to.
@@ -97,40 +98,52 @@ public class PIDSetShooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	startTime = System.currentTimeMillis();
 	// disengage clutch
-	Robot._shooter.setAdjusterSpeed(0.2);
-	Timer.delay(0.01);
-	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
-	Timer.delay(RobotMap.SERVO_DELAY);
-	Robot._shooter.setAdjusterSpeed(0);
-	Timer.delay(0.01);
-	pid.reset();
+	Robot._shooter.setAdjusterSpeed(0.4);
+
+	try {
+	    Thread.sleep(20);
+	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
+	    Thread.sleep(500);
+	    Robot._shooter.setAdjusterSpeed(0);
+	    pid.reset();
+
+	}
+	catch (Exception e)
+	{
+	    
+	}
+	
+	
+//	Timer.delay(0.02);
+//	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
+//	Timer.delay(RobotMap.SERVO_DELAY);
+//	Robot._shooter.setAdjusterSpeed(0);
+//	pid.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//	double angleError = angle - Robot._shooter.getShooterAngle();
-//	if (angleError > 0) {
-//	    pid.calculateDebug(Robot._shooter.getShooterAngle(), true);
-//
-//	    double power = pid.getOutput();
-//	    Robot._shooter.setAdjusterSpeed(power);
-//	} else {
-//	    pid.calculateDebug(-Robot._shooter.getShooterAngle(), true);
-//
-//	    double power = -pid.getOutput();
-//	    if (angle < 0) {
-//		Robot._shooter.setAdjusterSpeed(power * 0.5);
-//	    } else {
-//		Robot._shooter.setAdjusterSpeed(power * 0.5);
-//	    }
+//	if (System.currentTimeMillis() > startTime + 20 && !hasSetClutchServo) {
+//	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
+//	    hasSetClutchServo = true;
+//	    startTime = System.currentTimeMillis();
 //	}
-	pid.calculate(Robot._shooter.getShooterAngle(), true);
-	double power = pid.getOutput();
-	if(power >= 0)
-	    Robot._shooter.setAdjusterSpeed(power);
-	else
-	    Robot._shooter.setAdjusterSpeed(power * 0.5);
+//	
+//	if (System.currentTimeMillis() > startTime + 500 && !hasStoppedAdjuster) {
+//		Robot._shooter.setAdjusterSpeed(0);
+//		hasStoppedAdjuster = true;
+//	}
+	
+//	if (hasSetClutchServo && hasStoppedAdjuster) {
+	    pid.calculate(Robot._shooter.getShooterAngle(), true);
+	    double power = pid.getOutput();
+	    if (power >= 0)
+		Robot._shooter.setAdjusterSpeed(power);
+	    else
+		Robot._shooter.setAdjusterSpeed(power * 0.5);
+//	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
