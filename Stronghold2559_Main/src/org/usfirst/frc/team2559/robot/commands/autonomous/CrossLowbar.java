@@ -39,15 +39,15 @@ public class CrossLowbar extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-	addParallel(new GetReadyToRumble(RobotMap.LOWBAR_ID));
-	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS * 2));
-	addParallel(new PIDSetShooter(30));
+	addSequential(new GetReadyToRumble(RobotMap.LOWBAR_ID));
+//	addSequential(new DriveForDistance(0.6, RobotMap.DISTANCE_TO_OUTERWORKS + (RobotMap.DISTANCE_TO_OUTERWORKS / 2)));
 	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
+	addSequential(new PIDSetShooter(30));
 	// turn the proper direction
 //	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addParallel(new PIDVisionTurn());
+	addSequential(new PIDVisionTurn());
 	addSequential(new PIDVisionShooter());
 	addParallel(new Command() {
 		protected void initialize() {
