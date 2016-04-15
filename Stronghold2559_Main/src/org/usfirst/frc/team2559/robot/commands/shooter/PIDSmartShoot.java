@@ -52,50 +52,50 @@ public class PIDSmartShoot extends CommandGroup {
 	    }
 	});
 	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
-	addParallel(new PIDVisionTurn());
+	addParallel(new PIDVisionTurn(), 3);
 	addSequential(new PIDVisionShooter());
-	addParallel(new Command() {    
-
-	    protected void initialize() {
-		Robot._shooter.setTargetingStatus(false);
-		Robot._shooter.setShootingStatus(true);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
-	addSequential(new SetShooter(1, 1));
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
-	addSequential(new FireServo());
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY)); // removed delay, prev * 2
-	addSequential(new SetShooter(0, 0));
-	addParallel(new Command() {
-
-	    protected void initialize() {
-		Robot._shooter.setShootingStatus(false);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+//	addParallel(new Command() {    
+//
+//	    protected void initialize() {
+//		Robot._shooter.setTargetingStatus(false);
+//		Robot._shooter.setShootingStatus(true);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+//	addSequential(new SetShooter(1, 1));
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+//	addSequential(new FireServo());
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY)); // removed delay, prev * 2
+//	addSequential(new SetShooter(0, 0));
+//	addParallel(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._shooter.setShootingStatus(false);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
 
     }
 }

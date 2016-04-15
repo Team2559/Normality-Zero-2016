@@ -34,7 +34,7 @@ public static final double  PID_TURN_Kp			      = 0.3,
                             PID_TURN_Ki			      = 0.4, 
                             PID_TURN_Kd			      = 0.2;
 
-public static final double  PID_SHOOTER_Kp		      = 0.35,
+public static final double  PID_SHOOTER_Kp		      = 0.25,
                             PID_SHOOTER_Ki		      = 0.01, 
                             PID_SHOOTER_Kd		      = 0.15;
 

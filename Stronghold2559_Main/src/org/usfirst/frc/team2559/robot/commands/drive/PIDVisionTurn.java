@@ -20,7 +20,7 @@ public class PIDVisionTurn extends Command {
     private static final double ANGLES_TO_DEGREES = 1;
     double angle;
 
-   private PIDTurnController       pid	       = new PIDTurnController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 0.5, true); // creates
+   private PIDTurnController       pid	       = new PIDTurnController(RobotMap.PID_TURN_Kp, RobotMap.PID_TURN_Ki, RobotMap.PID_TURN_Kd, -1, 1, 1, true); // creates
 
     // 0.5, and .5 as min/max/tolerance
 

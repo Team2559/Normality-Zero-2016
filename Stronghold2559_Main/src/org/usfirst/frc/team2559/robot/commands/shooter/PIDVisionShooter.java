@@ -18,7 +18,8 @@ public class PIDVisionShooter extends Command {
             RobotMap.PID_SHOOTER_Kd, -0.5, 0.6, 1); // creates PID controller with min, max, and tolerance
     
     double angle;
-    boolean hasFired = false;
+    boolean hasFinishedFiring = false, hasFired = false;
+    Long startTime = 0L;
 
     public PIDVisionShooter() {
 	// Use requires() here to declare subsystem dependencies
@@ -40,6 +41,9 @@ public class PIDVisionShooter extends Command {
 	Timer.delay(0.01);
 	pid.reset();
 	pid.setSetpoint(angle);
+	startTime = 0L;
+	hasFinishedFiring = false;
+	hasFired = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,21 +58,42 @@ public class PIDVisionShooter extends Command {
 	    pid.calculate(-Robot._shooter.getShooterAngle(), true);
 
 	    double power = -pid.getOutput();
+//	    Robot._shooter.setAdjusterSpeed(power);
 	    if(angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 1.8);
+		Robot._shooter.setAdjusterSpeed(power * 2);
 	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.2);
+		Robot._shooter.setAdjusterSpeed(power * 0.05);
 	    }
 	}
 	
-//	if(pid.isDone() && !hasFired) {
-//	    Robot._shooter.setSpinSpeed(-1, -1);
-//	}
+	// time to shoot
+	
+	
+	if (pid.isDone() && !hasFinishedFiring) {
+	    if (startTime == 0L) {
+		startTime = System.currentTimeMillis();
+	    }
+	    Robot._shooter.setTargetingStatus(false);
+	    Robot._shooter.setShootingStatus(true);
+	    Robot._shooter.setSpinSpeed(-1, -1);
+	    if (System.currentTimeMillis() > startTime + 400 && !hasFired) {
+		Robot._shooter.setFiringServo(0);
+		hasFired = true;
+	    }
+	    
+	    if (System.currentTimeMillis() > startTime + 800 && hasFired) {
+		Robot._shooter.setFiringServo(1);
+		Robot._shooter.setSpinSpeed(0, 0);
+		Robot._shooter.setShootingStatus(false);
+		hasFinishedFiring = true;
+	    }  
+	    
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return pid.isDone();
+	return pid.isDone() && hasFinishedFiring && hasFired;
     }
 
     // Called once after isFinished returns true
