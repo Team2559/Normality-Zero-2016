@@ -130,7 +130,7 @@ public class PIDSetShooter extends Command {
 	    if (power >= 0)
 		Robot._shooter.setAdjusterSpeed(power);
 	    else
-		Robot._shooter.setAdjusterSpeed(power * 0.5);
+		Robot._shooter.setAdjusterSpeed(power * 0.8);
 	}
     }
 

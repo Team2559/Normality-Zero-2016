@@ -85,12 +85,54 @@ public class CrossPortcullis extends CommandGroup {
 //	addSequential(new DriveForDistance(0.7, RobotMap.DISTANCE_TO_OUTERWORKS / 2), 2);
 //	// turn after crossing
 ////	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addParallel(new PIDVisionTurn(), 2);
-	addSequential(new PIDVisionShooter(), 5);
+	addSequential(new PIDVisionTurn(), 4);
+	addSequential(new PIDVisionShooter());
 
 	// add shooting logic here later
+	addParallel(new Command() {
+
+	    protected void initialize() {
+		Robot._shooter.setShootingStatus(true);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return true;
+	    }
+
+	    protected void end() {}
+
+	    protected void interrupted() {
+		end();
+	    }
+	});
+	addSequential(new SetShooter(1, 1));
+	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+	addSequential(new FireServo());
+	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+	addSequential(new SetShooter(0, 0));
+	addParallel(new Command() {
+
+	    protected void initialize() {
+		Robot._shooter.setShootingStatus(false);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return true;
+	    }
+
+	    protected void end() {}
+
+	    protected void interrupted() {
+		end();
+	    }
+	});
 
     }
 }

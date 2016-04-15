@@ -60,46 +60,47 @@ public class PIDVisionShooter extends Command {
 	    double power = -pid.getOutput();
 //	    Robot._shooter.setAdjusterSpeed(power);
 	    if(angle < 0) {
-		Robot._shooter.setAdjusterSpeed(power * 2);
+		Robot._shooter.setAdjusterSpeed(power * 0.5);
 	    } else {
-		Robot._shooter.setAdjusterSpeed(power * 0.05);
+		Robot._shooter.setAdjusterSpeed(power * 0.2);
 	    }
 	}
 	
 	// time to shoot
 	
 	
-	if (pid.isDone() && !hasFinishedFiring) {
-	    Robot._shooter.setSpinSpeed(-1, -1);
-	    if (startTime == 0L) {
-		startTime = System.currentTimeMillis();
-	    }
-	    Robot._shooter.setTargetingStatus(false);
-	    Robot._shooter.setShootingStatus(true);
-	    if (System.currentTimeMillis() > startTime + 400 && !hasFired) {
-		Robot._shooter.setFiringServo(0);
-		hasFired = true;
-	    }
-	    
-	    if (System.currentTimeMillis() > startTime + 800 && hasFired) {
-		Robot._shooter.setFiringServo(1);
-		Robot._shooter.setShootingStatus(false);
-		hasFinishedFiring = true;
-	    }  
-	    
-	}
+//	if (pid.isDone() && !hasFinishedFiring) {
+//	    Robot._shooter.setSpinSpeed(-1, -1);
+//	    if (startTime == 0L) {
+//		startTime = System.currentTimeMillis();
+//	    }
+//	    Robot._shooter.setTargetingStatus(false);
+//	    Robot._shooter.setShootingStatus(true);
+//	    if (System.currentTimeMillis() > startTime + 400 && !hasFired) {
+//		Robot._shooter.setFiringServo(0);
+//		hasFired = true;
+//	    }
+//	    
+//	    if (System.currentTimeMillis() > startTime + 1000 && hasFired) {
+//		Robot._shooter.setFiringServo(1);
+//		Robot._shooter.setShootingStatus(false);
+//		hasFinishedFiring = true;
+//	    }  
+//	    
+//	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return pid.isDone() && hasFinishedFiring && hasFired;
+//	return hasFinishedFiring && hasFired;
+	return pid.isDone();
     }
 
     // Called once after isFinished returns true
     protected void end() {
 	// engage clutch latch
-	Robot._shooter.setClutchServo(0);
-	Robot._shooter.setSpinSpeed(0, 0);
+	Robot._shooter.setClutchServo(1);
+//	Robot._shooter.setSpinSpeed(0, 0);
 	Robot._shooter.setAdjusterSpeed(0);
 	pid.reset();
 	

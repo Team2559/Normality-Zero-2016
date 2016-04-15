@@ -33,6 +33,7 @@ public class PIDSmartShoot extends CommandGroup {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+	addSequential(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
 	addParallel(new Command() {
 
 	    protected void initialize() {
@@ -51,51 +52,50 @@ public class PIDSmartShoot extends CommandGroup {
 		end();
 	    }
 	});
-	addParallel(new PIDSetArm(RobotMap.ARM_INTAKE_ANGLE));
-	addParallel(new PIDVisionTurn(), 3);
+	addSequential(new PIDVisionTurn(), 3);
 	addSequential(new PIDVisionShooter());
-//	addParallel(new Command() {    
-//
-//	    protected void initialize() {
-//		Robot._shooter.setTargetingStatus(false);
-//		Robot._shooter.setShootingStatus(true);
-//	    }
-//
-//	    protected void execute() {}
-//
-//	    protected boolean isFinished() {
-//		return true;
-//	    }
-//
-//	    protected void end() {}
-//
-//	    protected void interrupted() {
-//		end();
-//	    }
-//	});
-//	addSequential(new SetShooter(1, 1));
-//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
-//	addSequential(new FireServo());
-//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY)); // removed delay, prev * 2
-//	addSequential(new SetShooter(0, 0));
-//	addParallel(new Command() {
-//
-//	    protected void initialize() {
-//		Robot._shooter.setShootingStatus(false);
-//	    }
-//
-//	    protected void execute() {}
-//
-//	    protected boolean isFinished() {
-//		return true;
-//	    }
-//
-//	    protected void end() {}
-//
-//	    protected void interrupted() {
-//		end();
-//	    }
-//	});
+	addParallel(new Command() {    
+
+	    protected void initialize() {
+		Robot._shooter.setTargetingStatus(false);
+		Robot._shooter.setShootingStatus(true);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return true;
+	    }
+
+	    protected void end() {}
+
+	    protected void interrupted() {
+		end();
+	    }
+	});
+	addSequential(new SetShooter(1, 1));
+	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+	addSequential(new FireServo());
+	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY)); // removed delay, prev * 2
+	addSequential(new SetShooter(0, 0));
+	addParallel(new Command() {
+
+	    protected void initialize() {
+		Robot._shooter.setShootingStatus(false);
+	    }
+
+	    protected void execute() {}
+
+	    protected boolean isFinished() {
+		return true;
+	    }
+
+	    protected void end() {}
+
+	    protected void interrupted() {
+		end();
+	    }
+	});
 
     }
 }

@@ -105,7 +105,7 @@ public static final int	    PORT_ANALOG_GYRO		      = 0;
  */
 
 public static final double  SHOOTER_INTAKE_SPEED	      = 0.5,
-                            SHOOTER_ZERO		      = 2.045,
+                            SHOOTER_ZERO		      = 2.086,
 			    SHOOTER_INTAKE_ANGLE	      = -9;
 
 // min shooting angle is 21

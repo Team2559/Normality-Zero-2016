@@ -71,7 +71,7 @@ public class OIJoysticks {
     Joystick shooterStick    = new Joystick(2);
 
     Button   _sallyStraight	     = new JoystickButton(driverStick1, 1),
-            driverButton2 = new JoystickButton(driverStick1, 2),
+            _alignWithGoal = new JoystickButton(driverStick1, 2),
             _forw = new JoystickButton(driverStick1, 3),
             _back = new JoystickButton(driverStick1, 4),
             _teleAutoCheval = new JoystickButton(driverStick1, 5),
@@ -122,6 +122,8 @@ public class OIJoysticks {
     boolean goStraight = false;
 
     public OIJoysticks() {
+	
+	_alignWithGoal.whenPressed(new PIDVisionTurn());
 	
 	_sallyStraight.whileHeld(new PIDSallyStraight());
 	
