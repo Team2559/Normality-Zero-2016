@@ -133,7 +133,7 @@ public static final int	    PORT_ARM_ADJUSTER		      = 9,
                             ARM_MAX_ANGLE		      = 200; // 200
 
 
-public static final double  ARM_ZERO			      = 0.389,
+public static final double  ARM_ZERO			      = 0.496,
 			    ARM_INTAKE_SPEED 		      = 1;
 
 

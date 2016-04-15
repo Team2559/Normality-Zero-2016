@@ -71,6 +71,11 @@ public class DriveTrain extends Subsystem {
 	_leftEncoder.setDistancePerPulse(distanceperpulse);
 	_rightEncoder.setDistancePerPulse(distanceperpulse);
 	resetGyro();
+	
+	_leftfr.setVoltageRampRate(36);
+	_leftback.setVoltageRampRate(36);
+	_rightfr.setVoltageRampRate(36);
+	_rightback.setVoltageRampRate(36);
     }
 
     public void initDefaultCommand() {

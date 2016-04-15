@@ -70,12 +70,12 @@ public class PIDVisionShooter extends Command {
 	
 	
 	if (pid.isDone() && !hasFinishedFiring) {
+	    Robot._shooter.setSpinSpeed(-1, -1);
 	    if (startTime == 0L) {
 		startTime = System.currentTimeMillis();
 	    }
 	    Robot._shooter.setTargetingStatus(false);
 	    Robot._shooter.setShootingStatus(true);
-	    Robot._shooter.setSpinSpeed(-1, -1);
 	    if (System.currentTimeMillis() > startTime + 400 && !hasFired) {
 		Robot._shooter.setFiringServo(0);
 		hasFired = true;
@@ -83,7 +83,6 @@ public class PIDVisionShooter extends Command {
 	    
 	    if (System.currentTimeMillis() > startTime + 800 && hasFired) {
 		Robot._shooter.setFiringServo(1);
-		Robot._shooter.setSpinSpeed(0, 0);
 		Robot._shooter.setShootingStatus(false);
 		hasFinishedFiring = true;
 	    }  
@@ -100,6 +99,7 @@ public class PIDVisionShooter extends Command {
     protected void end() {
 	// engage clutch latch
 	Robot._shooter.setClutchServo(0);
+	Robot._shooter.setSpinSpeed(0, 0);
 	Robot._shooter.setAdjusterSpeed(0);
 	pid.reset();
 	

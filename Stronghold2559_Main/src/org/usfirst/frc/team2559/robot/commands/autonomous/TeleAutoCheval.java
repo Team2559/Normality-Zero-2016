@@ -36,7 +36,7 @@ public class TeleAutoCheval extends CommandGroup {
 	addSequential(new DriveForDistance(0.8, 10), 1);
 	// addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS / 1.8), 3);
 	// let the robot roll down off a little
-	addSequential(new WaitCommand(0.5));
+	addSequential(new WaitCommand(0.8));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
 	// wait before we move at full speed

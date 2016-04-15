@@ -43,12 +43,48 @@ public class CrossPortcullis extends CommandGroup {
 
 	// set our arms and shooter to portcullis in the event we aren't in starting config while driving to outerworks
 	addSequential(new GetReadyToRumble(RobotMap.PORTCULLIS_ID));
-	addSequential(new DriveForDistance(0.65, RobotMap.DISTANCE_TO_OUTERWORKS), 2);	addSequential(new PortcullisTwitch());
-	addSequential(new WaitCommand(0.2));
-	addSequential(new PortcullisTwitch());
-	addSequential(new DriveForDistance(0.7, RobotMap.DISTANCE_TO_OUTERWORKS / 2), 2);
-	// turn after crossing
-//	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
+	addSequential(new DriveForDistance(0.65, RobotMap.DISTANCE_TO_OUTERWORKS * 2));	
+//	addSequential(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._arm.setAdjusterSpeed(-1);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+//	addSequential(new WaitCommand(0.7));
+//	addSequential(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._arm.setAdjusterSpeed(0);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+//	addSequential(new WaitCommand(0.2));
+//	addSequential(new DriveForDistance(0.7, RobotMap.DISTANCE_TO_OUTERWORKS / 2), 2);
+//	// turn after crossing
+////	addSequential(new PIDAutonTurn((int)Robot.autonTurnDirection.getSelected()));
 	addSequential(new PIDAutonTurn());
 	/** vision **/
 	addParallel(new PIDVisionTurn(), 2);
