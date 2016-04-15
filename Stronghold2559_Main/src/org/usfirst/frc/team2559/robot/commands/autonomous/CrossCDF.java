@@ -44,10 +44,10 @@ public class CrossCDF extends CommandGroup {
 	// move our arms and shooter to the CDF position
 	addSequential(new GetReadyToRumble(RobotMap.CDF_ID));
 	// drive to the CDF and touch it
-	addSequential(new DriveForDistance(0.65, RobotMap.DISTANCE_TO_OUTERWORKS), 3);
+	addSequential(new DriveForDistance(0.65, RobotMap.DISTANCE_TO_OUTERWORKS), 2);
 	// addSequential(new DriveForDistance(0.8, RobotMap.DISTANCE_TO_OUTERWORKS / 1.8), 3);
 	// let the robot roll down off a little
-	addSequential(new WaitCommand(0.5));
+	addSequential(new WaitCommand(0.8));
 	// push our arms down the whole way to push the CDF down
 	addSequential(new PIDSetArm(186));
 	// wait before we move at full speed
@@ -60,48 +60,48 @@ public class CrossCDF extends CommandGroup {
 	// turn after crossing
 	addSequential(new PIDAutonTurn());
 	/** vision **/
-	addParallel(new PIDVisionTurn(), 3);
-	addSequential(new PIDVisionShooter(), 3);
-	addParallel(new Command() {
-
-	    protected void initialize() {
-		Robot._shooter.setShootingStatus(true);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
-	addSequential(new SetShooter(1, 1));
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
-	addSequential(new FireServo());
-	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
-	addSequential(new SetShooter(0, 0));
-	addParallel(new Command() {
-
-	    protected void initialize() {
-		Robot._shooter.setShootingStatus(false);
-	    }
-
-	    protected void execute() {}
-
-	    protected boolean isFinished() {
-		return true;
-	    }
-
-	    protected void end() {}
-
-	    protected void interrupted() {
-		end();
-	    }
-	});
+	addParallel(new PIDVisionTurn(), 2);
+	addSequential(new PIDVisionShooter(), 5);
+//	addParallel(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._shooter.setShootingStatus(true);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
+//	addSequential(new SetShooter(1, 1));
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+//	addSequential(new FireServo());
+//	addSequential(new WaitCommand(RobotMap.SMARTSHOOT_SPINUP_DELAY));
+//	addSequential(new SetShooter(0, 0));
+//	addParallel(new Command() {
+//
+//	    protected void initialize() {
+//		Robot._shooter.setShootingStatus(false);
+//	    }
+//
+//	    protected void execute() {}
+//
+//	    protected boolean isFinished() {
+//		return true;
+//	    }
+//
+//	    protected void end() {}
+//
+//	    protected void interrupted() {
+//		end();
+//	    }
+//	});
     }
 }

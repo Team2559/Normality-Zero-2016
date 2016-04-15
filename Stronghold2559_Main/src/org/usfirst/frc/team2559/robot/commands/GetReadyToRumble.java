@@ -40,7 +40,7 @@ public class GetReadyToRumble extends CommandGroup {
 	 } else if (val == RobotMap.SHOOTING_ID) {
 	 addSequential(new PIDSetShooter(30));
 	 } else if (val == RobotMap.LOWGOAL_SHOOTING_ID) {
-	 addSequential(new PIDSetShooter(RobotMap.SHOOTER_INTAKE_ANGLE));
+	 addSequential(new PIDSetShooter(0));
 	 }
 	
 	 if (val == RobotMap.PORTCULLIS_ID || val == RobotMap.DRAWBRIDGE_ID || val == RobotMap.SALLYPORT_ID) {
