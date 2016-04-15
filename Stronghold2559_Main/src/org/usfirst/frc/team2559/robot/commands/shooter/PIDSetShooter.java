@@ -101,20 +101,8 @@ public class PIDSetShooter extends Command {
 	startTime = System.currentTimeMillis();
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.4);
-
-	try {
-	    Thread.sleep(20);
-	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
-	    Thread.sleep(500);
-	    Robot._shooter.setAdjusterSpeed(0);
-	    pid.reset();
-
-	}
-	catch (Exception e)
-	{
-	    
-	}
-	
+	hasSetClutchServo = false;
+	hasStoppedAdjuster = false;
 	
 //	Timer.delay(0.02);
 //	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
@@ -125,25 +113,25 @@ public class PIDSetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//	if (System.currentTimeMillis() > startTime + 20 && !hasSetClutchServo) {
-//	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
-//	    hasSetClutchServo = true;
-//	    startTime = System.currentTimeMillis();
-//	}
-//	
-//	if (System.currentTimeMillis() > startTime + 500 && !hasStoppedAdjuster) {
-//		Robot._shooter.setAdjusterSpeed(0);
-//		hasStoppedAdjuster = true;
-//	}
+	if (System.currentTimeMillis() > startTime + 20 && !hasSetClutchServo) {
+	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
+	    hasSetClutchServo = true;
+	    startTime = System.currentTimeMillis();
+	}
 	
-//	if (hasSetClutchServo && hasStoppedAdjuster) {
+	if (System.currentTimeMillis() > startTime + 500 && !hasStoppedAdjuster) {
+		Robot._shooter.setAdjusterSpeed(0);
+		hasStoppedAdjuster = true;
+	}
+	
+	if (hasSetClutchServo && hasStoppedAdjuster) {
 	    pid.calculate(Robot._shooter.getShooterAngle(), true);
 	    double power = pid.getOutput();
 	    if (power >= 0)
 		Robot._shooter.setAdjusterSpeed(power);
 	    else
 		Robot._shooter.setAdjusterSpeed(power * 0.5);
-//	}
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -153,10 +141,6 @@ public class PIDSetShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-	// Delay for shooter bounce
-	if (delay) {
-	    Timer.delay(0.5);
-	}
 	// engage clutch latch
 	Robot._shooter.setClutchServo(0);
 	Robot._shooter.setAdjusterSpeed(0);

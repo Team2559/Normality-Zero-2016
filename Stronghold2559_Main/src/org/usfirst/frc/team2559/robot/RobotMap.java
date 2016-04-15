@@ -116,7 +116,7 @@ public static final int	    PORT_SHOOTER_LEFT		      = 7,
                             PORT_SHOOTER_ENCODER	      = 1,
                             PORT_SHOOTER_LATCH		      = 4,
                             PORT_SHOOTER_PUSHER		      = 5,
-                            SERVO_PULLOUT_GAME		      = 60;
+                            SERVO_PULLOUT_GAME		      = 50;
 
 public static final double  SERVO_DELAY			      = 0.5;
 

@@ -11,28 +11,42 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ManualShooter extends Command {
 
+    boolean hasSetClutchServo = false, hasStoppedAdjuster = false;
+    Long    startTime;
+
     public ManualShooter() {
 	requires(Robot._shooter);
     }
-    
+
     // Called just before this Command runs the first time
     protected void initialize() {
+	startTime = System.currentTimeMillis();
+	hasSetClutchServo = false;
+	hasStoppedAdjuster = false;
 	// disengage clutch
 	Robot._shooter.setAdjusterSpeed(0.4);
-	Timer.delay(0.02);
-	Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
-	Timer.delay(RobotMap.SERVO_DELAY);
-	Robot._shooter.setAdjusterSpeed(0);
-	Timer.delay(0.01);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	double val = Robot.oi.getShooterStickVal();
-	if (val > 0)
-	    Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal()* 0.25);
-	else {
-	    Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal());
+	if (System.currentTimeMillis() > startTime + 20 && !hasSetClutchServo) {
+	    Robot._shooter.setClutchServo(RobotMap.SERVO_PULLOUT_GAME);
+	    hasSetClutchServo = true;
+	    startTime = System.currentTimeMillis();
+	}
+
+	if (System.currentTimeMillis() > startTime + 500 && !hasStoppedAdjuster) {
+	    Robot._shooter.setAdjusterSpeed(0);
+	    hasStoppedAdjuster = true;
+	}
+
+	if (hasSetClutchServo && hasStoppedAdjuster) {
+	    double val = Robot.oi.getShooterStickVal();
+	    if (val > 0)
+		Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal() * 0.25);
+	    else {
+		Robot._shooter.setAdjusterSpeed(-Robot.oi.getShooterStickVal());
+	    }	    
 	}
     }
 
